@@ -21,6 +21,7 @@ elif SentimentScore.sentiment.polarity < 0:
     print ("Negative")
 else:
     print ("Neutral")
+    
 if SentimentScore.sentiment.subjectivity >= 0.5:
     print ("Objective")
 elif SentimentScore.sentiment.subjectivity < 0.5:
