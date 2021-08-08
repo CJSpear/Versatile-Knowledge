@@ -29,8 +29,7 @@ count = doc.pageCount
 for i in range(count):
     text_total = " "
     page = doc.loadPage(i)
-    pdf_page = page
-    text = pdf_page.getText('text')
+    text = page.getText('text')
     text_total = (text_total + " " + text)
     
 pageObj = text_total
