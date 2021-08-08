@@ -1,25 +1,9 @@
 from textblob import TextBlob
-import PyPDF2
 import docx2txt
 import fitz
 
-
-#Old PDFFILE to TEXT format
-#pdfFileObj = open("Spacing.pdf", 'rb')
-#pdfReader = PyPDF2.PdfFileReader(pdfFileObj, strict=False)
-#if pdfReader.isEncrypted:
-#    pdfReader.decrypt('')  
-#count = pdfReader.numPages
-#for i in range(count):
-#    page = pdfReader.getPage(i)  
-#pageObj = pdfReader.getPage(i)
-#print (pageObj.extractText())
-#SentimentScore = TextBlob(pageObj.extractText())
-#print (SentimentScore.sentiment)
-
 #Word to Text
 docxFileObj = docx2txt.process("test.docx")
-
 
 #PDF To Text
 pdf_doc ="Testing.pdf"
@@ -35,6 +19,11 @@ for i in range(count):
 pageObj = text_total
 SentimentScore = TextBlob(pageObj)
 print (SentimentScore.sentiment)
+
+
+#For Word Documents (Works but I need to differentiate between incoming files (dont need to double up its a waste of code))
+#SentimentScore = TextBlob(docxFileObj)
+#print (SentimentScore.sentiment)
 
 
 # The polarity score is a float within the range [-1.0, 1.0].
