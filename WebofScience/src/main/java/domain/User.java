@@ -24,13 +24,13 @@ public class User {
     private String deptName;
     private String fieldResearch;
     private String role;
-    private String roleId;
-    private String deptId;
+    private Integer roleId;
+    private Integer deptId;
 
     public User() {
     }
 
-    public User(Integer userId, String username, String firstName, String email, String password, Date dob, String gender, String institution, String deptName, String fieldResearch, String role, String roleId, String deptId) {
+    public User(Integer userId, String username, String firstName, String email, String password, Date dob, String gender, String institution, String deptName, String fieldResearch, String role, Integer roleId, Integer deptId) {
         this.userId = userId;
         this.username = username;
         this.firstName = firstName;
@@ -134,19 +134,19 @@ public class User {
         this.role = role;
     }
 
-    public String getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 
-    public String getDeptId() {
+    public Integer getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(String deptId) {
+    public void setDeptId(Integer deptId) {
         this.deptId = deptId;
     }
 }
