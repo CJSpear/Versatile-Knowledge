@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="test">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/angular.js"></script>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/ngStorage.js"></script>
+        <script src="js/testjs.js"></script>
+    </head>
+    <body ng-controller="TestCont">
+        <div>test of getting all test contents</div>
+        <table>
+            <tr>
+            <th>name</th>
+            <th>number</th>
+            </tr>
+            <tr data-ng-repeat="test in TestCont.tests">
+                <td>{{test.name}}</td>
+                <td>{{test.number}}</td>
+            </tr>
+        </table>
+    </body>
+</html>
