@@ -66,8 +66,9 @@ public class testJdbc implements testDAO{
             throw new DAOException(e.getMessage(), e);
         }
     }
-    public void main(String[] args){
-        testJdbc te = new testJdbc();
-        te.testing();
-    }
+//    }
+//    public void main(String[] args){
+//        testJdbc te = new testJdbc();
+//        te.testing();
+//    }
 }
