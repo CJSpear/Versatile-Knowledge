@@ -5,6 +5,8 @@
  */
 package domain;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -26,6 +28,7 @@ public class User {
     private String role;
     private Integer roleId;
     private Integer deptId;
+    private Collection<Article> articles = new ArrayList<>();
 
     public User() {
     }
@@ -148,6 +151,21 @@ public class User {
 
     public void setDeptId(Integer deptId) {
         this.deptId = deptId;
+    }
+    
+    public void addArticle(){    
+    }
+    
+    public void searchMethod(){  
+    }
+    
+    public void addAccount(){
+    }
+    
+    public void deleteAccount(){  
+    }
+    
+     public void addContributor(){
     }
 }
 

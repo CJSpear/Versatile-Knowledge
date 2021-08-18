@@ -128,5 +128,16 @@ public class Article {
     public void setVerifiedBy(String verifiedBy) {
         this.verifiedBy = verifiedBy;
     }
-   
+     
+    
+    public void addArticle(){    
+    }
+    
+      public void deleteArticle(){    
+    }
+      
+        public void updateArticle(){    
+    }
+    
+    
 }
