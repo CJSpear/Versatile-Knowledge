@@ -8,7 +8,7 @@
 "use strict";
 
 // create a new module, and load the other pluggable modules
-var module = angular.module('test', ['ngResource', 'ngStorage']);
+var module = angular.module('Test', ['ngResource', 'ngStorage']);
 
 module.config(function ($sessionStorageProvider, $httpProvider) {
    // get the auth token from the session storage
@@ -21,10 +21,12 @@ module.config(function ($sessionStorageProvider, $httpProvider) {
    }
 });
 
-module.factory('gettest', function($resource){
-    return $resource('api/tests');
+module.factory('testAPI', function($resource){
+    return $resource('/api/tests');
 });
 
-module.controller('TestCont', function(gettest){
-    this.tests = gettest.query();
+module.controller('testCont', function(testAPI){
+    
+    let ctrl = this;
+    this.tests = testAPI.query();
 });

@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html ng-app="test">
+<html ng-app="Test">
     <head>
         <title>TODO supply a title</title>
         <meta charset="windows-1252">
@@ -14,16 +14,18 @@ and open the template in the editor.
         <script src="js/ngStorage.js"></script>
         <script src="js/testjs.js"></script>
     </head>
-    <body ng-controller="TestCont">
+    <body ng-controller="testCont as TC">
         <div>test of getting all test contents</div>
-        <table>
+        <table >
             <tr>
             <th>name</th>
             <th>number</th>
+            <th>somthing</th>
             </tr>
-            <tr data-ng-repeat="test in TestCont.tests">
+            <tr data-ng-repeat="test in TC.tests">
                 <td>{{test.name}}</td>
                 <td>{{test.number}}</td>
+                <td>this is weird</td>
             </tr>
         </table>
     </body>

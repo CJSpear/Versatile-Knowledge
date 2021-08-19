@@ -5,7 +5,7 @@
  */
 package dao;
 
-import domain.test;
+import domain.Test;
 import java.sql.*;
 import java.util.*;
 
@@ -14,8 +14,18 @@ import java.util.*;
  * @author Sayyed
  */
 public class testJdbc implements testDAO{
-    public Collection<test> getTests(){
-        String sql = "select * from Users";
+        String uri = DbConnection.getDefaultConnectionUri();
+	
+	public testJdbc(){
+	
+	}
+	
+	public testJdbc(String uri){
+		this.uri = uri;
+	}
+    
+    public Collection<Test> getTests(){
+        String sql = "select * from users";
         
         try(
             Connection connect = sqliteDbConnection.connect();
@@ -24,14 +34,15 @@ public class testJdbc implements testDAO{
             
             ResultSet rs = stmt.executeQuery();
             
-            List<test> tests = new ArrayList<test>();
+            List<Test> tests = new ArrayList<>();
             while(rs.next()){
                 String name = rs.getString("name");
                 Integer number = rs.getInt("number");
                 
-                test t = new test();
+                Test t = new Test();
                 t.setName(name);
                 t.setNumber(number);
+               
                 
                 tests.add(t);
             }
@@ -40,35 +51,4 @@ public class testJdbc implements testDAO{
             throw new DAOException(e.getMessage(), e);
         }
     }
-    public void testing(){
-        String sql = "select * from Users";
-        
-        try(
-            Connection connect = sqliteDbConnection.connect();
-            PreparedStatement stmt = connect.prepareStatement(sql)
-                ){
-            
-            ResultSet rs = stmt.executeQuery();
-            
-            List<test> tests = new ArrayList<test>();
-            while(rs.next()){
-                String name = rs.getString("name");
-                Integer number = rs.getInt("number");
-                
-                test t = new test();
-                t.setName(name);
-                t.setNumber(number);
-                
-                tests.add(t);
-            }
-            System.out.println(tests); 
-        }catch(SQLException e){
-            throw new DAOException(e.getMessage(), e);
-        }
-    }
-//    }
-//    public void main(String[] args){
-//        testJdbc te = new testJdbc();
-//        te.testing();
-//    }
 }

@@ -9,8 +9,8 @@ package dao;
  *
  * @author Sayyed
  */
-import domain.test;
+import domain.Test;
 import java.util.*;
 public interface testDAO {
-    Collection<test> getTests();
+    Collection<Test> getTests();
 }
