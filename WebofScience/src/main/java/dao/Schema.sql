@@ -13,13 +13,10 @@ create table Role (
  constraint Role_PK Primary key (Role_Id)
 );
 
-create table Department(
- Dept_Id int auto_increment,
- name varchar(50) not null,
- institution varchar(50) not null,
- filed_of_research varchar(50) not null,
- constraint Department_PK Primary key (Dept_Id)
-);
+insert into Role Values (null, 'Contributor');
+insert into Role Values (null, 'Verifier');
+insert into Role Values (null, 'Lead Verifier');
+insert into Role Values (null, 'Admin');
 
 create table User (
  User_Id int auto_increment,
@@ -30,11 +27,13 @@ create table User (
  Email varchar(50) not null,
  DOB date not null,
  Gender varchar(50) not null,
- RoleId int not null,
- DeptId int not null,
+ Department Varchar(50) not null,
+ Institute Varchar(50) not null,
+ Field_Of_Research Varchar(100) not null,
+ RoleId int,
+ DeptId int,
  constraint User_PK Primary key (User_Id),
- constraint User_Role_FK Foreign key (RoleId) references Role(Role_Id),
- constraint User_Dept_Fk Foreign key (DeptId) references Department(Dept_id)
+ constraint User_Role_FK Foreign key (RoleId) references Role(Role_Id)
 );
 
 create table Article(
@@ -46,6 +45,7 @@ create table Article(
  Author Varchar(100) not null,
  Verified Boolean not null,
  Published Boolean not null,
+ Flags int,
  Cited_count int,
  Contributed_By Int,
  Verified_By Int,
