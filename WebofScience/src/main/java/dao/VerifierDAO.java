@@ -11,7 +11,7 @@ import domain.Article;
  *
  * @author boydb
  */
-public interface VerifierDAO {
+public interface VerifierDAO extends userDAO {
     public void deleteArticle(Article article);
     public void archiveArticle (Article article);
     public void verifyArticle(Article article);

@@ -35,21 +35,6 @@ public class UserJdbcDAO implements userDAO {
     }
 
 
-    @Override
-    public void addContributer(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
-    @Override
-    public void flagArticle(Article article) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    @Override
-    public void addArticle(Article article) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     
     

@@ -13,9 +13,8 @@ import domain.User;
  * @author boydb
  */
 public interface userDAO {
-    public void addArticle(Article article);
-    public void addContributer(User user);
+    
     public void addAccount(User user);
-    public void flagArticle(Article article);
+    
     public void deleteAccount(User user);
 }
