@@ -138,6 +138,11 @@ public class Article {
     public void setTimesFlagged(String timesFlagged) {
         this.timesFlagged = timesFlagged;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" + "articleId=" + articleId + ", title=" + title + ", articleAbstract=" + articleAbstract + ", file=" + file + ", keywords=" + keywords + ", author=" + author + ", verified=" + verified + ", publsihed=" + publsihed + ", citedCount=" + citedCount + ", contributedBy=" + contributedBy + ", verifiedBy=" + verifiedBy + ", timesFlagged=" + timesFlagged + '}';
+    }
     
      
     
