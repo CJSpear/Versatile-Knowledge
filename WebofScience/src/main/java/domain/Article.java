@@ -23,11 +23,12 @@ public class Article {
     private String citedCount;
     private String contributedBy;
     private String verifiedBy;
+    private String timesFlagged;
 
     public Article() {
     }
 
-    public Article(Integer articleId, String title, String articleAbstract, String file, String keywords, Date author, Boolean verified, Boolean publsihed, String citedCount, String contributedBy, String verifiedBy) {
+    public Article(Integer articleId, String title, String articleAbstract, String file, String keywords, Date author, Boolean verified, Boolean publsihed, String citedCount, String contributedBy, String verifiedBy, String timesFlagged) {
         this.articleId = articleId;
         this.title = title;
         this.articleAbstract = articleAbstract;
@@ -39,6 +40,7 @@ public class Article {
         this.citedCount = citedCount;
         this.contributedBy = contributedBy;
         this.verifiedBy = verifiedBy;
+        this.timesFlagged = timesFlagged;
     }
 
     public Integer getArticleId() {
@@ -128,6 +130,15 @@ public class Article {
     public void setVerifiedBy(String verifiedBy) {
         this.verifiedBy = verifiedBy;
     }
+
+    public String getTimesFlagged() {
+        return timesFlagged;
+    }
+
+    public void setTimesFlagged(String timesFlagged) {
+        this.timesFlagged = timesFlagged;
+    }
+    
      
     
     public void addArticle(){    

@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author sarahaverill
  */
-public class Admin extends User {
+public class Admin extends Verifier {
 
     public Admin() {
     }
@@ -29,17 +29,6 @@ public class Admin extends User {
       
         public void upgradeVerifier(){    
     }   
-        
-         public void archiveArticle(){    
-    }
-    
-      public void deleteArticle(){    
-    }
-      
-        public void verifyArticle(){    
-    }  
-  
-        public void addContributor(){    
-    }  
+         
  
 }
