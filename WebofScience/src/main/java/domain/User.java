@@ -8,6 +8,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+ 
 /**
  *
  * @author sarahaverill
@@ -47,6 +48,7 @@ public class User {
         this.roleId = roleId;
         this.deptId = deptId;
     }
+    
  
     public Integer getUserId() {
         return userId;
@@ -151,6 +153,13 @@ public class User {
     public void setDeptId(Integer deptId) {
         this.deptId = deptId;
     }
+ 
+    @Override
+    public String toString() {
+        return "User{" + "userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", email=" + email + ", password=" + password + ", dob=" + dob + ", gender=" + gender + ", institution=" + institution + ", deptName=" + deptName + ", fieldResearch=" + fieldResearch + ", role=" + role + ", roleId=" + roleId + ", deptId=" + deptId + ", articles=" + articles + '}';
+    }
+    
+    
     
     public void addArticle(){    
     }

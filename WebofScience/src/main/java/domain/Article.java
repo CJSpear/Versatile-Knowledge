@@ -5,6 +5,7 @@
  */
 package domain;
  
+import java.io.File;
 import java.util.Date;
  
 /**
@@ -15,19 +16,20 @@ public class Article {
     private Integer articleId;
     private String  title;
     private String articleAbstract;
-    private String file;
+    private File file;
     private String keywords;
     private Date author;
     private Boolean verified;
     private Boolean publsihed;
-    private String citedCount;
+    private Integer citedCount;
     private String contributedBy;
     private String verifiedBy;
+    private Integer timesFlagged;
  
     public Article() {
     }
  
-    public Article(Integer articleId, String title, String articleAbstract, String file, String keywords, Date author, Boolean verified, Boolean publsihed, String citedCount, String contributedBy, String verifiedBy) {
+    public Article(Integer articleId, String title, String articleAbstract, File file, String keywords, Date author, Boolean verified, Boolean publsihed, Integer citedCount, String contributedBy, String verifiedBy, Integer timesFlagged) {
         this.articleId = articleId;
         this.title = title;
         this.articleAbstract = articleAbstract;
@@ -39,6 +41,7 @@ public class Article {
         this.citedCount = citedCount;
         this.contributedBy = contributedBy;
         this.verifiedBy = verifiedBy;
+        this.timesFlagged = timesFlagged;
     }
  
     public Integer getArticleId() {
@@ -65,11 +68,11 @@ public class Article {
         this.articleAbstract = articleAbstract;
     }
  
-    public String getFile() {
+    public File getFile() {
         return file;
     }
  
-    public void setFile(String file) {
+    public void setFile(File file) {
         this.file = file;
     }
  
@@ -105,11 +108,11 @@ public class Article {
         this.publsihed = publsihed;
     }
  
-    public String getCitedCount() {
+    public Integer getCitedCount() {
         return citedCount;
     }
  
-    public void setCitedCount(String citedCount) {
+    public void setCitedCount(Integer citedCount) {
         this.citedCount = citedCount;
     }
  
@@ -128,7 +131,22 @@ public class Article {
     public void setVerifiedBy(String verifiedBy) {
         this.verifiedBy = verifiedBy;
     }
+ 
+    public Integer getTimesFlagged() {
+        return timesFlagged;
+    }
+ 
+    public void setTimesFlagged(Integer timesFlagged) {
+        this.timesFlagged = timesFlagged;
+    }
+ 
+    @Override
+    public String toString() {
+        return "Article{" + "articleId=" + articleId + ", title=" + title + ", articleAbstract=" + articleAbstract + ", file=" + file + ", keywords=" + keywords + ", author=" + author + ", verified=" + verified + ", publsihed=" + publsihed + ", citedCount=" + citedCount + ", contributedBy=" + contributedBy + ", verifiedBy=" + verifiedBy + ", timesFlagged=" + timesFlagged + '}';
+    }
+    
      
+    
     public void addArticle(){    
     }
     
