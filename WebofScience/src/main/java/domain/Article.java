@@ -5,6 +5,7 @@
  */
 package domain;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -15,20 +16,20 @@ public class Article {
     private Integer articleId;
     private String  title;
     private String articleAbstract;
-    private String file;
+    private File file;
     private String keywords;
     private Date author;
     private Boolean verified;
     private Boolean publsihed;
-    private String citedCount;
+    private Integer citedCount;
     private String contributedBy;
     private String verifiedBy;
-    private String timesFlagged;
+    private Integer timesFlagged;
 
     public Article() {
     }
 
-    public Article(Integer articleId, String title, String articleAbstract, String file, String keywords, Date author, Boolean verified, Boolean publsihed, String citedCount, String contributedBy, String verifiedBy, String timesFlagged) {
+    public Article(Integer articleId, String title, String articleAbstract, File file, String keywords, Date author, Boolean verified, Boolean publsihed, Integer citedCount, String contributedBy, String verifiedBy, Integer timesFlagged) {
         this.articleId = articleId;
         this.title = title;
         this.articleAbstract = articleAbstract;
@@ -67,11 +68,11 @@ public class Article {
         this.articleAbstract = articleAbstract;
     }
 
-    public String getFile() {
+    public File getFile() {
         return file;
     }
 
-    public void setFile(String file) {
+    public void setFile(File file) {
         this.file = file;
     }
 
@@ -107,11 +108,11 @@ public class Article {
         this.publsihed = publsihed;
     }
 
-    public String getCitedCount() {
+    public Integer getCitedCount() {
         return citedCount;
     }
 
-    public void setCitedCount(String citedCount) {
+    public void setCitedCount(Integer citedCount) {
         this.citedCount = citedCount;
     }
 
@@ -131,11 +132,11 @@ public class Article {
         this.verifiedBy = verifiedBy;
     }
 
-    public String getTimesFlagged() {
+    public Integer getTimesFlagged() {
         return timesFlagged;
     }
 
-    public void setTimesFlagged(String timesFlagged) {
+    public void setTimesFlagged(Integer timesFlagged) {
         this.timesFlagged = timesFlagged;
     }
 
