@@ -1,0 +1,10 @@
+diff a/WebofScience/src/main/java/domain/Admin.java b/WebofScience/src/main/java/domain/Admin.java	(rejected hunks)
+@@ -11,7 +11,7 @@
+  *
+  * @author sarahaverill
+  */
+-public class Admin extends User {
++public class Admin extends Verifier {
+  
+     public Admin() {
+     }

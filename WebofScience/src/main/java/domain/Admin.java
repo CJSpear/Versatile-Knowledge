@@ -11,8 +11,13 @@ import java.util.Date;
  *
  * @author sarahaverill
  */
+<<<<<<< HEAD
 public class Admin extends Verifier {
+ 
+=======
+public class Admin extends User {
 
+>>>>>>> parent of fa69c3c (Updated Domain class)
     public Admin() {
     }
 
@@ -21,6 +26,7 @@ public class Admin extends Verifier {
         super(userId, username, firstName, email, password, dob, gender, institution, deptName, fieldResearch, role, roleId, deptId);
     }
   
+<<<<<<< HEAD
      public void addVerifier(){    
     }
     
@@ -30,5 +36,7 @@ public class Admin extends Verifier {
         public void upgradeVerifier(){    
     }   
          
+=======
+>>>>>>> parent of fa69c3c (Updated Domain class)
  
 }

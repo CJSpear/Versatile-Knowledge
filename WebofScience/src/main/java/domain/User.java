@@ -8,7 +8,11 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+<<<<<<< HEAD
+ 
+=======
 
+>>>>>>> parent of fa69c3c (Updated Domain class)
 /**
  *
  * @author sarahaverill
@@ -48,8 +52,12 @@ public class User {
         this.roleId = roleId;
         this.deptId = deptId;
     }
+<<<<<<< HEAD
     
+ 
+=======
 
+>>>>>>> parent of fa69c3c (Updated Domain class)
     public Integer getUserId() {
         return userId;
     }
@@ -153,7 +161,7 @@ public class User {
     public void setDeptId(Integer deptId) {
         this.deptId = deptId;
     }
-
+ 
     @Override
     public String toString() {
         return "User{" + "userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", email=" + email + ", password=" + password + ", dob=" + dob + ", gender=" + gender + ", institution=" + institution + ", deptName=" + deptName + ", fieldResearch=" + fieldResearch + ", role=" + role + ", roleId=" + roleId + ", deptId=" + deptId + ", articles=" + articles + '}';
@@ -161,20 +169,7 @@ public class User {
     
     
     
-    public void addArticle(){    
-    }
-    
-    public void searchMethod(){  
-    }
-    
-    public void addAccount(){
-    }
-    
-    public void deleteAccount(){  
-    }
-    
-     public void addContributor(){
-    }
+   
 }
 
     
