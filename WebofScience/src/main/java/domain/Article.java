@@ -147,14 +147,7 @@ public class Article {
     
      
     
-    public void addArticle(){    
-    }
     
-      public void deleteArticle(){    
-    }
-      
-        public void updateArticle(){    
-    }
     
     
 }

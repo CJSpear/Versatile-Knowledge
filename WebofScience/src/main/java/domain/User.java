@@ -161,20 +161,7 @@ public class User {
     
     
     
-    public void addArticle(){    
-    }
-    
-    public void searchMethod(){  
-    }
-    
-    public void addAccount(){
-    }
-    
-    public void deleteAccount(){  
-    }
-    
-     public void addContributor(){
-    }
+   
 }
 
     

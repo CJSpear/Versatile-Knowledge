@@ -21,14 +21,7 @@ public class Admin extends Verifier {
         super(userId, username, firstName, email, password, dob, gender, institution, deptName, fieldResearch, role, roleId, deptId);
     }
   
-     public void addVerifier(){    
-    }
-    
-      public void deleteVerifier(){    
-    }
-      
-        public void upgradeVerifier(){    
-    }   
+       
          
  
 }
