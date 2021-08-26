@@ -129,15 +129,6 @@ public class Article {
         this.verifiedBy = verifiedBy;
     }
      
-    
-    public void addArticle(){    
-    }
-    
-      public void deleteArticle(){    
-    }
-      
-        public void updateArticle(){    
-    }
-    
-    
+   
+  
 }

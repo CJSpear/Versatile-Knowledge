@@ -21,25 +21,5 @@ public class Admin extends User {
         super(userId, username, firstName, email, password, dob, gender, institution, deptName, fieldResearch, role, roleId, deptId);
     }
   
-     public void addVerifier(){    
-    }
-    
-      public void deleteVerifier(){    
-    }
-      
-        public void upgradeVerifier(){    
-    }   
-        
-         public void archiveArticle(){    
-    }
-    
-      public void deleteArticle(){    
-    }
-      
-        public void verifyArticle(){    
-    }  
-  
-        public void addContributor(){    
-    }  
  
 }

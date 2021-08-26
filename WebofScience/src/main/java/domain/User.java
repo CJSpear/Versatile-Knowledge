@@ -153,20 +153,7 @@ public class User {
         this.deptId = deptId;
     }
     
-    public void addArticle(){    
-    }
-    
-    public void searchMethod(){  
-    }
-    
-    public void addAccount(){
-    }
-    
-    public void deleteAccount(){  
-    }
-    
-     public void addContributor(){
-    }
+   
 }
 
     
