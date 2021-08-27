@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import org.jooby.Jooby;
 import org.jooby.json.Gzon;
-import dao.testDAO;
-import dao.testJdbc;
+//import dao.testDAO;
+//import dao.testJdbc;
 //import web.auth.BasicHttpAuthenticator;
 
 /**
@@ -24,7 +24,7 @@ public class Server extends Jooby {
     // use H2 database server (default)
    // CustomerDAO customerDao = new CustomerJdbcDAO();
    // SubscriptionDAO subscriptionDao = new SubscriptionJdbcDAO();
-    testDAO testdao = new testJdbc();
+    //testDAO testdao = new testJdbc();
     
     // use embedded database file (SubTrack.mv.db in project root directory)
 //    CustomerDAO customerDao = new CustomerJdbcDAO("jdbc:h2:./SubTrack");
@@ -34,7 +34,7 @@ public class Server extends Jooby {
         port(8080);
         use(new Gzon());
         use(new AssetModule());
-        use(new testModule(testdao));
+        //use(new testModule(testdao));
         /*List<String> noAuth = Arrays.asList("/api/register");
         use(new BasicHttpAuthenticator(customerDao, noAuth));
         use(new CustomerModule(customerDao));

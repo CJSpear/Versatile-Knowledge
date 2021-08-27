@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!--<link rel="stylesheet" href="css/style.css">-->
+<div id="menu">
+    <!--<div id='welcome'>{{custCtrl.welcome}}</div>-->
+   <a href="home.html" class='others'>Search</a>
+   <a href="marked.html" >Marked</a>
+   <a href="history.html" >History</a>
+   <a href='alerts.html' >Alerts</a>
+   <a href="uploadArticle.html">Upload</a>
+   
+   <a href="home.html" ng-if="custCtrl.signedIn" ng-click="custCtrl.signOut()" style="float: right;"><button type='button'>Sign Out</button></a>
+   <a href="signin.html" ng-if="!custCtrl.signedIn" style="float: right;"><button type='button'>Sign In</button></a>
+   
+</div>
