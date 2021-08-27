@@ -4,12 +4,9 @@
  * and open the template in the editor.
  */
 package domain;
-<<<<<<< HEAD
+
  
 import java.io.File;
-=======
-
->>>>>>> parent of fa69c3c (Updated Domain class)
 import java.util.Date;
 
 /**
@@ -28,20 +25,16 @@ public class Article {
     private Integer citedCount;
     private String contributedBy;
     private String verifiedBy;
-<<<<<<< HEAD
     private Integer timesFlagged;
  
     public Article() {
     }
  
     public Article(Integer articleId, String title, String articleAbstract, File file, String keywords, Date author, Boolean verified, Boolean publsihed, Integer citedCount, String contributedBy, String verifiedBy, Integer timesFlagged) {
-=======
 
-    public Article() {
     }
 
-    public Article(Integer articleId, String title, String articleAbstract, String file, String keywords, Date author, Boolean verified, Boolean publsihed, String citedCount, String contributedBy, String verifiedBy) {
->>>>>>> parent of fa69c3c (Updated Domain class)
+    public Article(Integer articleId, String title, String articleAbstract, File file, String keywords, Date author, Boolean verified, Boolean publsihed, Integer citedCount, String contributedBy, String verifiedBy) {
         this.articleId = articleId;
         this.title = title;
         this.articleAbstract = articleAbstract;
@@ -79,21 +72,13 @@ public class Article {
     public void setArticleAbstract(String articleAbstract) {
         this.articleAbstract = articleAbstract;
     }
-<<<<<<< HEAD
  
     public File getFile() {
         return file;
     }
  
+
     public void setFile(File file) {
-=======
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
->>>>>>> parent of fa69c3c (Updated Domain class)
         this.file = file;
     }
 
@@ -128,21 +113,13 @@ public class Article {
     public void setPublsihed(Boolean publsihed) {
         this.publsihed = publsihed;
     }
-<<<<<<< HEAD
  
     public Integer getCitedCount() {
         return citedCount;
     }
- 
+
+
     public void setCitedCount(Integer citedCount) {
-=======
-
-    public String getCitedCount() {
-        return citedCount;
-    }
-
-    public void setCitedCount(String citedCount) {
->>>>>>> parent of fa69c3c (Updated Domain class)
         this.citedCount = citedCount;
     }
 
@@ -175,9 +152,7 @@ public class Article {
         return "Article{" + "articleId=" + articleId + ", title=" + title + ", articleAbstract=" + articleAbstract + ", file=" + file + ", keywords=" + keywords + ", author=" + author + ", verified=" + verified + ", publsihed=" + publsihed + ", citedCount=" + citedCount + ", contributedBy=" + contributedBy + ", verifiedBy=" + verifiedBy + ", timesFlagged=" + timesFlagged + '}';
     }
     
-     
-<<<<<<< HEAD
-    
+         
     public void addArticle(){    
     }
     
@@ -189,8 +164,5 @@ public class Article {
     
     
 }
-=======
-   
-  
-}
->>>>>>> parent of fa69c3c (Updated Domain class)
+
+ 
