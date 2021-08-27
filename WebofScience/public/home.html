@@ -14,19 +14,17 @@ and open the template in the editor.
         <script src="js/ngStorage.js"></script>
         <script src="js/testjs.js"></script>
     </head>
-    <body ng-controller="testCont as TC">
-        <div>test of getting all test contents</div>
-        <table >
-            <tr>
-            <th>name</th>
-            <th>number</th>
-            <th>somthing</th>
-            </tr>
-            <tr data-ng-repeat="test in TC.tests">
-                <td>{{test.name}}</td>
-                <td>{{test.number}}</td>
-                <td>this is weird</td>
-            </tr>
-        </table>
+    <body>
+        <div ng-include="'topmenu.html'"></div>
+        <hr>
+        <div align='center' style='margin: 100px;'>
+            <select id='seachBy' style='height: 35px;'>
+                <option>Author</option>
+                <option>Cited Count</option>
+                <option>Contributor</option>
+            </select>
+            <input type='text' placeholder='Search...' style='width: 50%; height: 30px;'>
+            <button type="button" style='height:35px'>Search</button>
+        </div>
     </body>
 </html>

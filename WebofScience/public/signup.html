@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        
+        <title>Create Account</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/angular.js"></script>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/ngStorage.js"></script>
+    </head>
+    
+    <body>
+        <div ng-include="'topmenu.html'"></div>
+        <hr>
+        <div>
+         <h1> Create Account </h1>
+        </div>
+         <form ng-controller="CustomerController as custCtrl" ng-submit="custCtrl.registerCustomer(customer)"  class="login-form">
+             <fieldset>
+            <label for=“firstName”>First Name:</label>
+            <input type="text" ng-model="customer.firstName" required>
+            <br>
+            
+            <label for=“lastName”>Last Name:</label>
+            <input type="text" ng-model="customer.lastName" required>
+            <br>
+            
+            
+            <label for=“gender”>Gender:</label>
+            <input type="text" ng-model="customer.gender" required>
+            <br>
+            
+            <label for=“email”>Email:</label>
+            <input type="email" ng-model="customer.email" required>
+            <br>
+            
+            <label for=“dob”>Date of Birth:</label>
+            <input type="date" ng-model="subscription.dob" name="dob">
+            <br>
+            
+             <label for=“username”>Username:</label>
+            <input type="text" ng-model="customer.username" required>
+            <br>
+            
+            <label for=“password”>Password:</label>
+            <input type="password" ng-model="customer.password" required>
+            <br><br>
+            <hr>
+            <br>
+            <label for="institution">Institution:</label>
+            <input type="text" ng-model="customer.institution" required>
+            <br>
+            <label for="deptName">Department:</label>
+            <input type="text" ng-model="customer.deptName" required>
+            <br>
+            <label for="fieldResearch">Field Of Research:</label>
+            <input type="text" ng-model="customer.fieldResearch" required>
+            <br>
+             </fieldset>
+            <center><button type="submit" class="raise">Create Account</button></center>
+        </form>
+    </center>
+    </body>
+</html>

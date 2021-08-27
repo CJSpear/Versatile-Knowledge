@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Create Account</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/angular.js"></script>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/ngStorage.js"></script>
+    </head>
+
+    <body>
+        <div ng-include="'topmenu.html'"></div>
+        <hr>
+        <h1> Upload Article </h1>
+
+        <form ng-controller="CustomerController as custCtrl" ng-submit="custCtrl.registerCustomer(customer)"  class="login-form">
+            <fieldset>
+                <label for=“file”>File:</label>
+                <input type="file" ng-model="article.file" required>
+                <br>
+
+                <label for=“title”>Title:</label>
+                <input type="text" ng-model="article.title" required>
+                <br>
+
+                <label for=“keywords”>Keyword:</label>
+                <input type="text" ng-model="article.keywords" required>
+                <br>
+
+
+                <label for=“author”>Author:</label>
+                <input type="text" ng-model="article.author" required>
+                <br>
+
+                <label for=“abstract”>Abstract:</label>
+                <textarea ng-model="article.abstract" rows="6" cols="50" required></textarea>
+                <br>
+                
+                <label for=“published” class="radio-inline">Is the article published?:
+                <input type="radio" ng-model="article.published">Yes
+                </label>
+                <label for=“published” class="radio-inline">
+                <input type="radio" ng-model="article.published">No
+                </label>
+                <br>
+            </fieldset>
+            <center><button type="submit" class="raise">Create Account</button></center>
+        </form>
+    </body>
+</html>

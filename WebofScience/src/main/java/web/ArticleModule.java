@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package web;
 
 /**
  *
  * @author Sayyed
  */
-import domain.Test;
-import java.util.*;
-public interface testDAO {
-    Collection<Test> getTests();
+public class ArticleModule {
+    
 }
