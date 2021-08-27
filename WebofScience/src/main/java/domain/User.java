@@ -8,11 +8,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-<<<<<<< HEAD
  
-=======
-
->>>>>>> parent of fa69c3c (Updated Domain class)
 /**
  *
  * @author sarahaverill
@@ -52,12 +48,6 @@ public class User {
         this.roleId = roleId;
         this.deptId = deptId;
     }
-<<<<<<< HEAD
-    
- 
-=======
-
->>>>>>> parent of fa69c3c (Updated Domain class)
     public Integer getUserId() {
         return userId;
     }
