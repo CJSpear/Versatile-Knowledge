@@ -5,10 +5,6 @@
  */
 package dao;
 
-/**
- *
- * @author boydb
- */
 public interface ArticleDAO {
     
 }
