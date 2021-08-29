@@ -5,6 +5,7 @@
  */
 package domain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -18,25 +19,27 @@ public class User {
     private Integer  userId;
     private String  username;
     private String firstName;
+    private String lastName;
     private String email;
     private String password;
-    private Date dob;
+    private String dob = LocalDate.now().toString();
     private String gender;
     private String institution;
     private String deptName;
     private String fieldResearch;
-    private String role;
     private Integer roleId;
-    private Integer deptId;
     private Collection<Article> articles = new ArrayList<>();
+    
+    private Role role;
 
     public User() {
     }
 
-    public User(Integer userId, String username, String firstName, String email, String password, Date dob, String gender, String institution, String deptName, String fieldResearch, String role, Integer roleId, Integer deptId) {
+    public User(Integer userId, String username, String firstName, String lastName, String email, String password, String dob, String gender, String institution, String deptName, String fieldResearch, Integer roleId) {
         this.userId = userId;
         this.username = username;
         this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.dob = dob;
@@ -44,9 +47,7 @@ public class User {
         this.institution = institution;
         this.deptName = deptName;
         this.fieldResearch = fieldResearch;
-        this.role = role;
-        this.roleId = roleId;
-        this.deptId = deptId;
+        this.roleId = role.getRoleID();
     }
     public Integer getUserId() {
         return userId;
@@ -72,6 +73,14 @@ public class User {
         this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -88,11 +97,11 @@ public class User {
         this.password = password;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -128,11 +137,11 @@ public class User {
         this.fieldResearch = fieldResearch;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -143,18 +152,10 @@ public class User {
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
-
-    public Integer getDeptId() {
-        return deptId;
-    }
-
-    public void setDeptId(Integer deptId) {
-        this.deptId = deptId;
-    }
  
     @Override
     public String toString() {
-        return "User{" + "userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", email=" + email + ", password=" + password + ", dob=" + dob + ", gender=" + gender + ", institution=" + institution + ", deptName=" + deptName + ", fieldResearch=" + fieldResearch + ", role=" + role + ", roleId=" + roleId + ", deptId=" + deptId + ", articles=" + articles + '}';
+        return "User{" + "userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + ", dob=" + dob + ", gender=" + gender + ", institution=" + institution + ", deptName=" + deptName + ", fieldResearch=" + fieldResearch + ", role=" + role + ", roleId=" + roleId + ", articles=" + articles + '}';
     }
     
     

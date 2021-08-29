@@ -10,7 +10,7 @@ package domain;
  * @author boydb
  */
 public class Role {
-    private Integer RoleID;
+    private Integer RoleID=1;
     private String RoleName;
 
     public Integer getRoleID() {
