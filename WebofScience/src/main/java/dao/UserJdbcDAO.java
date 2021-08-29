@@ -9,7 +9,7 @@ import domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+import domain.Role;
 /**
  *
  * @author boydb
@@ -27,26 +27,22 @@ public class UserJdbcDAO implements userDAO {
     }
     @Override
     public void addAccount(User user) {
-        String sql = "insert into User (userId, username, firstName, email, password, dob, gender, institution, deptName, fieldResearch, role, roleId, deptId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into User (username, firstName, email, password, dob, gender, institution, deptName, fieldResearch, roleId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, (select role_id from role where name='Contributor'))";
  
         try (
                 Connection dbCon = DbConnection.getConnection(url);
                 PreparedStatement stmt = dbCon.prepareStatement(sql);) {
  
-            stmt.setInt(1, user.getUserId());
-            stmt.setString(2, user.getUsername());
-            stmt.setString(3, user.getFirstName());
-            stmt.setString(4, user.getEmail());
-            stmt.setString(5, user.getPassword());
-            stmt.setDate(6, (java.sql.Date) user.getDob());
-            stmt.setString(7, user.getGender());
-            stmt.setString(8, user.getInstitution());
-            stmt.setString(9, user.getDeptName());
-            stmt.setString(10, user.getFieldResearch());
-            stmt.setString (11, user.getRole());
-            stmt.setInt(12, user.getRoleId());
-            stmt.setInt(13, user.getDeptId());
-            
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getFirstName());
+            stmt.setString(3, user.getEmail());
+            stmt.setString(4, user.getPassword());
+            stmt.setDate(5, (java.sql.Date) user.getDob());
+            stmt.setString(6, user.getGender());
+            stmt.setString(7, user.getInstitution());
+            stmt.setString(8, user.getDeptName());
+            stmt.setString(9, user.getFieldResearch());
+            stmt.setInt(10, user.getRole.getRoleID());
  
             stmt.executeUpdate();
  
