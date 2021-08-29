@@ -17,8 +17,9 @@ public class Admin extends Verifier {
     }
 
     
-    public Admin(Integer userId, String username, String firstName, String email, String password, Date dob, String gender, String institution, String deptName, String fieldResearch, String role, Integer roleId, Integer deptId) {
-        super(userId, username, firstName, email, password, dob, gender, institution, deptName, fieldResearch, role, roleId, deptId);
+    public Admin(Integer userId, String username, String firstName, String lastName,String email, String password, String dob, 
+            String gender, String institution, String deptName, String fieldResearch, Integer roleId) {
+        super(userId, username, firstName, lastName, email, password, dob, gender, institution, deptName, fieldResearch, roleId);
     }
   
      public void addVerifier(){    
