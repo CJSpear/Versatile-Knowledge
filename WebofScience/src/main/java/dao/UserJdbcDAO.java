@@ -42,7 +42,7 @@ public class UserJdbcDAO implements userDAO {
             stmt.setString(7, user.getInstitution());
             stmt.setString(8, user.getDeptName());
             stmt.setString(9, user.getFieldResearch());
-            stmt.setInt(10, user.getRole.getRoleId());
+            stmt.setInt(10, user.getRole.getRoleID());
  
             stmt.executeUpdate();
  
