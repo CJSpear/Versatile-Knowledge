@@ -123,7 +123,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 Connection dbCon = DbConnection.getConnection(databaseURI);
                 // create the statement
                 PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-            // copy the data from the renter domain object into the SQL parameters
+          
             stmt.setInt(1, article.getTimesFlagged());
            
             stmt.executeUpdate(); 
@@ -144,7 +144,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 Connection dbCon = DbConnection.getConnection(databaseURI);
                 // create the statement
                 PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-            // copy the data from the renter domain object into the SQL parameters
+           
             stmt.setInt(1, user.getUserId());
            
             stmt.executeUpdate(); 
