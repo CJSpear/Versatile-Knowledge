@@ -15,7 +15,7 @@ public interface ArticleDAO {
     public void deleteArticle(Article article);
     
     public void updateArticle(Article article);
-    public void flatArticle(Article article);
+    public void flagArticle(Article article);
     public void addContributor(User user);
  
 }
