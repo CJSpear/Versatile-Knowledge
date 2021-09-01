@@ -116,6 +116,22 @@ public class ArticleJdbcDAO implements ArticleDAO{
     
 
     public void flagArticle(Article article) {
+        String sql = "merge into Article (timesFlagged) values (?)"; 
+        
+         try (
+                // get connection to database
+                Connection dbCon = DbConnection.getConnection(databaseURI);
+                // create the statement
+                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+            // copy the data from the renter domain object into the SQL parameters
+            stmt.setInt(1, article.getTimesFlagged());
+           
+            stmt.executeUpdate(); 
+
+        } catch (SQLException ex) {  
+            throw new DAOException(ex.getMessage(), ex);
+        }  
+        
     }
     
  
@@ -139,8 +155,5 @@ public class ArticleJdbcDAO implements ArticleDAO{
         
     }
 
-    public void flatArticle(Article article) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
