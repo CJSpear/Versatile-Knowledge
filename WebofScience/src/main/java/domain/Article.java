@@ -17,9 +17,9 @@ public class Article {
     private Integer articleId;
     private String  title;
     private String articleAbstract;
-    private File file;
+    private String file;
     private String keywords;
-    private Date author;
+    private String author;
     private Boolean verified;
     private Boolean publsihed;
     private Integer citedCount;
@@ -73,12 +73,12 @@ public class Article {
         this.articleAbstract = articleAbstract;
     }
  
-    public File getFile() {
+    public String getFile() {
         return file;
     }
  
 
-    public void setFile(File file) {
+    public void setFile(String file) {
         this.file = file;
     }
 
@@ -90,11 +90,11 @@ public class Article {
         this.keywords = keywords;
     }
 
-    public Date getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Date author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
