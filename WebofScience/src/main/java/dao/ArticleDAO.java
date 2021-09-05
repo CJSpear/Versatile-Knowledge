@@ -5,10 +5,17 @@
  */
 package dao;
 
-/**
- *
- * @author boydb
- */
+import domain.Article;
+import domain.User;
+
 public interface ArticleDAO {
     
+    
+    public void addArticle(Article article);
+    public void deleteArticle(Article article);
+    
+    public void updateArticle(Article article);
+    public void flagArticle(Article article);
+    public void addContributor(User user);
+ 
 }
