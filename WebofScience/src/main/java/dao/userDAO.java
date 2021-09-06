@@ -14,4 +14,5 @@ import domain.User;
 public interface userDAO {
     public void addAccount(User user);
     public void deleteAccount(User user);
+    public User signin(String username, String password);
 }

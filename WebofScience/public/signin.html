@@ -14,7 +14,7 @@ and open the template in the editor.
         <script src="js/ngStorage.js"></script>
         <script src="js/VK.js"></script>
     </head>
-    <body>
+    <body ng-controller="UserController as userCtrl">
         <div ng-include="'topmenu.html'"></div>
         <hr>
         <div>
@@ -23,7 +23,7 @@ and open the template in the editor.
         <div class="login-form">
             <!--<p>{{custCtrl.signInMessage}}</p>-->
             <center>
-            <form ng-submit="custCtrl.signIn(username, password)" class='form'>
+            <form ng-submit="userCtrl.signin(username, password)" class='form'>
                 <fieldset>
                     <legend align='left'>Account Details</legend>
                     <label for='uname'>Username:</label>
@@ -38,7 +38,7 @@ and open the template in the editor.
                 </fieldset>
             </form>
             </center>
-            <center><h4>Don't have an account? <a href=signup.html>Sign up</a></h4></center>
+            <center><h4>Don't have an account? <a href=signup.html>Sign up</a> here</h4></center>
         </div>
     </body>
 </html>
