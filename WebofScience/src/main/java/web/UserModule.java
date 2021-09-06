@@ -31,5 +31,15 @@ public class UserModule extends Jooby {
             userDao.addAccount(user);
             rsp.status(Status.CREATED);
         });
+        
+        get("/api/users/:username/:password", (req) -> {
+            String username = req.param("username").value();
+            String password = req.param("password").value();
+            if(userDao.signin(username, password) == null){
+                return new Result().status(Status.NOT_FOUND);
+            }else{
+                return userDao.signin(username, password);
+            }
+        });
     }
 }
