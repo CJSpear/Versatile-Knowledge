@@ -6,6 +6,8 @@
 package dao;
 
 import domain.User;
+import domain.Verifier;
+import domain.Admin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -28,7 +30,7 @@ public class AdminJdbcDAO implements userDAO {
     }
     @Override
     public void addAccount(User user) {
-        String sql = "insert into User (username, fname, lname, email, password, dob, gender, institute, department, field_of_research, roleId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select role_id from role where name='Contributor'))";
+        String sql = "insert into User (username, fname, lname, email, password, dob, gender, institute, department, field_of_research, roleId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select role_id from role where name='Admin'))";
  
         try (
                 Connection dbCon = DbConnection.getConnection(url);
