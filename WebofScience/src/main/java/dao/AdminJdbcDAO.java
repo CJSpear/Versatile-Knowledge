@@ -25,7 +25,8 @@ public class AdminJdbcDAO implements AdminDAO {
     public AdminJdbcDAO() {
     }
  
-    //this may be wrong - check
+    private String uri = DbConnection.getDefaultConnectionUri();
+    
     public AdminJdbcDAO(String uri) {
         this.url = uri;
     }
@@ -36,6 +37,19 @@ public class AdminJdbcDAO implements AdminDAO {
     
      
     public void deleteVerifier(Verifier user) {
+        String sql = "delete from verifier where UserId = ?";
+ 
+        try (
+            
+         Connection dbCon = DbConnection.getConnection(uri);
+         PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+            
+            stmt.setInt(1, verifier.getUserId());
+            stmt.executeUpdate();
+ 
+        } catch (SQLException ex) {
+            throw new DAOException(ex.getMessage(), ex);
+        }  
     
     }
     
