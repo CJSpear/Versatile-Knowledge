@@ -29,76 +29,19 @@ public class AdminJdbcDAO implements AdminDAO {
     public AdminJdbcDAO(String uri) {
         this.url = uri;
     }
-    @Override
-    public void addAccount(User user) {
-        String sql = "insert into User (username, fname, lname, email, password, dob, gender, institute, department, field_of_research, roleId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select role_id from role where name='Admin'))";
- 
-        try (
-                Connection dbCon = DbConnection.getConnection(url);
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
- 
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getFirstName());
-            stmt.setString(3, user.getLastName());
-            stmt.setString(4, user.getEmail());
-            stmt.setString(5, user.getPassword());
-            stmt.setString(6, user.getDob().toString());
-            stmt.setString(7, user.getGender());
-            stmt.setString(8, user.getInstitution());
-            stmt.setString(9, user.getDeptName());
-            stmt.setString(10, user.getFieldResearch());
-            
-            //not needed since nested query will get it for us.
-            //stmt.setInt(11, user.getRole().getRoleID());
- 
-            stmt.executeUpdate();
- 
-        } catch (SQLException ex) {
-            throw new DAOException(ex.getMessage(), ex);
-        }
-        
-        
-    }
     
-    @Override
-    public void deleteAccount(User user) {
-        String sql = "delete from user where user_ID = ?";
- 
-        try (
-                 Connection dbCon = DbConnection.getConnection(url);  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-            stmt.setInt(1, user.getUserId());
-            stmt.executeUpdate();
- 
-        } catch (SQLException ex) {
-            throw new DAOException(ex.getMessage(), ex);
-        }
-    }
-    
-    @Override
     public void addVerifier(Verifier verifier) {
         
     }
     
-    @Override
+     
     public void deleteVerifier(Verifier user) {
     
     }
     
-    @Override
+     
     public void upgradeVerifier(Verifier user) {
     
-    }
-    
-    @Override
-    public void verifyArticle(Article article) {
-    }
- 
-    @Override
-    public void archiveArticle(Article article) {
-    }
-    
-    @Override
-    public void deleteArticle(Article article) {
     }
 }
     
