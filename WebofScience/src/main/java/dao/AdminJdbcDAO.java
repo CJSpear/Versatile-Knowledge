@@ -44,7 +44,7 @@ public class AdminJdbcDAO implements AdminDAO {
          Connection dbCon = DbConnection.getConnection(uri);
          PreparedStatement stmt = dbCon.prepareStatement(sql);) {
             
-            stmt.setInt(1, verifier.getUserId());
+            stmt.setInt(1, user.getUserId());
             stmt.executeUpdate();
  
         } catch (SQLException ex) {
