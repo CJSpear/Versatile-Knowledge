@@ -8,6 +8,7 @@ package dao;
 import domain.User;
 import domain.Verifier;
 import domain.Admin;
+import domain.Article;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ import domain.Role;
  *
  * @author boydb
  */
-public class AdminJdbcDAO implements userDAO {
+public class AdminJdbcDAO implements AdminDAO {
     private String url = DbConnection.getDefaultConnectionUri();
     
  
@@ -73,11 +74,32 @@ public class AdminJdbcDAO implements userDAO {
         }
     }
     
- 
- 
- 
+    @Override
+    public void addVerifier(Verifier verifier) {
+        
+    }
     
+    @Override
+    public void deleteVerifier(Verifier user) {
     
+    }
+    
+    @Override
+    public void upgradeVerifier(Verifier user) {
+    
+    }
+    
+    @Override
+    public void verifyArticle(Article article) {
+    }
+ 
+    @Override
+    public void archiveArticle(Article article) {
+    }
+    
+    @Override
+    public void deleteArticle(Article article) {
+    }
 }
     
 
