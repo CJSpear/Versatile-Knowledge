@@ -19,7 +19,6 @@ import domain.Role;
  * @author boydb
  */
 public class AdminJdbcDAO implements AdminDAO {
-    private String url = DbConnection.getDefaultConnectionUri();
     
  
     public AdminJdbcDAO() {
@@ -28,9 +27,10 @@ public class AdminJdbcDAO implements AdminDAO {
     private String uri = DbConnection.getDefaultConnectionUri();
     
     public AdminJdbcDAO(String uri) {
-        this.url = uri;
+        this.uri = uri;
     }
     
+    @Override
     public void addVerifier(Verifier verifier) {
         String sql = "insert into User (username, fname, lname, email, password, dob, gender, institute, department, field_of_research, roleId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select role_id from role where name='Verifier'))";
  
@@ -60,9 +60,9 @@ public class AdminJdbcDAO implements AdminDAO {
         
     }
     
-     
+    @Override
     public void deleteVerifier(Verifier user) {
-        String sql = "delete from verifier where UserId = ?";
+        String sql = "delete from User where UserId = ?";
  
         try (
             
@@ -78,9 +78,21 @@ public class AdminJdbcDAO implements AdminDAO {
     
     }
     
-     
+    @Override
     public void upgradeVerifier(Verifier user) {
-    
+        String sql = "update from User set roleId = (select role_id from role where name='Admin'), where UserId = ?";
+        
+        try (
+            
+         Connection dbCon = DbConnection.getConnection(uri);
+         PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+            
+            stmt.setInt(1, user.getUserId());
+            stmt.executeUpdate();
+ 
+        } catch (SQLException ex) {
+            throw new DAOException(ex.getMessage(), ex);
+        }  
     }
 }
     
