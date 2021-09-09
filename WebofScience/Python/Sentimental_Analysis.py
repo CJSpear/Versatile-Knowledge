@@ -1,12 +1,36 @@
 from textblob import TextBlob
 import docx2txt
 import fitz
+from textblob.classifiers import NaiveBayesClassifier
+
+train = [
+    ('I love this sandwich.', 'pos'),
+    ('this is an amazing place!', 'pos'),
+    ('I feel very good about these beers.', 'pos'),
+    ('this is my best work.', 'pos'),
+    ("what an awesome view", 'pos'),
+    ('I do not like this restaurant', 'neg'),
+    ('I am tired of this stuff.', 'neg'),
+    ("I can't deal with this", 'neg'),
+    ('he is my sworn enemy!', 'neg'),
+    ('my boss is horrible.', 'neg')
+]
+test = [
+    ('the beer was good.', 'pos'),
+    ('I do not enjoy my job', 'neg'),
+    ("I ain't feeling dandy today.", 'neg'),
+    ("I feel amazing!", 'pos'),
+    ('Gary is a friend of mine.', 'pos'),
+    ("I can't believe I'm doing this.", 'neg')
+]
+
+cl = NaiveBayesClassifier(train)
 
 #Word to Text
-docxFileObj = docx2txt.process("test.docx")
+#docxFileObj = docx2txt.process("/home/caleb/Desktop/University/INFO301/Git/WebOfScience/WebofScience/Python/test.docx")
 
 #PDF To Text
-pdf_doc ="Testing.pdf"
+pdf_doc ="/home/caleb/Desktop/University/INFO301/Git/WebOfScience/WebofScience/Python/Testing.pdf"
 doc = fitz.open(pdf_doc)
 count = doc.pageCount
 #ask for Text_total Location
@@ -46,7 +70,5 @@ elif SentimentScore.sentiment.subjectivity < 0.5:
 else:
     print ("Woops this shouldn't be happening")
 
-    
-
-
+print(cl.accuracy(SentimentScore))
 

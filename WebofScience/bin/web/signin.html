@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="VK">
+    <head>
+        <title>Sign In</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/angular.js"></script>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/ngStorage.js"></script>
+        <script src="js/VK.js"></script>
+    </head>
+    <body ng-controller="UserController as userCtrl">
+        <div ng-include="'topmenu.html'"></div>
+        <hr>
+        <div>
+            <h1>Sign In</h1>
+        </div>
+        <div class="login-form">
+            <!--<p>{{custCtrl.signInMessage}}</p>-->
+            <center>
+            <form ng-submit="userCtrl.signin(username, password)" class='form'>
+                <fieldset>
+                    <legend align='left'>Account Details</legend>
+                    <label for='uname'>Username:</label>
+                    <input type="text" ng-model="username" required>
+                    <br><br>
+                    <label for='pword'>Password:</label>
+                    <input type="password" ng-model="password" required>
+                    <br><br>
+                    <center><button type='submit' class="raise" style='width: 240px;'>Sign In</button></center>
+                    <br>
+                    <a href='resetpassword.html' style='text-decoration: none;'>Forgot Password?</a>
+                </fieldset>
+            </form>
+            </center>
+            <center><h4>Don't have an account? <a href=signup.html>Sign up</a> here</h4></center>
+        </div>
+    </body>
+</html>

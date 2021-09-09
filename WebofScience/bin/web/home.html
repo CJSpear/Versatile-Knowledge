@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="VK">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/angular.js"></script>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/ngStorage.js"></script>
+        <script src="js/VK.js"></script>
+    </head>
+    <body>
+        <div ng-include="'topmenu.html'"></div>
+        <hr>
+        <div align='center' style='margin: 100px;'>
+            <select id='seachBy' style='height: 35px;'>
+                <option>Author</option>
+                <option>Cited Count</option>
+                <option>Contributor</option>
+            </select>
+            <input type='text' placeholder='Search...' style='width: 50%; height: 30px;'>
+            <button type="button" style='height:35px'>Search</button>
+        </div>
+    </body>
+</html>
