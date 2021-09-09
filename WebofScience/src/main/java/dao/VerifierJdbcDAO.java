@@ -122,6 +122,36 @@ public class VerifierJdbcDAO implements VerifierDAO {
         }
     }
 
+ /*
+    public Boolean validateCredentials(String username, String password) {
+        String sql = "select password from user where username=?";
 
+        try (
+                // get connection to database
+                 Connection connection = DbConnection.getConnection(url); // create the statement
+                  PreparedStatement stmt = connection.prepareStatement(sql);) {
+            // set the parameter
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+
+            // execute the query
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String pass = rs.getString("password");
+
+                return pass.equals(password);
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {  // we are forced to catch SQLException
+            // don't let the SQLException leak from our DAO encapsulation
+            throw new DAOException(ex.getMessage(), ex);
+
+        }
+
+    }*/
     
+
+
+
 }
