@@ -7,8 +7,21 @@ package web;
 
 /**
  *
- * @author Sayyed
+ * @author Saverill
  */
 public class ArticleModule {
+    
+    //upload article 
+            
+   //Delete article         
+            
+   //edit article 
+   //flag artcile
+    //add contributor
+     
+            
+     
+            
+            
     
 }
