@@ -43,8 +43,14 @@ module.controller('UserController', function (registerAPI, signinAPI, $sessionSt
                 signinAPI.get({'username': username, 'password': password},
                         function (user) {
                             $sessionStorage.user = user;
-
-                            $window.location = 'home.html';
+                           // console.log($sessionStorage.user);
+                           
+                           //check role permission of user currently signed in
+                            if ($sessionStorage.user.roleId === 1) {
+                                $window.location = 'home.html';
+                            }else{
+                                $window.location = 'verifyArticle.html';
+                            }
                         },
                         function () {
                             ctrl.signInMessage = 'Sign in failed. Please try again.';
@@ -57,16 +63,35 @@ module.controller('UserController', function (registerAPI, signinAPI, $sessionSt
                 if ($sessionStorage.user) {
                     this.signedIn = true;
                     this.welcome = "Welcome " + $sessionStorage.user.firstName;
+                    
+                    if ($sessionStorage.user.roleId === 1) {
+                        this.isCont = true;
+                        //$window.location = 'home.html'
+                    } else if ($sessionStorage.user.roleId === 4) {
+                        this.isAdmin = true;
+                    } else {
+                        this.isCont = false;
+                        //$window.location = 'verifyArticle.html';
+                        this.isAdmin = false;
+                    }
+                    console.log(this.isCont);
                 } else {
                     this.signedIn = false;
                 }
+
+
             };
+
+
 
             this.signOut = function () {
                 $sessionStorage.$reset();
                 $window.location = 'home.html';
             }
+
+
         });
+
 
 module.controller('ArticleController', function () {
 

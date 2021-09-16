@@ -115,7 +115,8 @@ public class UserJdbcDAO implements userDAO {
                 user.setFieldResearch(fos);
                 user.setRoleId(roleid);
                 user.setRole(role);
-
+               
+              // System.out.println(id + " " + user_name + " " + firstname + " " + lastname + " " + roleid + " " + user.getRole().getRoleName());
                 if(pass_word.equals(password)){
                     return user;
                 }else{
