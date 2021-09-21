@@ -18,15 +18,5 @@ public class Verifier extends User {
  
     public Verifier(Integer userId, String username, String firstName, String lastName, String email, String password, String dob, String gender, String institution, String deptName, String fieldResearch, Integer roleId) {
         super(userId, username, firstName, lastName, email, password, dob, gender, institution, deptName, fieldResearch, roleId);
-    }
-    
-    public void archiveArticle(){    
-    }
-    
-      public void deleteArticle(){    
-    }
-      
-        public void verifyArticle(){    
-    }    
-    
+    }   
 }

@@ -9,7 +9,12 @@ import domain.Article;
 import domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -154,6 +159,314 @@ public class ArticleJdbcDAO implements ArticleDAO{
         }    
         
     }
+    
+ 
+    public Collection<Article> filterByAuthor(String auth){
+        String sql = "Select * from Article where Author = ?";
+        try (
+                  Connection dbCon = DbConnection.getConnection(databaseURI);
+                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+
+            stmt.setString(1, auth);
+            ResultSet rs = stmt.executeQuery();
+            List<Article> articles = new ArrayList<>();
+
+            // iterate through the query results
+            while (rs.next()) {
+
+                // get the data out of the query
+                Integer articleId = rs.getInt("Article_ID");
+                String title = rs.getString("Title");
+                String articleAbstract = rs.getString("Article_Abstract");
+                String filee = rs.getString("File");
+                String keywords = rs.getString("Keywords");
+                String author = rs.getString("Author");
+                Boolean verified = rs.getBoolean("Verified");
+                Boolean published = rs.getBoolean("Published");
+                Integer citedCount = rs.getInt("Cited_Count");
+                String contributedBy = rs.getString("Contribued_By");
+                String verifiedBy = rs.getString("Verified_By");
+                Integer timesFlagged = rs.getInt("Times_flagged");
+                Date date = rs.getDate("Date");
+       
+                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+  
+                System.out.println(s);
+                articles.add(s);
+
+            }
+            return articles;
+
+        } catch (SQLException ex) {  // we are forced to catch SQLException
+            // don't let the SQLException leak from our DAO encapsulation
+            throw new RuntimeException(ex);
+        }   
+       
+    }
+    
+    public Collection<Article> filterByDate(Date d){
+     String sql = "Select * from Article where Date = ?";
+        try (
+                Connection dbCon = DbConnection.getConnection(databaseURI);
+                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+
+            stmt.setDate(1, (java.sql.Date) d);
+            ResultSet rs = stmt.executeQuery();
+            List<Article> articles = new ArrayList<>();
+
+            // iterate through the query results
+            while (rs.next()) {
+
+                // get the data out of the query
+                Integer articleId = rs.getInt("Article_ID");
+                String title = rs.getString("Title");
+                String articleAbstract = rs.getString("Article_Abstract");
+                String filee = rs.getString("File");
+                String keywords = rs.getString("Keywords");
+                String author = rs.getString("Author");
+                Boolean verified = rs.getBoolean("Verified");
+                Boolean published = rs.getBoolean("Published");
+                Integer citedCount = rs.getInt("Cited_Count");
+                String contributedBy = rs.getString("Contribued_By");
+                String verifiedBy = rs.getString("Verified_By");
+                Integer timesFlagged = rs.getInt("Times_flagged");
+                Date date = rs.getDate("Date");
+       
+                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+  
+                System.out.println(s);
+                articles.add(s);
+
+            }
+            return articles;
+
+        } catch (SQLException ex) {  // we are forced to catch SQLException
+            // don't let the SQLException leak from our DAO encapsulation
+            throw new RuntimeException(ex);
+        }      
+    }
+    
+    public Collection<Article> filterByKeyword(String key){
+      String sql = "Select * from Article where Keyword = ?";
+        try (
+                Connection dbCon = DbConnection.getConnection(databaseURI);
+                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+
+            stmt.setString(1, key);
+            ResultSet rs = stmt.executeQuery();
+            List<Article> articles = new ArrayList<>();
+
+            // iterate through the query results
+            while (rs.next()) {
+
+                // get the data out of the query
+                Integer articleId = rs.getInt("Article_ID");
+                String title = rs.getString("Title");
+                String articleAbstract = rs.getString("Article_Abstract");
+                String filee = rs.getString("File");
+                String keywords = rs.getString("Keywords");
+                String author = rs.getString("Author");
+                Boolean verified = rs.getBoolean("Verified");
+                Boolean published = rs.getBoolean("Published");
+                Integer citedCount = rs.getInt("Cited_Count");
+                String contributedBy = rs.getString("Contribued_By");
+                String verifiedBy = rs.getString("Verified_By");
+                Integer timesFlagged = rs.getInt("Times_flagged");
+                Date date = rs.getDate("Date");
+       
+                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+  
+                System.out.println(s);
+                articles.add(s);
+
+            }
+            return articles;
+
+        } catch (SQLException ex) {  // we are forced to catch SQLException
+            // don't let the SQLException leak from our DAO encapsulation
+            throw new RuntimeException(ex);
+        }     
+    }
+    
+    public Collection<Article> filterByDepartment(String dept){
+    String sql = "Select * from Article where Department = ?";
+        try (
+                Connection dbCon = DbConnection.getConnection(databaseURI);
+                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+
+            stmt.setString(1, dept);
+            ResultSet rs = stmt.executeQuery();
+            List<Article> articles = new ArrayList<>();
+
+            // iterate through the query results
+            while (rs.next()) {
+
+                // get the data out of the query
+                Integer articleId = rs.getInt("Article_ID");
+                String title = rs.getString("Title");
+                String articleAbstract = rs.getString("Article_Abstract");
+                String filee = rs.getString("File");
+                String keywords = rs.getString("Keywords");
+                String author = rs.getString("Author");
+                Boolean verified = rs.getBoolean("Verified");
+                Boolean published = rs.getBoolean("Published");
+                Integer citedCount = rs.getInt("Cited_Count");
+                String contributedBy = rs.getString("Contribued_By");
+                String verifiedBy = rs.getString("Verified_By");
+                Integer timesFlagged = rs.getInt("Times_flagged");
+                Date date = rs.getDate("Date");
+       
+                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+  
+                System.out.println(s);
+                articles.add(s);
+
+            }
+            return articles;
+
+        } catch (SQLException ex) {  // we are forced to catch SQLException
+            // don't let the SQLException leak from our DAO encapsulation
+            throw new RuntimeException(ex);
+        }       
+    }
+    
+    public Collection<Article> filterByField(String field){
+    String sql = "Select * from Article where Field = ?";
+        try (
+                Connection dbCon = DbConnection.getConnection(databaseURI);
+                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+
+            stmt.setString(1, field);
+            ResultSet rs = stmt.executeQuery();
+            List<Article> articles = new ArrayList<>();
+
+            // iterate through the query results
+            while (rs.next()) {
+
+                // get the data out of the query
+                Integer articleId = rs.getInt("Article_ID");
+                String title = rs.getString("Title");
+                String articleAbstract = rs.getString("Article_Abstract");
+                String filee = rs.getString("File");
+                String keywords = rs.getString("Keywords");
+                String author = rs.getString("Author");
+                Boolean verified = rs.getBoolean("Verified");
+                Boolean published = rs.getBoolean("Published");
+                Integer citedCount = rs.getInt("Cited_Count");
+                String contributedBy = rs.getString("Contribued_By");
+                String verifiedBy = rs.getString("Verified_By");
+                Integer timesFlagged = rs.getInt("Times_flagged");
+                Date date = rs.getDate("Date");
+       
+                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+  
+                System.out.println(s);
+                articles.add(s);
+
+            }
+            return articles;
+
+        } catch (SQLException ex) {  // we are forced to catch SQLException
+            // don't let the SQLException leak from our DAO encapsulation
+            throw new RuntimeException(ex);
+        }      
+    }
+ 
+    public Article getArticleById(Integer artId){
+        String sql = "select * from Article where articleId = ?";
+
+        try (
+                // get a connection to the database
+                Connection dbCon = DbConnection.getConnection(databaseURI);
+                // create the statement
+                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+
+            //copy the data from the property domain object into the SQL parameters
+            stmt.setInt(1, artId);
+
+            // execute the query
+            ResultSet rs = stmt.executeQuery();
+
+   
+            if (rs.next()) {
+
+                // get the data out of the query
+                Integer articleId = rs.getInt("Article_ID");
+                String title = rs.getString("Title");
+                String articleAbstract = rs.getString("Article_Abstract");
+                String filee = rs.getString("File");
+                String keywords = rs.getString("Keywords");
+                String author = rs.getString("Author");
+                Boolean verified = rs.getBoolean("Verified");
+                Boolean published = rs.getBoolean("Published");
+                Integer citedCount = rs.getInt("Cited_Count");
+                String contributedBy = rs.getString("Contribued_By");
+                String verifiedBy = rs.getString("Verified_By");
+                Integer timesFlagged = rs.getInt("Times_flagged");
+                Date date = rs.getDate("Date");
+
+                // use the data to create a property object
+              
+                
+                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+
+                return s;
+                
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {  // we are forced to catch SQLException
+            // don't let the SQLException leak from our DAO encapsulation
+            throw new DAOException(ex.getMessage(), ex);
+        }
+        
+    }
+    public Collection<Article> getArticles(){
+         String sql = "select * from article order by Article_ID";
+
+        try (
+           
+                Connection dbCon = DbConnection.getConnection(databaseURI);
+               
+                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+            ResultSet rs = stmt.executeQuery();
+
+            // Using a List to preserve the order in which the data was returned from the query.
+            List<Article> articles = new ArrayList<>();
+
+            // iterate through the query results
+            while (rs.next()) {
+
+                // get the data out of the query
+                Integer articleId = rs.getInt("Article_ID");
+                String title = rs.getString("Title");
+                String articleAbstract = rs.getString("Article_Abstract");
+                String filee = rs.getString("File");
+                String keywords = rs.getString("Keywords");
+                String author = rs.getString("Author");
+                Boolean verified = rs.getBoolean("Verified");
+                Boolean published = rs.getBoolean("Published");
+                Integer citedCount = rs.getInt("Cited_Count");
+                String contributedBy = rs.getString("Contribued_By");
+                String verifiedBy = rs.getString("Verified_By");
+                Integer timesFlagged = rs.getInt("Times_flagged");
+                Date date = rs.getDate("Date");
+
+                // use the data to create a article object
+                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+
+                // and put it in the collection
+                articles.add(s);
+            }
+
+            return articles;
+
+        } catch (SQLException ex) {  // we are forced to catch SQLException
+            // don't let the SQLException leak from our DAO encapsulation
+            throw new DAOException(ex.getMessage(), ex);
+        }
+    }
+ 
 
     
 }
