@@ -7,7 +7,8 @@ and open the template in the editor.
 <!--<link rel="stylesheet" href="css/style.css">-->
 <div id="menu" ng-controller="UserController as userCtrl" ng-init="userCtrl.checkSignIn()">
     
-   <a href="home.html" class='others'>Search</a>
+    <a href="home.html"> Home</a>
+   <a href="search.html">Search</a>
    <a href="marked.html" ng-if="userCtrl.signedIn">Marked</a>
    <a href="history.html" ng-if="userCtrl.signedIn">History</a>
    <a href='alerts.html' ng-if="userCtrl.signedIn">Alerts</a>
