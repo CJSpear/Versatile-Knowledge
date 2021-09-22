@@ -1,18 +1,35 @@
 
 import jaydebeapi
+import mysql.connector
+from mysql.connector import Error
+import pandas as pd
 
 connection  = jaydebeapi.connect(
         "org.h2.Driver",
         "jdbc:h2:tcp://localhost/~/test",
         ["sa", ""],
-        "/home/caleb/Desktop/h2/h2-latest.jar")
+        "WebofScience/Python/h2-latest.jar")
+
 cursor = connection.cursor()
-cursor.execute('create table WORK'
-                '("CUST_ID" INTEGER not null,' ' "NAME" VARCHAR(50) not null,'
-                ' primary key ("CUST_ID"))'
-                )
-cursor.execute("insert into WORK values (1, 'John')")
-cursor.execute("select * from WORK")
-cursor.fetchall()
+#Search Function
+
+def res():
+        try:
+                result = None
+                cursor.execute("SELECT CUST_ID,NAME FROM WORK")
+                result = cursor.fetchall()
+                return result
+        except Error as err:
+                print (f'item error: "{err} "')
+
+results = res()
+from_db = []
+
+for result in results:
+        result = result
+        from_db.append(result)
+
+print (from_db)
+
 cursor.close()
 connection.close()
