@@ -169,7 +169,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
 
             stmt.setString(1, auth);
             ResultSet rs = stmt.executeQuery();
-            List<Article> articles = new ArrayList<>();
+            List<Article> articles = new ArrayList<Article>();
 
             // iterate through the query results
             while (rs.next()) {
@@ -212,7 +212,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
 
             stmt.setDate(1, (java.sql.Date) d);
             ResultSet rs = stmt.executeQuery();
-            List<Article> articles = new ArrayList<>();
+            List<Article> articles = new ArrayList<Article>();
 
             // iterate through the query results
             while (rs.next()) {
@@ -254,7 +254,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
 
             stmt.setString(1, key);
             ResultSet rs = stmt.executeQuery();
-            List<Article> articles = new ArrayList<>();
+            List<Article> articles = new ArrayList<Article>();
 
             // iterate through the query results
             while (rs.next()) {
@@ -296,7 +296,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
 
             stmt.setString(1, dept);
             ResultSet rs = stmt.executeQuery();
-            List<Article> articles = new ArrayList<>();
+            List<Article> articles = new ArrayList<Article>();
 
             // iterate through the query results
             while (rs.next()) {
@@ -338,7 +338,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
 
             stmt.setString(1, field);
             ResultSet rs = stmt.executeQuery();
-            List<Article> articles = new ArrayList<>();
+            List<Article> articles = new ArrayList<Article>();
 
             // iterate through the query results
             while (rs.next()) {
@@ -432,7 +432,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
             ResultSet rs = stmt.executeQuery();
 
             // Using a List to preserve the order in which the data was returned from the query.
-            List<Article> articles = new ArrayList<>();
+            List<Article> articles = new ArrayList<Article>();
 
             // iterate through the query results
             while (rs.next()) {
