@@ -27,10 +27,10 @@ test = [
 cl = NaiveBayesClassifier(train)
 
 #Word to Text
-#docxFileObj = docx2txt.process("/home/caleb/Desktop/University/INFO301/Git/WebOfScience/WebofScience/Python/test.docx")
+#docxFileObj = docx2txt.process("WebOfScience/WebofScience/Python/test.docx")
 
 #PDF To Text
-pdf_doc ="/home/caleb/Desktop/University/INFO301/Git/WebOfScience/WebofScience/Python/Testing.pdf"
+pdf_doc ="WebOfScience/WebofScience/Python/Testing.pdf"
 doc = fitz.open(pdf_doc)
 count = doc.pageCount
 #ask for Text_total Location
