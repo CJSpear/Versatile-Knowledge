@@ -5,10 +5,19 @@
  */
 package web;
 
+import dao.ArticleJdbcDAO;
+import domain.Article;
+import java.io.ObjectInputFilter.Status;
+import org.jooby.Jooby;
+
+
 /**
  *
- * @author Sayyed
+ * @author Saverill
  */
-public class ArticleModule {
+public class ArticleModule extends Jooby{
     
+     
+ }  
 }
+

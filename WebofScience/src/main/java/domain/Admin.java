@@ -22,14 +22,4 @@ public class Admin extends Verifier {
         super(userId, username, firstName, lastName, email, password, dob, gender, institution, deptName, fieldResearch, roleId);
     }
   
-     public void addVerifier(){    
-    }
-    
-      public void deleteVerifier(){    
-    }
-      
-        public void upgradeVerifier(){    
-    }   
-         
- 
 }

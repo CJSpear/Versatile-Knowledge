@@ -17,7 +17,7 @@ public class Article {
     private Integer articleId;
     private String  title;
     private String articleAbstract;
-    private String file;
+    private String filee;
     private String keywords;
     private String author;
     private Boolean verified;
@@ -26,19 +26,21 @@ public class Article {
     private String contributedBy;
     private String verifiedBy;
     private Integer timesFlagged;
+    private Date date;
  
     public Article() {
     }
  
-    public Article(Integer articleId, String title, String articleAbstract, File file, String keywords, Date author, Boolean verified, Boolean publsihed, Integer citedCount, String contributedBy, String verifiedBy, Integer timesFlagged) {
+    public Article(Integer articleId, String title, String articleAbstract, String file, String keywords, String author, Boolean verified, Boolean publsihed, Integer citedCount, String contributedBy, String verifiedBy, Integer timesFlagged, Date date) {
 
     }
+   
 
-    public Article(Integer articleId, String title, String articleAbstract, File file, String keywords, Date author, Boolean verified, Boolean publsihed, Integer citedCount, String contributedBy, String verifiedBy) {
+    public Article(Integer articleId, String title, String articleAbstract, File file, String keywords, String author, Boolean verified, Boolean publsihed, Integer citedCount, String contributedBy, String verifiedBy, Date date) {
         this.articleId = articleId;
         this.title = title;
         this.articleAbstract = articleAbstract;
-        this.file = file;
+        this.filee = filee;
         this.keywords = keywords;
         this.author = author;
         this.verified = verified;
@@ -47,7 +49,10 @@ public class Article {
         this.contributedBy = contributedBy;
         this.verifiedBy = verifiedBy;
         this.timesFlagged = timesFlagged;
+        this.date = date;
     }
+
+   
 
     public Integer getArticleId() {
         return articleId;
@@ -74,12 +79,12 @@ public class Article {
     }
  
     public String getFile() {
-        return file;
+        return filee;
     }
  
 
-    public void setFile(String file) {
-        this.file = file;
+    public void setFile(String filee) {
+        this.filee = filee;
     }
 
     public String getKeywords() {
@@ -117,8 +122,7 @@ public class Article {
     public Integer getCitedCount() {
         return citedCount;
     }
-
-
+    
     public void setCitedCount(Integer citedCount) {
         this.citedCount = citedCount;
     }
@@ -144,25 +148,26 @@ public class Article {
     }
  
     public void setTimesFlagged(Integer timesFlagged) {
-        this.timesFlagged = timesFlagged;
+        this.timesFlagged = timesFlagged;  
     }
- 
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
     @Override
     public String toString() {
-        return "Article{" + "articleId=" + articleId + ", title=" + title + ", articleAbstract=" + articleAbstract + ", file=" + file + ", keywords=" + keywords + ", author=" + author + ", verified=" + verified + ", publsihed=" + publsihed + ", citedCount=" + citedCount + ", contributedBy=" + contributedBy + ", verifiedBy=" + verifiedBy + ", timesFlagged=" + timesFlagged + '}';
+        return "Article{" + "articleId=" + articleId + ", title=" + title + ", articleAbstract=" + articleAbstract + ", filee=" + filee + ", keywords=" + keywords + ", author=" + author + ", verified=" + verified + ", publsihed=" + publsihed + ", citedCount=" + citedCount + ", contributedBy=" + contributedBy + ", verifiedBy=" + verifiedBy + ", timesFlagged=" + timesFlagged + ", date=" + date + '}';
     }
-    
-         
-    public void addArticle(){    
+
+    public Article getArticleId(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-      public void deleteArticle(){    
-    }
-      
-        public void updateArticle(){    
-    }
-    
-    
+           
 }
 
  
