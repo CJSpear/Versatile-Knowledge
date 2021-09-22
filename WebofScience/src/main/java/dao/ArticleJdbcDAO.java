@@ -36,7 +36,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
 
     public void addArticle(Article article) {
         
-            String sql = "insert into Article (articleId, title, articleAbstract, file, keywords, author, verified, publsihed, citedCount, contributedBy, verifiedBy, timesFlagged) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "insert into Article (articleId, title, abstract, file, keyword, author, verified, publsihed, citedCount, contributedBy, verifiedBy, timesFlagged) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (
                 
@@ -88,7 +88,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
   
     public void updateArticle(Article article) {
     
-         String sql = "merge into Article (articleId, title, articleAbstract, file, keywords, author, verified, publsihed, citedCount, contributedBy, verifiedBy, timesFlagged) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+         String sql = "merge into Article (articleId, title, abstract, file, keyword, author, verified, publsihed, citedCount, contributedBy, verifiedBy, flags) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (
                 
@@ -162,12 +162,12 @@ public class ArticleJdbcDAO implements ArticleDAO{
     
  
     public Collection<Article> filterByAuthor(String auth){
-        String sql = "Select * from Article where Author = ?";
+        String sql = "Select * from Article where lower(author) like concat(‘%’, ?, ‘%’)";
         try (
                   Connection dbCon = DbConnection.getConnection(databaseURI);
                 PreparedStatement stmt = dbCon.prepareStatement(sql);) {
 
-            stmt.setString(1, auth);
+            stmt.setString(1, auth.toLowerCase());
             ResultSet rs = stmt.executeQuery();
             List<Article> articles = new ArrayList<Article>();
 
@@ -177,16 +177,16 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 // get the data out of the query
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Article_Abstract");
+                String articleAbstract = rs.getString("Abstract");
                 String filee = rs.getString("File");
-                String keywords = rs.getString("Keywords");
+                String keywords = rs.getString("Keyword");
                 String author = rs.getString("Author");
                 Boolean verified = rs.getBoolean("Verified");
                 Boolean published = rs.getBoolean("Published");
                 Integer citedCount = rs.getInt("Cited_Count");
                 String contributedBy = rs.getString("Contribued_By");
                 String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Times_flagged");
+                Integer timesFlagged = rs.getInt("Flags");
                 Date date = rs.getDate("Date");
        
                 Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
@@ -197,15 +197,15 @@ public class ArticleJdbcDAO implements ArticleDAO{
             }
             return articles;
 
-        } catch (SQLException ex) {  // we are forced to catch SQLException
-            // don't let the SQLException leak from our DAO encapsulation
+        } catch (SQLException ex) {  
             throw new RuntimeException(ex);
         }   
        
     }
     
     public Collection<Article> filterByDate(Date d){
-     String sql = "Select * from Article where Date = ?";
+     String sql = "Select * from Article where lower(date) like concat(‘%’, ?, ‘%’)";
+     
         try (
                 Connection dbCon = DbConnection.getConnection(databaseURI);
                 PreparedStatement stmt = dbCon.prepareStatement(sql);) {
@@ -220,16 +220,16 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 // get the data out of the query
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Article_Abstract");
+                String articleAbstract = rs.getString("Abstract");
                 String filee = rs.getString("File");
-                String keywords = rs.getString("Keywords");
+                String keywords = rs.getString("Keyword");
                 String author = rs.getString("Author");
                 Boolean verified = rs.getBoolean("Verified");
                 Boolean published = rs.getBoolean("Published");
                 Integer citedCount = rs.getInt("Cited_Count");
                 String contributedBy = rs.getString("Contribued_By");
                 String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Times_flagged");
+                Integer timesFlagged = rs.getInt("Flags");
                 Date date = rs.getDate("Date");
        
                 Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
@@ -247,12 +247,13 @@ public class ArticleJdbcDAO implements ArticleDAO{
     }
     
     public Collection<Article> filterByKeyword(String key){
-      String sql = "Select * from Article where Keyword = ?";
+      String sql = "Select * from Article where lower(keyword) like concat(‘%’, ?, ‘%’)";
         try (
                 Connection dbCon = DbConnection.getConnection(databaseURI);
                 PreparedStatement stmt = dbCon.prepareStatement(sql);) {
 
-            stmt.setString(1, key);
+            stmt.setString(1, key.toLowerCase());
+           
             ResultSet rs = stmt.executeQuery();
             List<Article> articles = new ArrayList<Article>();
 
@@ -262,16 +263,16 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 // get the data out of the query
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Article_Abstract");
+                String articleAbstract = rs.getString("Abstract");
                 String filee = rs.getString("File");
-                String keywords = rs.getString("Keywords");
+                String keywords = rs.getString("Keyword");
                 String author = rs.getString("Author");
                 Boolean verified = rs.getBoolean("Verified");
                 Boolean published = rs.getBoolean("Published");
                 Integer citedCount = rs.getInt("Cited_Count");
                 String contributedBy = rs.getString("Contribued_By");
                 String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Times_flagged");
+                Integer timesFlagged = rs.getInt("Flags");
                 Date date = rs.getDate("Date");
        
                 Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
@@ -289,12 +290,12 @@ public class ArticleJdbcDAO implements ArticleDAO{
     }
     
     public Collection<Article> filterByDepartment(String dept){
-    String sql = "Select * from Article where Department = ?";
+    String sql = "Select * from Article where lower(department) like concat(‘%’, ?, ‘%’)";
         try (
                 Connection dbCon = DbConnection.getConnection(databaseURI);
                 PreparedStatement stmt = dbCon.prepareStatement(sql);) {
 
-            stmt.setString(1, dept);
+            stmt.setString(1, dept.toLowerCase());
             ResultSet rs = stmt.executeQuery();
             List<Article> articles = new ArrayList<Article>();
 
@@ -304,16 +305,16 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 // get the data out of the query
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Article_Abstract");
+                String articleAbstract = rs.getString("Abstract");
                 String filee = rs.getString("File");
-                String keywords = rs.getString("Keywords");
+                String keywords = rs.getString("Keyword");
                 String author = rs.getString("Author");
                 Boolean verified = rs.getBoolean("Verified");
                 Boolean published = rs.getBoolean("Published");
                 Integer citedCount = rs.getInt("Cited_Count");
                 String contributedBy = rs.getString("Contribued_By");
                 String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Times_flagged");
+                Integer timesFlagged = rs.getInt("Flags");
                 Date date = rs.getDate("Date");
        
                 Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
@@ -331,12 +332,12 @@ public class ArticleJdbcDAO implements ArticleDAO{
     }
     
     public Collection<Article> filterByField(String field){
-    String sql = "Select * from Article where Field = ?";
+    String sql = "Select * from Article where lower(field) like concat(‘%’, ?, ‘%’)";
         try (
                 Connection dbCon = DbConnection.getConnection(databaseURI);
                 PreparedStatement stmt = dbCon.prepareStatement(sql);) {
 
-            stmt.setString(1, field);
+            stmt.setString(1, field.toLowerCase());
             ResultSet rs = stmt.executeQuery();
             List<Article> articles = new ArrayList<Article>();
 
@@ -346,16 +347,16 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 // get the data out of the query
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Article_Abstract");
+                String articleAbstract = rs.getString("Abstract");
                 String filee = rs.getString("File");
-                String keywords = rs.getString("Keywords");
+                String keywords = rs.getString("Keyword");
                 String author = rs.getString("Author");
                 Boolean verified = rs.getBoolean("Verified");
                 Boolean published = rs.getBoolean("Published");
                 Integer citedCount = rs.getInt("Cited_Count");
                 String contributedBy = rs.getString("Contribued_By");
                 String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Times_flagged");
+                Integer timesFlagged = rs.getInt("Flags");
                 Date date = rs.getDate("Date");
        
                 Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
@@ -393,16 +394,16 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 // get the data out of the query
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Article_Abstract");
+                String articleAbstract = rs.getString("Abstract");
                 String filee = rs.getString("File");
-                String keywords = rs.getString("Keywords");
+                String keywords = rs.getString("Keyword");
                 String author = rs.getString("Author");
                 Boolean verified = rs.getBoolean("Verified");
                 Boolean published = rs.getBoolean("Published");
                 Integer citedCount = rs.getInt("Cited_Count");
                 String contributedBy = rs.getString("Contribued_By");
                 String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Times_flagged");
+                Integer timesFlagged = rs.getInt("Flags");
                 Date date = rs.getDate("Date");
 
                 // use the data to create a property object
@@ -440,16 +441,16 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 // get the data out of the query
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Article_Abstract");
+                String articleAbstract = rs.getString("Abstract");
                 String filee = rs.getString("File");
-                String keywords = rs.getString("Keywords");
+                String keywords = rs.getString("Keyword");
                 String author = rs.getString("Author");
                 Boolean verified = rs.getBoolean("Verified");
                 Boolean published = rs.getBoolean("Published");
                 Integer citedCount = rs.getInt("Cited_Count");
                 String contributedBy = rs.getString("Contribued_By");
                 String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Times_flagged");
+                Integer timesFlagged = rs.getInt("Flags");
                 Date date = rs.getDate("Date");
 
                 // use the data to create a article object
