@@ -18,7 +18,7 @@ import domain.Role;
  *
  * @author boydb
  */
-public class AdminJdbcDAO implements AdminDAO {
+public class AdminJdbcDAO extends VerifierJdbcDAO implements AdminDAO {
     
  
     public AdminJdbcDAO() {

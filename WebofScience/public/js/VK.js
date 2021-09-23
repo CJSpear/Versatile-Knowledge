@@ -99,7 +99,7 @@ module.controller('UserController', function (registerAPI, signinAPI, $sessionSt
 
 				this.users = getUsers.query();
 				this.roles = allRoles.query();
-				user.
+				
         });
 
 

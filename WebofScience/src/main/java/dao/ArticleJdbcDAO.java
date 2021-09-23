@@ -65,7 +65,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
     }
     
   
-    public void deleteArticle(Article article) {
+    public void deleteArticle(Integer id) {
     
         String sql = "delete from article where articleId = ?";
  
@@ -74,7 +74,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
          Connection dbCon = DbConnection.getConnection(databaseURI);
          PreparedStatement stmt = dbCon.prepareStatement(sql);) {
             
-            stmt.setInt(1, article.getArticleId());
+            stmt.setInt(1, id);
             stmt.executeUpdate();
  
         } catch (SQLException ex) {

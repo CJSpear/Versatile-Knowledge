@@ -42,5 +42,7 @@ public class UserModule extends Jooby {
             }
         });
 		  
+		  get("/api/users", ()-> userDao.getUsers());
+		  get("/api/roles", ()->userDao.allRoles());
     }
 }

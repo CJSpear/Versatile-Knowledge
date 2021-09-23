@@ -16,4 +16,6 @@ public interface userDAO {
     public void addAccount(User user);
     public void deleteAccount(User user);
     public User signin(String username, String password);
+	 public Collection<User> getUsers();
+	 public Collection<String> allRoles();
 }
