@@ -17,7 +17,7 @@ import org.jooby.Jooby;
  */
 public class AdminModule extends Jooby{
     
-    public AdminModule(AdminJdbcDAO articleDao) {
+    public AdminModule(AdminJdbcDAO adminDao) {
     
     
             
