@@ -18,7 +18,15 @@ module.factory('signinAPI', function ($resource) {
     return $resource('api/users/:username/:password');
 });
 
-module.controller('UserController', function (registerAPI, signinAPI, $sessionStorage, $window, $http) {
+module.factory('getUsers', function($resource){
+	return $resource('api/users');
+});
+
+module.factory('allRoles', function($resource){
+	return $resource('api/roles');
+});
+
+module.controller('UserController', function (registerAPI, signinAPI, $sessionStorage, $window, $http, getUsers, allRoles) {
     let ctrl = this;
 
     this.registerUser = function (user) {
@@ -89,7 +97,9 @@ module.controller('UserController', function (registerAPI, signinAPI, $sessionSt
                 $window.location = 'home.html';
             }
 
-
+				this.users = getUsers.query();
+				this.roles = allRoles.query();
+				user.
         });
 
 

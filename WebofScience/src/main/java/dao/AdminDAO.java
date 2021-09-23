@@ -5,7 +5,9 @@
  */
 package dao;
 
+import domain.User;
 import domain.Verifier;
+import java.util.Collection;
 
 /**
  *
@@ -15,6 +17,8 @@ public interface AdminDAO extends VerifierDAO {
     public void addVerifier(Verifier verifier);
     public void deleteVerifier(Verifier user);
     public void upgradeVerifier(Verifier user);
+	 public Collection<User> getUsers();
+	 public Collection<String> allRoles();
     
     
 }

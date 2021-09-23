@@ -41,5 +41,6 @@ public class UserModule extends Jooby {
                 return userDao.signin(username, password);
             }
         });
+		  
     }
 }

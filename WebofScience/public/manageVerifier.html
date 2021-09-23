@@ -14,8 +14,23 @@ and open the template in the editor.
         <script src="js/ngStorage.js"></script>
         <script src="js/VK.js"></script>
     </head>
-    <body>
+    <body ng-controller="UserController as userCtrl">
         <div ng-include="'topmenu.html'"></div>
-        <h2>Here we manage verifiers. promote, demote(not sure if this is something Konan wants), etc</h2>
+        <div >
+			  <table ng-data-repeat="user in userCtrl.users">
+				  <thead>
+				  <th>Name</th>
+				  <th>Department</th>
+				  <th>Field of Research</th>
+				  <th>Role</th>
+				  </thead>
+				  <tr ng-data-repeat="role in userCtrl.roles">
+					  <th>{{user.firstName}} {{user.lastName}}</th>
+					  <th>{{user.deptName}}</th>
+					  <th>{{user.fieldResearch}}</th>
+					  <th>{{role}}</th>
+				  </tr>
+			  </table>
+		  </div>
     </body>
 </html>
