@@ -141,7 +141,7 @@ public class UserJdbcDAO implements userDAO {
 			 ){
 			 ResultSet rs = stmt.executeQuery();
 			 
-			 List<User> users = new ArrayList<>();
+			 List<User> users = new ArrayList<User>();
 			 while(rs.next()){
 				 Integer id = rs.getInt("User_Id");
                 String user_name = rs.getString("Username");
@@ -194,7 +194,7 @@ public class UserJdbcDAO implements userDAO {
 			 ){
 			 ResultSet rs = stmt.executeQuery();
 			 
-			 List<String> roles = new ArrayList<>();
+			 List<String> roles = new ArrayList<String>();
 			 while(rs.next()){
 				 String name = rs.getString("name");
 				 
