@@ -28,7 +28,7 @@ public class User {
     private String deptName;
     private String fieldResearch;
     private Integer roleId;
-    private Collection<Article> articles = new ArrayList<>();
+    private Collection<Article> articles = new ArrayList<Article>();
     
     private Role role;
 
