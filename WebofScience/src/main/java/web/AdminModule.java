@@ -21,14 +21,14 @@ public class AdminModule extends Jooby {
     public AdminModule(AdminDAO adminDao) {
 
         //add verifier
-        post("/api/user", (req, rsp) -> {
+        post("/api/addVerifier", (req, rsp) -> {
             Verifier verifier = req.body().to(Verifier.class);
             adminDao.addVerifier(verifier);
             rsp.status(org.jooby.Status.CREATED);
         });
 
         //delete verifier
-        delete("/api/user/:id", (req, rsp) -> {
+        delete("/api/deleteVerifier/:id", (req, rsp) -> {
             Verifier verifier = req.body().to(Verifier.class);
             adminDao.deleteVerifier(verifier);
             rsp.status(org.jooby.Status.NO_CONTENT);
