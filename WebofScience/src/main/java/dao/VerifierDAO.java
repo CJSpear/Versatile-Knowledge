@@ -12,7 +12,7 @@ import domain.Article;
  * @author boydb
  */
 public interface VerifierDAO  {
-    public void deleteArticle(Article article);
+    public void deleteArticle(Integer id);
     public void archiveArticle (Article article);
     public void verifyArticle(Article article);
     
