@@ -7,11 +7,15 @@ and open the template in the editor.
 <!--<link rel="stylesheet" href="css/style.css">-->
 <div id="menu" ng-controller="UserController as userCtrl" ng-init="userCtrl.checkSignIn()">
     
-   <a href="home.html" class='others'>Search</a>
+    <a href="home.html"> Home</a>
+   <a href="search.html">Search</a>
    <a href="marked.html" ng-if="userCtrl.signedIn">Marked</a>
    <a href="history.html" ng-if="userCtrl.signedIn">History</a>
    <a href='alerts.html' ng-if="userCtrl.signedIn">Alerts</a>
-   <a href="uploadArticle.html" ng-if="userCtrl.signedIn" ng-if="">Upload</a>
+   <a href="uploadArticle.html" ng-if="userCtrl.signedIn">Upload</a>
+   <a href="verifyArticle.html" ng-if="userCtrl.signedIn && !userCtrl.isCont"> Verify</a>
+   <a href='manageVerifier.html' ng-if="userCtrl.signedIn && userCtrl.isAdmin"> Manage Verifiers </a>
+   
    
    <a href="home.html" ng-if="userCtrl.signedIn" ng-click="userCtrl.signOut()" style="float: right;"><button type='button'>Sign Out</button></a>
    <a href="signin.html" ng-if="!userCtrl.signedIn" style="float: right;"><button type='button'>Sign In</button></a>
