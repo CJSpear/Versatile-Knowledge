@@ -5,10 +5,9 @@
  */
 package web;
 
-import dao.ArticleJdbcDAO;
+import dao.ArticleDAO;
 import domain.Article;
 import org.jooby.Jooby;
-import org.jooby.Result;
 import org.jooby.Status;
 
 
@@ -17,7 +16,7 @@ import org.jooby.Status;
  * @author Saverill
  */
 public class ArticleModule extends Jooby{
-  public ArticleModule(ArticleJdbcDAO articleDao) {
+  public ArticleModule(ArticleDAO articleDao) {
     
     //upload (POST) article 
      post("/api/articles", (req, rsp) -> {
