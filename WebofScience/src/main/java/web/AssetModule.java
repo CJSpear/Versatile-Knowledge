@@ -14,14 +14,12 @@ import org.jooby.Results;
  */
 public class AssetModule extends Jooby{
       public AssetModule() {
-        assets("/*.html");
-        assets("/css/*.css");
-        assets("/js/*.js");
-        assets("/images/*.png");
-        assets("/images/*.jpg");
+        assets("/WebofScience*.html");
+        assets("/WebofScience/public/css/*.css");
+        assets("/WebofScience/public/js/*.js");
+
 
         // make index.html the default page
-        assets("/", "home.html");
 
         // prevent 404 errors due to browsers requesting favicons
         get("/favicon.ico", () -> Results.noContent());
