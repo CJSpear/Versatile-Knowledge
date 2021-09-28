@@ -15,7 +15,7 @@ import dao.VerifierDAO;
 public class VerifierModule extends Jooby{
     
 }
-    public VerifierModule(VerifierDAO verifierDAO){ 
+    //public VerifierModule(VerifierDAO verifierDAO){ 
 
     
-}
+//}
