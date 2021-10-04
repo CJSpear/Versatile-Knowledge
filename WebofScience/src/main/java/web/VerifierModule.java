@@ -13,9 +13,19 @@ import dao.VerifierDAO;
  * @author boydb
  */
 public class VerifierModule extends Jooby{
-    
-}
+<<<<<<< HEAD
+
+
     public VerifierModule(VerifierDAO verifierDAO){ 
 
     
+    } 
 }
+=======
+    
+}
+    //public VerifierModule(VerifierDAO verifierDAO){ 
+
+    
+//}
+>>>>>>> master
