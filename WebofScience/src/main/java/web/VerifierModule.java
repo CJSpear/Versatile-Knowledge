@@ -7,25 +7,32 @@ package web;
 
 import org.jooby.Jooby;
 import dao.VerifierDAO;
+import domain.Article;
 
 /**
  *
  * @author boydb
  */
 public class VerifierModule extends Jooby{
-<<<<<<< HEAD
-
 
     public VerifierModule(VerifierDAO verifierDAO){ 
+        //verify an article
+        post("/api/VerifyArticle", (req, rsp) -> {
+            Article article = req.body().to(Article.class);
+            verifierDAO.verifyArticle(article);
+            rsp.status(org.jooby.Status.CREATED);
+        });
+ 
+        //delete article
+        delete("/api/deleteArticle/:id", (req, rsp) -> {
+            String id = req.param("id").value();
+            verifierDAO.deleteArticle(Integer.parseInt(id));
+            rsp.status(org.jooby.Status.NO_CONTENT);
+ 
+        });
+        
 
     
     } 
 }
-=======
-    
-}
-    //public VerifierModule(VerifierDAO verifierDAO){ 
 
-    
-//}
->>>>>>> master
