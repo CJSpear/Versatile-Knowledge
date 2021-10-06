@@ -18,12 +18,13 @@ import org.jooby.Status;
 public class ArticleModule extends Jooby{
   public ArticleModule(ArticleDAO articleDao) {
     
-    //upload (POST) article 
+    //upload (POST) article object
      post("/api/articles", (req, rsp) -> {
             Article article = req.body().to(Article.class);
             articleDao.addArticle(article);
             rsp.status(Status.CREATED);
         });
+     
             
    //Delete article 
     delete("/api/articles/:id", (req, rsp) -> {

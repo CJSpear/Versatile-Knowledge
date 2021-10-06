@@ -6,11 +6,10 @@ package web;
  * and open the template in the editor.
  */
 import dao.AdminDAO;
-import dao.AdminJdbcDAO;
-import domain.Article;
 import domain.Verifier;
-import java.io.ObjectInputFilter.Status;
 import org.jooby.Jooby;
+import org.jooby.Status;
+
 
 /**
  *
