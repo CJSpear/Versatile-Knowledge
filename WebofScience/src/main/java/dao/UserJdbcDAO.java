@@ -109,17 +109,17 @@ public class UserJdbcDAO implements userDAO {
                 user.setLastName(lastname);
                 user.setEmail(Email);
                 user.setDob(dob.toString());
-					 user.setGender(gender);
+                user.setGender(gender);
                 user.setInstitution(institute);
                 user.setDeptName(department);
                 user.setFieldResearch(fos);
                 user.setRoleId(roleid);
                 user.setRole(role);
-               
-              // System.out.println(id + " " + user_name + " " + firstname + " " + lastname + " " + roleid + " " + user.getRole().getRoleName());
-                if(pass_word.equals(password)){
+
+                // System.out.println(id + " " + user_name + " " + firstname + " " + lastname + " " + roleid + " " + user.getRole().getRoleName());
+                if (pass_word.equals(password)) {
                     return user;
-                }else{
+                } else {
                     return null;
                 }
 
@@ -130,20 +130,18 @@ public class UserJdbcDAO implements userDAO {
             throw new DAOException(e.getMessage(), e);
         }
     }
-	 
-	 @Override
-	 public Collection<User> getUsers(){
-		 String sql = "select * from user where roleid = (select role_id from role where name='Contributor'";
-		 
-		 try(
-			Connection con = DbConnection.getConnection(url);
-			 PreparedStatement stmt = con.prepareStatement(sql);
-			 ){
-			 ResultSet rs = stmt.executeQuery();
-			 
-			 List<User> users = new ArrayList<User>();
-			 while(rs.next()){
-				 Integer id = rs.getInt("User_Id");
+
+    @Override
+    public Collection<User> getUsers() {
+        String sql = "select * from user where roleid = (select role_id from role where name='Contributor')";
+
+        try (
+                 Connection con = DbConnection.getConnection(url);  PreparedStatement stmt = con.prepareStatement(sql);) {
+            ResultSet rs = stmt.executeQuery();
+
+            List<User> users = new ArrayList<User>();
+            while (rs.next()) {
+                Integer id = rs.getInt("User_Id");
                 String user_name = rs.getString("Username");
                 String pass_word = rs.getString("Password");
                 String firstname = rs.getString("Fname");
@@ -157,9 +155,9 @@ public class UserJdbcDAO implements userDAO {
                 String fos = rs.getString("Field_Of_Research");
                 Integer roleid = rs.getInt("RoleId");
 
-                Role role = new Role();
-                role.setRoleID(rs.getInt("Role_Id"));
-                role.setRoleName(rs.getString("Name"));
+               /* Role role = new Role();
+                role.setRoleID(roleid);
+                role.setRoleName(rs.getString("Name"));*/
 
                 User user = new User();
                 user.setUserId(id);
@@ -169,42 +167,40 @@ public class UserJdbcDAO implements userDAO {
                 user.setLastName(lastname);
                 user.setEmail(Email);
                 user.setDob(dob.toString());
-					 user.setGender(gender);
+                user.setGender(gender);
                 user.setInstitution(institute);
                 user.setDeptName(department);
                 user.setFieldResearch(fos);
                 user.setRoleId(roleid);
-                user.setRole(role);
-					 
-					 users.add(user);
-			 }
-			 return users;
-		 }catch(SQLException e){
-			 throw new DAOException(e.getMessage(), e);
-		 }
-	 }
-	 
-	 @Override
-	 public Collection<String> allRoles(){
-		 String sql = "select * from roles where not (name = 'Contributor'";
-		 
-		 try(
-				Connection con = DbConnection.getConnection(url);
-				PreparedStatement stmt = con.prepareStatement(sql);
-			 ){
-			 ResultSet rs = stmt.executeQuery();
-			 
-			 List<String> roles = new ArrayList<String>();
-			 while(rs.next()){
-				 String name = rs.getString("name");
-				 
-				 roles.add(name);
-			 }
-			 return roles;
-		 }catch(SQLException e){
-			 throw new DAOException(e.getMessage(), e);
-		 }
-	 }
+//                user.setRole(role);
+
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            throw new DAOException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Collection<String> allRoles() {
+        String sql = "select * from role where not (name = 'Contributor')";
+
+        try (
+                 Connection con = DbConnection.getConnection(url);  PreparedStatement stmt = con.prepareStatement(sql);) {
+            ResultSet rs = stmt.executeQuery();
+
+            List<String> roles = new ArrayList<String>();
+            while (rs.next()) {
+                String name = rs.getString("name");
+
+                roles.add(name);
+            }
+            return roles;
+        } catch (SQLException e) {
+            throw new DAOException(e.getMessage(), e);
+        }
+    }
     /*
     public Boolean validateCredentials(String username, String password) {
         String sql = "select password from user where username=?";
