@@ -36,7 +36,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
 
     public void addArticle(Article article) {
         
-            String sql = "insert into Article (articleId, title, abstract, file, keyword, author, verified, publsihed, citedCount, contributedBy, verifiedBy, timesFlagged) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "insert into Article (article_Id, title, abstract, file, keyword, author, verified, published, cited_Count, contributed_By, verified_By, flags) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (
                 
@@ -46,7 +46,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
             stmt.setInt(1, article.getArticleId());
             stmt.setString(2, article.getTitle());
             stmt.setString(3, article.getArticleAbstract());
-            stmt.setString(4, article.getFile());
+            stmt.setBytes(4, article.getData());
             stmt.setString(5, article.getKeywords());
             stmt.setString(6, article.getAuthor());
             stmt.setBoolean(7, article.getVerified());
@@ -98,7 +98,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
             stmt.setInt(1, article.getArticleId());
             stmt.setString(2, article.getTitle());
             stmt.setString(3, article.getArticleAbstract());
-            stmt.setString(4, article.getFile());
+            stmt.setBytes(4, article.getData());
             stmt.setString(5, article.getKeywords());
             stmt.setString(6, article.getAuthor());
             stmt.setBoolean(7, article.getVerified());
@@ -160,6 +160,8 @@ public class ArticleJdbcDAO implements ArticleDAO{
         
     }
     
+    
+    
  
     public Collection<Article> filterByAuthor(String auth){
         String sql = "Select * from Article where lower(author) like concat(‘%’, ?, ‘%’)";
@@ -178,7 +180,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
                 String articleAbstract = rs.getString("Abstract");
-                String filee = rs.getString("File");
+                byte[] data = rs.getBytes("File");
                 String keywords = rs.getString("Keyword");
                 String author = rs.getString("Author");
                 Boolean verified = rs.getBoolean("Verified");
@@ -188,8 +190,9 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 String verifiedBy = rs.getString("Verified_By");
                 Integer timesFlagged = rs.getInt("Flags");
                 Date date = rs.getDate("Date");
+                
        
-                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+                Article s = new Article(articleId, title, articleAbstract, data, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
   
                 System.out.println(s);
                 articles.add(s);
@@ -203,175 +206,175 @@ public class ArticleJdbcDAO implements ArticleDAO{
        
     }
     
-    public Collection<Article> filterByDate(Date d){
-     String sql = "Select * from Article where lower(date) like concat(‘%’, ?, ‘%’)";
-     
-        try (
-                Connection dbCon = DbConnection.getConnection(databaseURI);
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-
-            stmt.setDate(1, (java.sql.Date) d);
-            ResultSet rs = stmt.executeQuery();
-            List<Article> articles = new ArrayList<Article>();
-
-            // iterate through the query results
-            while (rs.next()) {
-
-                // get the data out of the query
-                Integer articleId = rs.getInt("Article_ID");
-                String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Abstract");
-                String filee = rs.getString("File");
-                String keywords = rs.getString("Keyword");
-                String author = rs.getString("Author");
-                Boolean verified = rs.getBoolean("Verified");
-                Boolean published = rs.getBoolean("Published");
-                Integer citedCount = rs.getInt("Cited_Count");
-                String contributedBy = rs.getString("Contribued_By");
-                String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Flags");
-                Date date = rs.getDate("Date");
-       
-                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
-  
-                System.out.println(s);
-                articles.add(s);
-
-            }
-            return articles;
-
-        } catch (SQLException ex) {  // we are forced to catch SQLException
-            // don't let the SQLException leak from our DAO encapsulation
-            throw new RuntimeException(ex);
-        }      
-    }
-    
-    public Collection<Article> filterByKeyword(String key){
-      String sql = "Select * from Article where lower(keyword) like concat(‘%’, ?, ‘%’)";
-        try (
-                Connection dbCon = DbConnection.getConnection(databaseURI);
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-
-            stmt.setString(1, key.toLowerCase());
-           
-            ResultSet rs = stmt.executeQuery();
-            List<Article> articles = new ArrayList<Article>();
-
-            // iterate through the query results
-            while (rs.next()) {
-
-                // get the data out of the query
-                Integer articleId = rs.getInt("Article_ID");
-                String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Abstract");
-                String filee = rs.getString("File");
-                String keywords = rs.getString("Keyword");
-                String author = rs.getString("Author");
-                Boolean verified = rs.getBoolean("Verified");
-                Boolean published = rs.getBoolean("Published");
-                Integer citedCount = rs.getInt("Cited_Count");
-                String contributedBy = rs.getString("Contribued_By");
-                String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Flags");
-                Date date = rs.getDate("Date");
-       
-                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
-  
-                System.out.println(s);
-                articles.add(s);
-
-            }
-            return articles;
-
-        } catch (SQLException ex) {  // we are forced to catch SQLException
-            // don't let the SQLException leak from our DAO encapsulation
-            throw new RuntimeException(ex);
-        }     
-    }
-    
-    public Collection<Article> filterByDepartment(String dept){
-    String sql = "Select * from Article where lower(department) like concat(‘%’, ?, ‘%’)";
-        try (
-                Connection dbCon = DbConnection.getConnection(databaseURI);
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-
-            stmt.setString(1, dept.toLowerCase());
-            ResultSet rs = stmt.executeQuery();
-            List<Article> articles = new ArrayList<Article>();
-
-            // iterate through the query results
-            while (rs.next()) {
-
-                // get the data out of the query
-                Integer articleId = rs.getInt("Article_ID");
-                String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Abstract");
-                String filee = rs.getString("File");
-                String keywords = rs.getString("Keyword");
-                String author = rs.getString("Author");
-                Boolean verified = rs.getBoolean("Verified");
-                Boolean published = rs.getBoolean("Published");
-                Integer citedCount = rs.getInt("Cited_Count");
-                String contributedBy = rs.getString("Contribued_By");
-                String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Flags");
-                Date date = rs.getDate("Date");
-       
-                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
-  
-                System.out.println(s);
-                articles.add(s);
-
-            }
-            return articles;
-
-        } catch (SQLException ex) {  // we are forced to catch SQLException
-            // don't let the SQLException leak from our DAO encapsulation
-            throw new RuntimeException(ex);
-        }       
-    }
-    
-    public Collection<Article> filterByField(String field){
-    String sql = "Select * from Article where lower(field) like concat(‘%’, ?, ‘%’)";
-        try (
-                Connection dbCon = DbConnection.getConnection(databaseURI);
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-
-            stmt.setString(1, field.toLowerCase());
-            ResultSet rs = stmt.executeQuery();
-            List<Article> articles = new ArrayList<Article>();
-
-            // iterate through the query results
-            while (rs.next()) {
-
-                // get the data out of the query
-                Integer articleId = rs.getInt("Article_ID");
-                String title = rs.getString("Title");
-                String articleAbstract = rs.getString("Abstract");
-                String filee = rs.getString("File");
-                String keywords = rs.getString("Keyword");
-                String author = rs.getString("Author");
-                Boolean verified = rs.getBoolean("Verified");
-                Boolean published = rs.getBoolean("Published");
-                Integer citedCount = rs.getInt("Cited_Count");
-                String contributedBy = rs.getString("Contribued_By");
-                String verifiedBy = rs.getString("Verified_By");
-                Integer timesFlagged = rs.getInt("Flags");
-                Date date = rs.getDate("Date");
-       
-                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
-  
-                System.out.println(s);
-                articles.add(s);
-
-            }
-            return articles;
-
-        } catch (SQLException ex) {  // we are forced to catch SQLException
-            // don't let the SQLException leak from our DAO encapsulation
-            throw new RuntimeException(ex);
-        }      
-    }
+//    public Collection<Article> filterByDate(Date d){
+//     String sql = "Select * from Article where lower(date) like concat(‘%’, ?, ‘%’)";
+//     
+//        try (
+//                Connection dbCon = DbConnection.getConnection(databaseURI);
+//                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+//
+//            stmt.setDate(1, (java.sql.Date) d);
+//            ResultSet rs = stmt.executeQuery();
+//            List<Article> articles = new ArrayList<Article>();
+//
+//            // iterate through the query results
+//            while (rs.next()) {
+//
+//                // get the data out of the query
+//                Integer articleId = rs.getInt("Article_ID");
+//                String title = rs.getString("Title");
+//                String articleAbstract = rs.getString("Abstract");
+//                String filee = rs.getString("File");
+//                String keywords = rs.getString("Keyword");
+//                String author = rs.getString("Author");
+//                Boolean verified = rs.getBoolean("Verified");
+//                Boolean published = rs.getBoolean("Published");
+//                Integer citedCount = rs.getInt("Cited_Count");
+//                String contributedBy = rs.getString("Contribued_By");
+//                String verifiedBy = rs.getString("Verified_By");
+//                Integer timesFlagged = rs.getInt("Flags");
+//                Date date = rs.getDate("Date");
+//       
+//                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+//  
+//                System.out.println(s);
+//                articles.add(s);
+//
+//            }
+//            return articles;
+//
+//        } catch (SQLException ex) {  // we are forced to catch SQLException
+//            // don't let the SQLException leak from our DAO encapsulation
+//            throw new RuntimeException(ex);
+//        }      
+//    }
+//    
+//    public Collection<Article> filterByKeyword(String key){
+//      String sql = "Select * from Article where lower(keyword) like concat(‘%’, ?, ‘%’)";
+//        try (
+//                Connection dbCon = DbConnection.getConnection(databaseURI);
+//                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+//
+//            stmt.setString(1, key.toLowerCase());
+//           
+//            ResultSet rs = stmt.executeQuery();
+//            List<Article> articles = new ArrayList<Article>();
+//
+//            // iterate through the query results
+//            while (rs.next()) {
+//
+//                // get the data out of the query
+//                Integer articleId = rs.getInt("Article_ID");
+//                String title = rs.getString("Title");
+//                String articleAbstract = rs.getString("Abstract");
+//                String filee = rs.getString("File");
+//                String keywords = rs.getString("Keyword");
+//                String author = rs.getString("Author");
+//                Boolean verified = rs.getBoolean("Verified");
+//                Boolean published = rs.getBoolean("Published");
+//                Integer citedCount = rs.getInt("Cited_Count");
+//                String contributedBy = rs.getString("Contribued_By");
+//                String verifiedBy = rs.getString("Verified_By");
+//                Integer timesFlagged = rs.getInt("Flags");
+//                Date date = rs.getDate("Date");
+//       
+//                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+//  
+//                System.out.println(s);
+//                articles.add(s);
+//
+//            }
+//            return articles;
+//
+//        } catch (SQLException ex) {  // we are forced to catch SQLException
+//            // don't let the SQLException leak from our DAO encapsulation
+//            throw new RuntimeException(ex);
+//        }     
+//    }
+//    
+//    public Collection<Article> filterByDepartment(String dept){
+//    String sql = "Select * from Article where lower(department) like concat(‘%’, ?, ‘%’)";
+//        try (
+//                Connection dbCon = DbConnection.getConnection(databaseURI);
+//                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+//
+//            stmt.setString(1, dept.toLowerCase());
+//            ResultSet rs = stmt.executeQuery();
+//            List<Article> articles = new ArrayList<Article>();
+//
+//            // iterate through the query results
+//            while (rs.next()) {
+//
+//                // get the data out of the query
+//                Integer articleId = rs.getInt("Article_ID");
+//                String title = rs.getString("Title");
+//                String articleAbstract = rs.getString("Abstract");
+//                String filee = rs.getString("File");
+//                String keywords = rs.getString("Keyword");
+//                String author = rs.getString("Author");
+//                Boolean verified = rs.getBoolean("Verified");
+//                Boolean published = rs.getBoolean("Published");
+//                Integer citedCount = rs.getInt("Cited_Count");
+//                String contributedBy = rs.getString("Contribued_By");
+//                String verifiedBy = rs.getString("Verified_By");
+//                Integer timesFlagged = rs.getInt("Flags");
+//                Date date = rs.getDate("Date");
+//       
+//                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+//  
+//                System.out.println(s);
+//                articles.add(s);
+//
+//            }
+//            return articles;
+//
+//        } catch (SQLException ex) {  // we are forced to catch SQLException
+//            // don't let the SQLException leak from our DAO encapsulation
+//            throw new RuntimeException(ex);
+//        }       
+//    }
+//    
+//    public Collection<Article> filterByField(String field){
+//    String sql = "Select * from Article where lower(field) like concat(‘%’, ?, ‘%’)";
+//        try (
+//                Connection dbCon = DbConnection.getConnection(databaseURI);
+//                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+//
+//            stmt.setString(1, field.toLowerCase());
+//            ResultSet rs = stmt.executeQuery();
+//            List<Article> articles = new ArrayList<Article>();
+//
+//            // iterate through the query results
+//            while (rs.next()) {
+//
+//                // get the data out of the query
+//                Integer articleId = rs.getInt("Article_ID");
+//                String title = rs.getString("Title");
+//                String articleAbstract = rs.getString("Abstract");
+//                String filee = rs.getString("File");
+//                String keywords = rs.getString("Keyword");
+//                String author = rs.getString("Author");
+//                Boolean verified = rs.getBoolean("Verified");
+//                Boolean published = rs.getBoolean("Published");
+//                Integer citedCount = rs.getInt("Cited_Count");
+//                String contributedBy = rs.getString("Contribued_By");
+//                String verifiedBy = rs.getString("Verified_By");
+//                Integer timesFlagged = rs.getInt("Flags");
+//                Date date = rs.getDate("Date");
+//       
+//                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+//  
+//                System.out.println(s);
+//                articles.add(s);
+//
+//            }
+//            return articles;
+//
+//        } catch (SQLException ex) {  // we are forced to catch SQLException
+//            // don't let the SQLException leak from our DAO encapsulation
+//            throw new RuntimeException(ex);
+//        }      
+//    }
  
     public Article getArticleById(Integer artId){
         String sql = "select * from Article where articleId = ?";
@@ -395,7 +398,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
                 String articleAbstract = rs.getString("Abstract");
-                String filee = rs.getString("File");
+                byte[] data = rs.getBytes("File");
                 String keywords = rs.getString("Keyword");
                 String author = rs.getString("Author");
                 Boolean verified = rs.getBoolean("Verified");
@@ -409,7 +412,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 // use the data to create a property object
               
                 
-                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+                Article s = new Article(articleId, title, articleAbstract, data, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
 
                 return s;
                 
@@ -442,7 +445,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
                 String articleAbstract = rs.getString("Abstract");
-                String filee = rs.getString("File");
+                byte[] data = rs.getBytes("File");
                 String keywords = rs.getString("Keyword");
                 String author = rs.getString("Author");
                 Boolean verified = rs.getBoolean("Verified");
@@ -454,7 +457,7 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 Date date = rs.getDate("Date");
 
                 // use the data to create a article object
-                Article s = new Article(articleId, title, articleAbstract, filee, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
+                Article s = new Article(articleId, title, articleAbstract, data, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
 
                 // and put it in the collection
                 articles.add(s);

@@ -33,7 +33,7 @@ public class VerifierJdbcDAO extends UserJdbcDAO implements VerifierDAO {
             stmt.setInt(1, article.getArticleId());
             stmt.setString(2, article.getTitle());
             stmt.setString(3, article.getArticleAbstract());
-            stmt.setString(4, article.getFile());
+            stmt.setBytes(4, article.getData());
             stmt.setString(5, article.getKeywords());
             stmt.setString(6, article.getAuthor());
             stmt.setBoolean(7, true);

@@ -18,33 +18,21 @@ module.factory('signinAPI', function ($resource) {
     return $resource('api/users/:username/:password');
 });
 
-module.factory('getUsers', function($resource){
-	return $resource('api/users');
+module.factory('getUsers', function ($resource) {
+    return $resource('api/users');
 });
 
-module.factory('allRoles', function($resource){
-	return $resource('api/roles');
+module.factory('allRoles', function ($resource) {
+    return $resource('api/roles');
 });
 
 +// article factories 
- 
-module.factory('articlesAPI', function ($resource) {
-    return $resource("/api/articles");
-});
- 
- 
-module.factory('deleteArticleAPI', function ($resource) {
-    return $resource("/api/articles/:id");
-});
- 
- 
-module.factory('editArticleAPI', function ($resource) {
-    return $resource("/api/updateArt/:id");
-});
- 
-module.factory('verifyArticleAPI', function ($resource) {
-    return $resource('api/VerifyArticle');
-});
+
+
+
+        module.factory('verifyArticleAPI', function ($resource) {
+            return $resource('api/VerifyArticle');
+        });
 module.factory('deleteArticleAPI', function ($resource) {
     return $resource('api/deleteArticle/:id');
 });
@@ -74,12 +62,12 @@ module.controller('UserController', function (registerAPI, signinAPI, $sessionSt
                 signinAPI.get({'username': username, 'password': password},
                         function (user) {
                             $sessionStorage.user = user;
-                           // console.log($sessionStorage.user);
-                           
-                           //check role permission of user currently signed in
+                            // console.log($sessionStorage.user);
+
+                            //check role permission of user currently signed in
                             if ($sessionStorage.user.roleId === 1) {
                                 $window.location = 'home.html';
-                            }else{
+                            } else {
                                 $window.location = 'verifyArticle.html';
                             }
                         },
@@ -94,7 +82,7 @@ module.controller('UserController', function (registerAPI, signinAPI, $sessionSt
                 if ($sessionStorage.user) {
                     this.signedIn = true;
                     this.welcome = "Welcome " + $sessionStorage.user.firstName;
-                    
+
                     if ($sessionStorage.user.roleId === 1) {
                         this.isCont = true;
                         //$window.location = 'home.html'
@@ -120,19 +108,53 @@ module.controller('UserController', function (registerAPI, signinAPI, $sessionSt
                 $window.location = 'home.html';
             }
 
-				this.users = getUsers.query();
-				this.roles = allRoles.query();
-				
+            this.users = getUsers.query();
+            this.roles = allRoles.query();
+
         });
 
+module.factory('articlesAPI', function ($resource) {
+    return $resource("/api/articles");
+});
 
-module.controller('ArticleController', function (articlesAPI, deleteArticleAPI, editArticleAPI) {
+
+module.factory('deleteArticleAPI', function ($resource) {
+    return $resource("/api/articles/:id");
+});
+
+
+module.factory('editArticleAPI', function ($resource) {
+    return $resource("/api/updateArt/:id");
+});
+
+
+module.controller('ArticleController', function (articlesAPI, deleteArticleAPI, editArticleAPI, $window) {
+    let ctrl = this;
+    this.uploadArticle = function (article) {
+        articlesAPI.save(null, article,
+                function () {
+                    
+                    
+                    // extract id from rsp
+                    
+                    $window.location = 'uploadArticle.html';
+                },
+                // error callback
+                        function (error) {
+                            console.log(error);
+                        }
+                );
+                console.log(article);
+            };
+
+// second post for file
+
 
 });
 
-	+module.controller('VeriferController', function (verifyArticleAPI, deleteArticleAPI, $window) {
+module.controller('VeriferController', function (verifyArticleAPI, deleteArticleAPI, $window, $sessionStorage, $http) {
     let ctrl = this;
-    
+
     this.verifyArticle = function (article) {
         verifyArticleAPI.save(null, article,
                 // success callback
@@ -146,11 +168,11 @@ module.controller('ArticleController', function (articlesAPI, deleteArticleAPI, 
                         );
                         console.log(article);
                     };
-                    
-    this.deleteArticle = function (article) {
-        deleteArticleAPI.delete(null,article,
-        )
-                
-            }
-    
-})
+
+            this.deleteArticle = function (article) {
+                deleteArticleAPI.delete(null, article,
+                        );
+
+            };
+
+        });
