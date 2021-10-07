@@ -1,4 +1,4 @@
-from serpapi import GoogleSearch
+rom serpapi import GoogleSearch
 
 
 def main(s):
@@ -24,7 +24,5 @@ def main(s):
     cite = GoogleSearch(params2)
     cite_r = cite.get_dict()
     cite_r = cite_r['citations']
-    print(cite_r['citations'])
+    count = len(cite_r)
     return cite_r
-
-citations = main("word")
