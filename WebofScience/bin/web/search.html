@@ -19,15 +19,17 @@ and open the template in the editor.
         <div ng-include="'topmenu.html'"></div>
         <hr>
         <div align='center' style='margin: 100px;'>
-            <form action=”” method=”POST”>
-                <select id='seachBy' style='height: 35px;'>
-                <option>Author</option>
-                <option>Cited Count</option>
+            <form action="WebofScience/Python/Python_to_Database.py" method="GET">
+                <select id='seachBy' style='height: 35px;' name="dropdown">
+                <option value = "author">Author</option>
+                <option value = 'title'>Title</option>
                 <option>Contributor</option>
             </select>
             <input id="SearchInput" name="SearchInput" type='text' placeholder='Search...' style='width: 50%; height: 30px;'>
-            <button type="button" style='height:35px' action = 'WebofScience/Python/Python_to_Database.py'>Search</button>
+            <button type="button" style='height:35px'>Search</button>
             </form>
         </div>
+
+    
     </body>
 </html>

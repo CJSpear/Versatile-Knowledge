@@ -1,0 +1,48 @@
+domain/Test.java
+ domain.Test
+dao/UserJdbcDAO.java
+ dao.UserJdbcDAO
+domain/Verifier.java
+ domain.Verifier
+dao/userDAO.java
+ dao.userDAO
+dao/sqliteDbConnection.java
+ dao.sqliteDbConnection
+dao/ArticleDAO.java
+ dao.ArticleDAO
+web/AdminModule.java
+ web.AdminModule
+dao/AdminDAO.java
+ dao.AdminDAO
+web/UserModule.java
+ web.UserModule
+web/ArticleModule.java
+ web.ArticleModule
+dao/DAOException.java
+ dao.DAOException
+web/AssetModule.java
+ web.AssetModule
+domain/Article.java
+ domain.Article
+domain/Admin.java
+ domain.Admin
+dao/VerifierDAO.java
+ dao.VerifierDAO
+dao/AdminJdbcDAO.java
+ dao.AdminJdbcDAO
+web/Server.java
+ web.Server
+WebofScience/Main.java
+ WebofScience.Main
+dao/VerifierJdbcDAO.java
+ dao.VerifierJdbcDAO
+web/VerifierModule.java
+ web.VerifierModule
+dao/ArticleJdbcDAO.java
+ dao.ArticleJdbcDAO
+dao/DbConnection.java
+ dao.DbConnection
+domain/User.java
+ domain.User
+domain/Role.java
+ domain.Role

@@ -20,7 +20,7 @@ and open the template in the editor.
         <hr>
         <h1> Upload Article </h1>
 
-        <form ng-controller="CustomerController as custCtrl" ng-submit="custCtrl.registerCustomer(customer)"  class="login-form">
+        <form ng-controller="ArticleController as artCtrl" ng-submit="artCtrl.uploadArticle(article)"  class="login-form">
             <fieldset>
                 <label for=“file”>File:</label>
                 <input type="file" ng-model="article.file" required>
@@ -51,7 +51,7 @@ and open the template in the editor.
                 </label>
                 <br>
             </fieldset>
-            <center><button type="submit" class="raise">Create Account</button></center>
+            <center><button type="submit" class="raise">Upload article</button></center>
         </form>
     </body>
 </html>

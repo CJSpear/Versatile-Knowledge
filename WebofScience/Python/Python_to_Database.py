@@ -2,8 +2,12 @@ import jaydebeapi
 import mysql.connector
 from mysql.connector import Error
 import pandas as pd
+from flask import Flask, request, render_template
+import cgi
+import cgitb  
 
-
+cgitb.enable()  
+form = cgi.FieldStorage()
 connection  = jaydebeapi.connect(
         "org.h2.Driver",
         "jdbc:h2:tcp://localhost/~/info301",
@@ -12,17 +16,29 @@ connection  = jaydebeapi.connect(
 
 cursor = connection.cursor()
 
+#app = Flask(__name__)
+
+searchterm =  form.getvalue('SearchInput')
+
+if form.getvalue("dropdown"):
+        subject = form.getvalue('dropdown')
+else: subject = 'NULL'
+
+typeS = subject
+
+val = searchterm
+
 
 #Search Function Needs to update for the javascript implementation
 def SearchFunction():
         search = ""
-        typeS = input (" Input Search Type HERE ")
+        typeS
         #Too be remove using the Javascript functions
         #if types are not needed, but help structure the code in a way so you understand what is done
         typeS = int(typeS)
-        if typeS == 1:
+        if typeS == 'title':
                 search = 'Title'               
-        if typeS == 2:
+        if typeS == 'author':
                 search = "Author"
         if typeS == 3:
                 search = 'Keyword'               
@@ -34,8 +50,6 @@ def SearchFunction():
 
 SearchAmount = 0
 SearchType = SearchFunction()
-
-val = input("Input text here ")
 
 #Search all in TABLE
 #def res():
@@ -106,13 +120,12 @@ cursor.close()
 connection.close()
 
 #Send Search Information Straight to HTML pages
-app = Flask(__name__)
+#@app.route('/')
+#def index():
+#        if request.method == 'GET':
+#                library = from_db
+#                return render_template("seach.html", library=library)
 
-@app.route('/', methods =['GET'])
-def index():
-    library = from_db
-    return render_template("index.html", library=library)
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
+#if __name__ == "__main__":
+#    app.run(debug=True)

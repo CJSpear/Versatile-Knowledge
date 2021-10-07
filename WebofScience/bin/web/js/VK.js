@@ -26,6 +26,29 @@ module.factory('allRoles', function($resource){
 	return $resource('api/roles');
 });
 
++// article factories 
+ 
+module.factory('articlesAPI', function ($resource) {
+    return $resource("/api/articles");
+});
+ 
+ 
+module.factory('deleteArticleAPI', function ($resource) {
+    return $resource("/api/articles/:id");
+});
+ 
+ 
+module.factory('editArticleAPI', function ($resource) {
+    return $resource("/api/updateArt/:id");
+});
+ 
+module.factory('verifyArticleAPI', function ($resource) {
+    return $resource('api/VerifyArticle');
+});
+module.factory('deleteArticleAPI', function ($resource) {
+    return $resource('api/deleteArticle/:id');
+});
+
 module.controller('UserController', function (registerAPI, signinAPI, $sessionStorage, $window, $http, getUsers, allRoles) {
     let ctrl = this;
 
@@ -103,6 +126,31 @@ module.controller('UserController', function (registerAPI, signinAPI, $sessionSt
         });
 
 
-module.controller('ArticleController', function () {
+module.controller('ArticleController', function (articlesAPI, deleteArticleAPI, editArticleAPI) {
 
 });
+
+	+module.controller('VeriferController', function (verifyArticleAPI, deleteArticleAPI, $window) {
+    let ctrl = this;
+    
+    this.verifyArticle = function (article) {
+        verifyArticleAPI.save(null, article,
+                // success callback
+                        function () {
+                            $window.location = 'viewArticle.html';
+                        },
+                        // error callback
+                                function (error) {
+                                    console.log(error);
+                                }
+                        );
+                        console.log(article);
+                    };
+                    
+    this.deleteArticle = function (article) {
+        deleteArticleAPI.delete(null,article,
+        )
+                
+            }
+    
+})
