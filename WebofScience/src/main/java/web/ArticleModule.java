@@ -10,6 +10,13 @@ import domain.Article;
 import org.jooby.Jooby;
 import org.jooby.Status;
 import org.jooby.Upload;
+import java.io.*;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+
+import java.io.IOException;
+
+
 
 /**
  *
@@ -54,6 +61,26 @@ public class ArticleModule extends Jooby {
    
    
    //add contributor
+
+
+   // Call Sentimental Analysis
+   //NOT CANNOT WORK UNTILL THE FILE UPLOAD IS SOLVED< COMMENTED OUT FOR NOW
+   /*
+   public static void main(String a[]) throws Exception {
+    //    System.out.println("Blah");
+    try{
+        //article_id goes here
+        String article_id = " "
+
+        // System.out.println("BEFORE");
+        // Must call ABSOULTE PATHWAY
+        ProcessBuilder pb = new ProcessBuilder("python3","/home/caleb/Desktop/University/WebOfScience/WebOfScience/WebofScience/Python/Sentimental_Analysis.py", article_id);
+        Map<String, String> environment = pb.environment();
+        environment.put("CLASSPATH", "h2-1.4.200.jar");
+        Process p = pb.start();
+
+     }
+        */
      
                  
        

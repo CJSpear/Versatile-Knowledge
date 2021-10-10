@@ -2,47 +2,64 @@ from textblob import TextBlob
 import docx2txt
 import fitz
 from textblob.classifiers import NaiveBayesClassifier
+import jaydebeapi
+import sys
+import mysql.connector
+from mysql.connector import Error
+import pandas as pd
+import os
+import json
+import collections
 
-train = [
-    ('I love this sandwich.', 'pos'),
-    ('this is an amazing place!', 'pos'),
-    ('I feel very good about these beers.', 'pos'),
-    ('this is my best work.', 'pos'),
-    ("what an awesome view", 'pos'),
-    ('I do not like this restaurant', 'neg'),
-    ('I am tired of this stuff.', 'neg'),
-    ("I can't deal with this", 'neg'),
-    ('he is my sworn enemy!', 'neg'),
-    ('my boss is horrible.', 'neg')
-]
-test = [
-    ('the beer was good.', 'pos'),
-    ('I do not enjoy my job', 'neg'),
-    ("I ain't feeling dandy today.", 'neg'),
-    ("I feel amazing!", 'pos'),
-    ('Gary is a friend of mine.', 'pos'),
-    ("I can't believe I'm doing this.", 'neg')
-]
+#
+# Call Article_id
+Article_ID = sys.argv[1]
+val = Article_ID
 
-cl = NaiveBayesClassifier(train)
+#Connect to Database
+try:
+
+    connection  = jaydebeapi.connect(
+        "org.h2.Driver",
+        "jdbc:h2:tcp://localhost/~/info301",
+        ["sa", ""],
+        "WebofScience/Python/h2-1.4.200..jar")
 
 #Word to Text
-#docxFileObj = docx2txt.process("WebOfScience/WebofScience/Python/test.docx")
+#docxFileObj = docx2txt.process("WebOfScience/WebofScience/Python/test.docx")   
+    def SearchRes():
+        result = "null"
+        cursor.execute("SELECT ARTICLE_ID FROM ARTICLE WHERE ARTICLE_ID='%{}%'".format(val))
+        return result
+
+    pdf_doc = SearchRes()
+
+
 
 #PDF To Text
-pdf_doc ="WebOfScience/WebofScience/Python/Testing.pdf"
-doc = fitz.open(pdf_doc)
-count = doc.pageCount
+    doc = fitz.open(pdf_doc)
+    count = doc.pageCount
 #ask for Text_total Location
-for i in range(count):
-    text_total = " "
-    page = doc.loadPage(i)
-    text = page.getText('text')
-    text_total = (text_total + " " + text)
+    for i in range(count):
+        text_total = " "
+        page = doc.loadPage(i)
+        text = page.getText('text')
+        text_total = (text_total + " " + text)
     
-pageObj = text_total
-SentimentScore = TextBlob(pageObj)
-print (SentimentScore.sentiment)
+    pageObj = text_total
+    SentimentScore = TextBlob(pageObj)
+    print (SentimentScore.sentiment)
+    SS = SentimentScore
+
+    def SentimentalScore():
+        cursor.execute("update article set sentiment= '{}' where article_id = '{}' ".format(SS, val))
+        return result
+
+
+
+except:
+        print(sys.exc_info())
+
 
 
 #For Word Documents (Works but I need to differentiate between incoming files (dont need to double up its a waste of code))
