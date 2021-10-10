@@ -184,9 +184,7 @@ module.controller('ArticleController', function (articlesAPI,  editArticleAPI, u
     this.uploadArticle = function (article) {
         articlesAPI.save(null, article,
                 function () {
-                    
-                    
-                    // extract id from rsp
+
                     
                     $window.location = 'uploadArticle.html';
                 },
@@ -243,9 +241,6 @@ module.controller('AdminController', function (addVerifierAPI, deleteVerifierAPI
         addVerifierAPI.save(null, verifier,
                 function () {
                     
-                    
-                    // extract id from rsp
-                    
                     $window.location = 'manageVerifier.html';
                 },
                 // error callback
@@ -255,10 +250,9 @@ module.controller('AdminController', function (addVerifierAPI, deleteVerifierAPI
                 );
                 console.log(verifier);
             };
-    
-    
+
       this.deleteVerifier = function (verifier) {
-                if ($window.confirm("Are you sure you want to delete your account?")) {
+                if ($window.confirm("Are you sure you want to delete verifier?")) {
                 console.log(verifier.username);
                 deleteVerifierAPI.delete({'username': verifier.username}, function () {
                     $window.location = 'manageVerifier.html';
