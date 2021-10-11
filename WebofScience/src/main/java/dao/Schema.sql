@@ -49,6 +49,7 @@ create table Article(
  Cited_count int,
  Contributed_By Int,
  Verified_By Int,
+ Sentiment VarChar(8000),
  constraint Article_PK Primary key (Article_Id),
  constraint Article_Cont_FK Foreign key (Contributed_By) references User(User_Id),
  constraint Article_Veri_FK Foreign key (Verified_By) references User(User_Id)

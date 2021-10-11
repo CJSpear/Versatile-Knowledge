@@ -1,0 +1,23 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7/10/2021, 10:03:28 PM
+    Author     : ryanl
+*/
+
+#menu {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.amenu {
+    font-size: 16px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.sign_menu {
+    font-size: 16px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
