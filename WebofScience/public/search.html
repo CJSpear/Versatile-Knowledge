@@ -18,7 +18,7 @@ and open the template in the editor.
     <body>
         <div ng-include="'topmenu.html'"></div>
         <hr>
-        <div align='center' style='margin: 100px;' ng-controller="searchCtrl as SearchController">
+        <div align='center' style='margin: 100px;' ng-controller="SearchController as searchCtrl">
             <form id = "searchCtrl.searchFunction()" >
                 <select id='searchBy' style='height: 35px;' name="dropdown" ng-model="SearchType">
                 <option value = "author">Author</option>
@@ -41,7 +41,6 @@ and open the template in the editor.
             </li>
             </ul>
 
-            <button type="button" onclick="getProducts()">Click Me!</button>         </div>
 
     
     </body>
