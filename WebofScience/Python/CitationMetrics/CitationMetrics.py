@@ -45,4 +45,5 @@ def main(s):
             ten_results.append(i['title'])
             
     return ten_results, int(total)
+    print (ten_results)
 

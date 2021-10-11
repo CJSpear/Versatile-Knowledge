@@ -4,8 +4,9 @@ var Searchitems = angular.module('searching', []);
 
 console.log("hello")
 
-fetch('/WebofScience/{type}/{val}/Python/callPython.java')
+/*fetch('/WebofScience/{type}/{val}/Python/callPython.java')
     .then(res=> console.log(res))
+
 
 
 fetch('/WebofScience/Python/callPython.java', {
@@ -17,7 +18,7 @@ fetch('/WebofScience/Python/callPython.java', {
 }).then(res => {
     return res.json
 }) .then(data=> console.log(data))
-
+*/
 
 Searchitems.factory('searchAPI', function($resource){
     return $resource("WebofScience/src/main/java/web/SearchModule.java");
@@ -38,7 +39,7 @@ Searchitems.controller("SearchController", ['$scope', '$http', function($scope, 
 
 
 
-    $http.get('js/json/messages.json').then(function (data){
+    $http.get('public/json/messages.json').then(function (data){
 
         $scope.messages = data.data;
 
