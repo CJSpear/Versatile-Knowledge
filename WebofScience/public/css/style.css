@@ -8,6 +8,9 @@ and open the template in the editor.
     Author     : ryanl
 */
 
+/*
+topmenu.html
+*/
 #menu {
     font-family: "Lucida Console", "Courier New", monospace;
     height: 40px;
@@ -44,6 +47,8 @@ a:active.amenu {
     font-size: 16px;
     font-family: "Lucida Console", "Courier New", monospace;
     float: right;
+    margin-top: 2px;
+    margin-right: 10px;
 }
 
 #logo {
@@ -51,7 +56,13 @@ a:active.amenu {
     float: left;
     margin-right: 5px;
 }
+/*
+end
+*/
 
+/*
+all
+*/
 body {
     font-family: "Lucida Console", "Courier New", monospace;
     text-decoration: none;
@@ -75,7 +86,13 @@ h1 {
     padding-right: 20px;
     padding-top: 1px;
 }
+/*
+end
+*/
 
+/*
+search.html
+*/
 .search {
     padding-left: 20px;
     padding-right: 20px;
@@ -83,10 +100,42 @@ h1 {
     text-align: center;
 }
 
+select {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+option {
+    margin-left: 5px;
+}
+
+#SearchInput {
+    width: 50%; 
+    height: 30px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.searchbutton {
+    font-family: "Lucida Console", "Courier New", monospace;
+    height: 35px;
+    width: 75px;
+}
+/*
+end
+*/
+
+/*
+signin.html
+*/
 #signuplink {
     text-decoration: none;
 }
+/*
+end
+*/
 
+/*
+manageVerifier.html
+*/
 #manageverifier {
     font-weight: normal;
 }
@@ -121,7 +170,13 @@ h1 {
     font-size: 12px;
     font-weight: normal;
 }
+/*
+end
+*/
 
+/*
+forms - all pages
+*/
 .login-form label {
     width: 275px;
     display: inline-block;
@@ -141,25 +196,6 @@ h1 {
 .centera {
 
     text-decoration: none;
-}
-
-.btn {
-    color: #05a;
-    width: 175px;
-    font-size: 16px;
-    margin-left: 20px;
-    padding: 10px;
-    background-color: #eee;
-    border-top: none;
-    border-bottom: none;
-    border-right: 2px solid #000;
-    border-left: 2px solid #000;
-    font-family: "Lucida Console", "Courier New", monospace;
-}
-
-.btn:hover {
-    color: #000;
-    background-color: #0ae;
 }
 
 #textareap label {
@@ -183,3 +219,31 @@ label.radiotext {
 input.radiotext {
     width: 50px;
 }
+/*
+end
+*/
+
+/*
+buttons - all pages
+*/
+.btn {
+    color: #05a;
+    width: 175px;
+    font-size: 16px;
+    margin-left: 20px;
+    padding: 10px;
+    background-color: #eee;
+    border-top: none;
+    border-bottom: none;
+    border-right: 2px solid #000;
+    border-left: 2px solid #000;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.btn:hover {
+    color: #000;
+    background-color: #0ae;
+}
+/*
+end
+*/
