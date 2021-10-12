@@ -15,8 +15,8 @@ import java.util.Collection;
  */
 public interface AdminDAO extends VerifierDAO {
     public void addVerifier(Verifier verifier);
-    public void deleteVerifier(Verifier user);
-    public void upgradeVerifier(Verifier user);
+    public void demoteVerifier(User user);
+    public void upgradeVerifier(User user);
 	 public Collection<User> getUsers();
 	 public Collection<String> allRoles();
     

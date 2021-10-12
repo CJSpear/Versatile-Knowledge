@@ -61,8 +61,8 @@ public class AdminJdbcDAO extends VerifierJdbcDAO implements AdminDAO {
     }
     
     @Override
-    public void deleteVerifier(Verifier user) {
-        String sql = "delete from User where UserId = ?";
+    public void demoteVerifier(User user) {
+        String sql = "update user set roleid=(select role_id from role where name='Contributor') where user_id=?";
  
         try (
             
@@ -79,8 +79,8 @@ public class AdminJdbcDAO extends VerifierJdbcDAO implements AdminDAO {
     }
     
     @Override
-    public void upgradeVerifier(Verifier user) {
-        String sql = "update from User set roleId = (select role_id from role where name='Admin'), where UserId = ?";
+    public void upgradeVerifier(User user) {
+        String sql = "update User set roleId = (select role_id from role where name='Verifier') where User_Id = ?";
         
         try (
             
