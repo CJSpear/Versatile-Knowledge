@@ -6,6 +6,7 @@ package web;
  * and open the template in the editor.
  */
 import dao.AdminDAO;
+import domain.User;
 import domain.Verifier;
 import org.jooby.Jooby;
 import org.jooby.Status;
@@ -19,26 +20,19 @@ public class AdminModule extends Jooby {
 
     public AdminModule(AdminDAO adminDao) {
 
-        //add verifier
-        post("/api/addVerifier", (req, rsp) -> {
-            Verifier verifier = req.body().to(Verifier.class);
-            adminDao.addVerifier(verifier);
-            rsp.status(org.jooby.Status.CREATED);
-        });
-
         //delete verifier
-        delete("/api/deleteVerifier/:id", (req, rsp) -> {
-            Verifier verifier = req.body().to(Verifier.class);
-            adminDao.deleteVerifier(verifier);
-            rsp.status(org.jooby.Status.NO_CONTENT);
+        put("/api/demoteVerifier/:id", (req, rsp) -> {
+			  Integer id = Integer.valueOf(req.param("id").value());
+			  User user = req.body().to(User.class);
+            rsp.status(Status.NO_CONTENT);
 
         });
 
         //update verifier
         put("/api/updateVerifier/:id", (req, rsp) -> {
-            Verifier verifier = req.body().to(Verifier.class);
-            adminDao.upgradeVerifier(verifier);
-            rsp.status(org.jooby.Status.CREATED);
+			  Integer id = Integer.valueOf(req.param("id").value());
+			  User user = req.body().to(User.class);
+            rsp.status(Status.NO_CONTENT);
         });
 
     }
