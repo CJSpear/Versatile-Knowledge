@@ -4,32 +4,43 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html ng-app="VK">
+<html ng-app="searching">
     <head>
         <title>TODO supply a title</title>
         <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="js/angular.js"></script>
         <script src="js/angular-resource.js"></script>
-        <scr 1, "Verified_By": 1, "Sentiment": "hello world"}]ipt src="js/ngStorage.js"></script>
+        <script src="js/ngStorage.js"></script>
         <script src="js/VK.js"></script>
         <script src='js/search.js'></script>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
+     </head>
     <body>
         <div ng-include="'topmenu.html'"></div>
         <hr>
-        <div align='center' style='margin: 100px;'>
-            <form action="WebofScience/Python/Python_to_Database.py" method="GET">
-                <select id='seachBy' style='height: 35px;' name="dropdown">
+        <div align='center' style='margin: 100px;' ng-controller="SearchController as searchCtrl">
+            <form id = "searchCtrl.searchFunction()" >
+                <select id='searchBy' style='height: 35px;' name="dropdown" ng-model="SearchType">
                 <option value = "author">Author</option>
                 <option value = 'title'>Title</option>
                 <option>Contributor</option>
             </select>
-            <input id="SearchInput" name="SearchInput" type='text' placeholder='Search...' style='width: 50%; height: 30px;'>
-            <button type="button" style='height:35px'>Search</button>
+            <input ng-model="SearchInfo" id="SearchInput" name="SearchInput" type='text' placeholder='Search...' style='width: 50%; height: 30px;'>
+            <button id="SButton" type="button" style='height:35px'>Search</button>
             </form>
-        </div>
+
+            <button ng-click = "order = 'Title'">Title</button>
+            <button ng-click = "order = 'Abstract'">Author</button>
+            <button ng-click = "order = 'Keyword'">Date</button>
+
+
+            <p> Search Results for {{SearchInfo}}</p>
+            <ul>
+            <li ng-repeat = "message in messages | orderBy: order">
+                {{message.Title}} - {{message.Abstract}} - {{message.Date}}
+            </li>
+            </ul>
+
 
     
     </body>

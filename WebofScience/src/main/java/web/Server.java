@@ -39,7 +39,7 @@ public class Server extends Jooby {
         use(new AssetModule());
         use(new ArticleModule(articleDao));
         use(new VerifierModule(verifierDao));
-        //use(new AdminModule(adminDao));
+        use(new AdminModule(adminDao));
         use(new UserModule(userDao));
         /*List<String> noAuth = Arrays.asList("/api/register");
         use(new BasicHttpAuthenticator(customerDao, noAuth));
