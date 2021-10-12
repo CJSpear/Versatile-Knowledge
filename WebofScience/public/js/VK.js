@@ -96,7 +96,7 @@ module.factory('deleteArticleAPI', function ($resource) {
 
 //user controller 
 module.controller('UserController', function (registerAPI, signinAPI, $sessionStorage, $window, $http, getUsers, allRoles) {
-    let ctrl = this;
+    //let ctrl = this;
 
     this.registerUser = function (user) {
         registerAPI.save(null, user,

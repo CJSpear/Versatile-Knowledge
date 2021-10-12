@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<link rel="stylesheet" href="css/style.css">
+<head>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
 <div id="menu" ng-controller="UserController as userCtrl" ng-init="userCtrl.checkSignIn()">
-    
+
+    <img src="images/logo.png" id="logo" alt="logo of Versitile Knowledge">
     <a class="amenu" href="home.html"> Home</a>
     <a class="amenu" href="search.html">Search</a>
     <a class="amenu" href="about.html">About</a>
@@ -17,9 +15,9 @@ and open the template in the editor.
     <a class="amenu" href="uploadArticle.html" ng-if="userCtrl.signedIn">Upload</a>
     <a class="amenu" href="verifyArticle.html" ng-if="userCtrl.signedIn && !userCtrl.isCont"> Verify</a>
     <a class="amenu" href='manageVerifier.html' ng-if="userCtrl.signedIn && userCtrl.isAdmin"> Manage Verifiers </a>
-   
-   
-    <a class="sign_menu" href="home.html" ng-if="userCtrl.signedIn" ng-click="userCtrl.signOut()" style="float: right;"><button type='button'>Sign Out</button></a>
-    <a class="sign_menu" href="signin.html" ng-if="!userCtrl.signedIn" style="float: right;"><button type='button'>Sign In</button></a>
-    <div id='welcome' style="float: right; ">{{userCtrl.welcome}}   </div>
+
+
+    <a class="sign_menu" href="home.html" ng-if="userCtrl.signedIn" ng-click="userCtrl.signOut()"><button type='button' class="sign_menu">Sign Out</button></a>
+    <a class="sign_menu" href="signin.html" ng-if="!userCtrl.signedIn"><button type='button' class="sign_menu">Sign In</button></a>
+    <div class="sign_menu" id='welcome'>{{userCtrl.welcome}}   </div>
 </div>
