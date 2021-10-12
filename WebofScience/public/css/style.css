@@ -1,0 +1,249 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7/10/2021, 10:03:28 PM
+    Author     : ryanl
+*/
+
+/*
+topmenu.html
+*/
+#menu {
+    font-family: "Lucida Console", "Courier New", monospace;
+    height: 40px;
+    margin-bottom: 10px;
+
+}
+
+.amenu {
+    font-size: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-decoration: none;
+    color: black;
+    float: left;
+    height: 30px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px; 
+}
+
+a:visited.amenu {
+    color: black;
+}
+
+a:hover.amenu {
+    color: #1188bb;
+    background-color: #f0f0f0;
+}
+
+a:active.amenu {
+    color: darkblue;
+}
+
+.sign_menu {
+    font-size: 16px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    float: right;
+    margin-top: 2px;
+    margin-right: 10px;
+}
+
+#logo {
+    height: 35px;
+    float: left;
+    margin-right: 5px;
+}
+/*
+end
+*/
+
+/*
+all
+*/
+body {
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+h1 {
+    font-weight: normal;
+    color: #1188bb;
+}
+
+.mainbody {
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: #eeeeee;
+    min-height: 90vh;
+}
+
+.fillbody {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 1px;
+}
+/*
+end
+*/
+
+/*
+search.html
+*/
+.search {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 25px;
+    text-align: center;
+}
+
+select {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+option {
+    margin-left: 5px;
+}
+
+#SearchInput {
+    width: 50%; 
+    height: 30px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.searchbutton {
+    font-family: "Lucida Console", "Courier New", monospace;
+    height: 35px;
+    width: 75px;
+}
+/*
+end
+*/
+
+/*
+signin.html
+*/
+#signuplink {
+    text-decoration: none;
+}
+/*
+end
+*/
+
+/*
+manageVerifier.html
+*/
+#manageverifier {
+    font-weight: normal;
+}
+
+#manageverifier thead {
+    font-weight: normal;
+}
+
+#manageverifier th {
+    font-weight: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.mvhead th {
+    margin-bottom: 20px;
+    height: 40px;
+}
+
+.mvhead {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.mvrow th {
+    height: 30px;
+}
+
+.mvrow {
+    font-size: 12px;
+    font-weight: normal;
+}
+/*
+end
+*/
+
+/*
+forms - all pages
+*/
+.login-form label {
+    width: 275px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.login-form input {
+    margin-bottom: 5px;
+    width: 250px;
+}
+
+.centerp {
+    text-align: center;
+}
+
+.centera {
+
+    text-decoration: none;
+}
+
+#textareap label {
+    vertical-align: top;
+}
+
+#radiop label {
+    vertical-align: middle;
+    height: 50px;
+    display: inline-block;
+}
+
+#radiop input {
+    vertical-align: middle;
+}
+
+label.radiotext {
+    width: 100px;
+}
+
+input.radiotext {
+    width: 50px;
+}
+/*
+end
+*/
+
+/*
+buttons - all pages
+*/
+.btn {
+    color: #05a;
+    width: 175px;
+    font-size: 16px;
+    margin-left: 20px;
+    padding: 10px;
+    background-color: #eee;
+    border-top: none;
+    border-bottom: none;
+    border-right: 2px solid #000;
+    border-left: 2px solid #000;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.btn:hover {
+    color: #000;
+    background-color: #0ae;
+}
+/*
+end
+*/

@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html ng-app="VK">
     <head>
         <title>Sign In</title>
@@ -17,29 +12,30 @@ and open the template in the editor.
     </head>
     <body ng-controller="UserController as userCtrl">
         <div ng-include="'topmenu.html'"></div>
-        <hr>
-        <div>
-            <h1>Sign In</h1>
-        </div>
-        <div class="login-form">
-            <!--<p>{{custCtrl.signInMessage}}</p>-->
-            <center>
-            <form ng-submit="userCtrl.signin(username, password)" class='form'>
-                <fieldset>
-                    <legend align='left'>Account Details</legend>
-                    <label for='uname'>Username:</label>
-                    <input type="text" ng-model="username" required>
-                    <br><br>
-                    <label for='pword'>Password:</label>
-                    <input type="password" ng-model="password" required>
-                    <br><br>
-                    <center><button type='submit' class="raise" style='width: 240px;'>Sign In</button></center>
-                    <br>
-                    <a href='resetpassword.html' style='text-decoration: none;'>Forgot Password?</a>
-                </fieldset>
-            </form>
-            </center>
-            <center><h4>Don't have an account? <a href=signup.html>Sign up</a> here</h4></center>
+        <div class="mainbody">
+            <div class="fillbody">
+                <h1>Sign In</h1>
+                <hr>
+                <!--<p>{{custCtrl.signInMessage}}</p>-->
+                <form ng-submit="userCtrl.signin(username, password)" class='login-form'>
+                    <fieldset>
+                        <legend align='left'>Account Details</legend>
+                        <label for='uname'>Username:</label>
+                        <input type="text" ng-model="username" required>
+                        <br><br>
+                        <label for='pword'>Password:</label>
+                        <input type="password" ng-model="password" required>
+                        <br><br>
+                        <button type='submit' class="raise, btn">Sign In</button>
+                        <br>
+                        <p class="centerp">
+                            <a href='resetpassword.html' class="centera">Forgot Password?</a>
+                        </p>
+                    </fieldset>
+                </form>
+                <p class="centerp">Don't have an account? <a href=signup.html id="signuplink">Sign up</a> here</p>
+
+            </div>
         </div>
     </body>
 </html>
