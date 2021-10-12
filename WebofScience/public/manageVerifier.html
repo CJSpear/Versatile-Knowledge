@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html ng-app="VK">
     <head>
-        <title>TODO supply a title</title>
+        <title>Manage Verifiers</title>
         <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="js/angular.js"></script>
@@ -18,18 +18,22 @@ and open the template in the editor.
     <body ng-controller="UserController as userCtrl">
         <div ng-include="'topmenu.html'"></div>
         <div >
-			  <table ng-data-repeat="user in userCtrl.users">
-				  <thead>
+			  <table data-ng-repeat="user in userCtrl.users">
+				  <thead >
 				  <th>Name</th>
 				  <th>Department</th>
 				  <th>Field of Research</th>
-				  <th>Role</th>
 				  </thead>
-				  <tr ng-data-repeat="role in userCtrl.roles">
-					  <th>{{user.firstName}} {{user.lastName}}</th>
-					  <th>{{user.deptName}}</th>
-					  <th>{{user.fieldResearch}}</th>
-					  <th>{{role}}</th>
+				  <tr ng-controller="AdminController as adminCtrl">
+					  <td>{{user.firstName}} {{user.lastName}}</td>
+					  <td>{{user.deptName}}</td>
+					  <td>{{user.fieldResearch}}</td>
+					  <td>
+						  <button ng-click="adminCtrl.updateVerifier(user)">Promote</button>
+					  </td>
+					  <td ng-if="user.roleId != 1">
+						  <button ng-click="adminCtrl.demoteVerifier(user)">Demote</button>
+					  </td>
 				  </tr>
 			  </table>
 		  </div>
