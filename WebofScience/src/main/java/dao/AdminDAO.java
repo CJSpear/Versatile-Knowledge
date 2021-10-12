@@ -14,7 +14,6 @@ import java.util.Collection;
  * @author boydb
  */
 public interface AdminDAO extends VerifierDAO {
-    public void addVerifier(Verifier verifier);
     public void demoteVerifier(User user);
     public void upgradeVerifier(User user);
 	 public Collection<User> getUsers();

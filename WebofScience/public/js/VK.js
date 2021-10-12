@@ -220,12 +220,6 @@ module.controller('VeriferController', function (verifyArticleAPI, deleteArticle
 
 //admin factories 
 
-
-module.factory('addVerifierAPI', function ($resource) {
-	return $resource("/api/addVerifier");
-});
-
-
 module.factory('demoteVerifierAPI', function ($resource) {
 	return $resource("/api/demoteVerifier/:id", null, {update: {method: 'PUT'}});
 });
