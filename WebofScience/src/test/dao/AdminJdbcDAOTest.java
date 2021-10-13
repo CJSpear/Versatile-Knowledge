@@ -7,9 +7,15 @@ import domain.Admin;
 import domain.Article;
 import domain.User;
 import domain.Verifier;
+import java.time.Instant;
+import java.util.Date;
 import static java.util.function.Predicate.not;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.Matchers.hasSize;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 /*
   * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -43,7 +49,7 @@ import org.junit.jupiter.api.AfterEach;
     private Verifier v2;
     private Verifier v4;
     
-    public AdminJdbcDAOTestst() {
+    public AdminJdbcDAOTest() {
     }
     
     @BeforeEach
@@ -53,48 +59,45 @@ import org.junit.jupiter.api.AfterEach;
       
       r1.setTitle("title1");
       r1.setArticleAbstract("aa1");
-      r1.setFile("file1");
       r1.setKeywords("keywords1");
       r1.setAuthor("author1");
-      r1.setVerified("verified1");
-      r1.setPublished("pub1");
-      r1.setCitedCount("cc1");
+      r1.setVerified(Boolean.TRUE);
+      r1.setPublsihed(Boolean.TRUE);
+      r1.setCitedCount(1);
       r1.setContributedBy("cb1");
       r1.setVerifiedBy("vb1");
-      r1.setTimesFlagged("tf1");
-      r1.setDate("date1");
+      r1.setTimesFlagged(0);
+      r1.setDate(Date.from(Instant.MIN));
       
       r2 = new Article();
       
       r2.setTitle("title2");
       r2.setArticleAbstract("aa2");
-      r2.setFile("file2");
       r2.setKeywords("keywords2");
       r2.setAuthor("author2");
-      r2.setVerified("verified2");
-      r2.setPublished("pub2");
-      r2.setCitedCount("cc2");
+      r2.setVerified(Boolean.TRUE);
+      r2.setPublsihed(Boolean.TRUE);
+      r2.setCitedCount(1);
       r2.setContributedBy("cb2");
       r2.setVerifiedBy("vb2");
-      r2.setTimesFlagged("tf2");
-      r2.setDate("date2");
+      r2.setTimesFlagged(0);
+      r2.setDate(Date.from(Instant.MIN));
       
       r4 = new Article();
       r4.setTitle("title4");
       r4.setArticleAbstract("aa4");
-      r4.setFile("file4");
       r4.setKeywords("keywords4");
       r4.setAuthor("author4");
-      r4.setVerified("verified4");
-      r4.setPublished("pub4");
-      r4.setCitedCount("cc4");
-      r4.setContributedBy("cb4");
-      r4.setVerifiedBy("vb4");
-      r4.setTimesFlagged("tf4");
-      r4.setDate("date4");
+      r4.setVerified(Boolean.TRUE);
+      r4.setPublsihed(Boolean.TRUE);
+      r4.setCitedCount(1);
+      r4.setContributedBy("cb2");
+      r4.setVerifiedBy("vb2");
+      r4.setTimesFlagged(0);
+      r4.setDate(Date.from(Instant.MIN));
       
       
-      
+
       u1 = new User();
       
       u1.setUsername("username1");
@@ -107,7 +110,7 @@ import org.junit.jupiter.api.AfterEach;
       u1.setInstitution("instit1");
       u1.setDeptName("dn1");
       u1.setFieldResearch("fr1");
-      u1.setRoleId("ri1");
+      u1.setRoleId(1234);
       
       u2 = new User();
       
@@ -121,66 +124,66 @@ import org.junit.jupiter.api.AfterEach;
       u2.setInstitution("instit2");
       u2.setDeptName("dn2");
       u2.setFieldResearch("fr2");
-      u2.setRoleId("ri2");
+      u2.setRoleId(123);
       
       
-      u2 = new User();
+      u4 = new User();
       
-      u2.setUsername("username2");
-      u2.setFirstName("fn2");
-      u2.setLastName("ln2");
-      u2.setEmail("email2");
-      u2.setPassword("password2");
-      u2.setDob("dob2");
-      u2.setGender("gender2");
-      u2.setInstitution("instit2");
-      u2.setDeptName("dn2");
-      u2.setFieldResearch("fr2");
-      u2.setRoleId("ri2");
+      u4.setUsername("username2");
+      u4.setFirstName("fn2");
+      u4.setLastName("ln2");
+      u4.setEmail("email2");
+      u4.setPassword("password2");
+      u4.setDob("dob2");
+      u4.setGender("gender2");
+      u4.setInstitution("instit2");
+      u4.setDeptName("dn2");
+      u4.setFieldResearch("fr2");
+      u4.setRoleId(431);
       
       
       v1 = new Verifier();
       v2 = new Verifier();
       
-      r.saveArticle(r1);
-      r.saveArticle(r2);
+      r.addArticle(r1);
+      r.addArticle(r2);
 
-      u.saveUser(u1);
-      u.saveUser(u2);
-      u.saveUser(u4);
+      u.addAccount(u1);
+      u.addAccount(u2);
+      u.addAccount(u4);
       
-      v.saveVerifier(v1);
-      v.saveVerifier(v2);
+      d.upgradeVerifier(v1);
+      d.upgradeVerifier(v2);
       
       
     }
     
     @AfterEach
     public void tearDown() {
-      r.removeArticle(r1);
-      r.removeArticle(r2);
+      v.deleteArticle(r1.getArticleId());
+      v.deleteArticle(r2.getArticleId());
       
-      u.removeUser(u1);
-      u.removeUser(u2);
-      u.removeUser(u4);
+      u.deleteAccount(u1);
+      u.deleteAccount(u2);
+      u.deleteAccount(u4);
       
-      v.removeVerifier(v1);
-      v.removeVerifier(v2);
+      d.demoteVerifier(v1);
+      d.demoteVerifier(v2);
     }
     
     @Test
     public void testUpgradeVerifier() {
-      v.upgradeVerifier(v1);
-      assertThat(r.getVerifiers(v1), hasSize(1));
-      assertThat(r.getVerifier(), hasItem(v1)));
+      d.upgradeVerifier(v1);
+      assertThat(d.getVerifiers(v1), hasSize(1));
+      assertThat(d.getVerifiers(), hasItem(v1)));
 
     }
     
     @Test
     public void testDemoteVerifier() {
-      v.demoteVerifier(v1);
+      d.demoteVerifier(v1);
       assertThat(v.getVerifiers(), hasSize(1));
-      assertThat(v.getArticles(), not(hasItem(v1)));
+      assertThat(v.getVerifiers(), not(hasItem(v1)));
     }
     
     

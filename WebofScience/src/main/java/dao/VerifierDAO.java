@@ -6,6 +6,8 @@
 package dao;
 
 import domain.Article;
+import domain.Verifier;
+import java.util.Collection;
 
 /**
  *
@@ -15,5 +17,5 @@ public interface VerifierDAO  {
     public void deleteArticle(Integer id);
     public void archiveArticle (Article article);
     public void verifyArticle(Article article);
-    
+    public Collection<Verifier> getVerifiers();
 }
