@@ -153,7 +153,7 @@ import org.junit.jupiter.api.BeforeEach;
     
     @AfterEach
     public void tearDown() {
-      r.removeArticle(r1);
+    r.removeArticle(r1);
       r.removeArticle(r2);
       
       u.removeUser(u1);
@@ -161,12 +161,14 @@ import org.junit.jupiter.api.BeforeEach;
       u.removeUser(u4);
       
     }
+   
     
     @Test
-    public void testAddArticle() {
-      r.addArticle(r1);
-      assertThat(r.getArticles(r1), hasSize(1));
-      assertThat(r.getArticles(), hasItem(r1)));
+    public void testVerifyArticle() {
+        verifierDao.verifyArticle(r2);
+        assertThat(verifierDao.getVerified(r2.getVerified()), samePropertyValuesAs(r2));
+        assertThat(verifierDao.getVerifiedBy(r2.getVerifiedBy()), samePropertyValuesAs(r2));
+    
     }
     
     @Test

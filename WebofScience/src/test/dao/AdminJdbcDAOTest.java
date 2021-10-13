@@ -139,13 +139,18 @@ import org.junit.jupiter.api.AfterEach;
       u2.setRoleId("ri2");
       
       
+      v1 = new Verifier();
+      v2 = new Verifier();
+      
       r.saveArticle(r1);
       r.saveArticle(r2);
+
+      u.saveUser(u1);
+      u.saveUser(u2);
+      u.saveUser(u4);
       
-      u.saveUser(r1);
-      u.saveUser(r2);
-      
-      u.saveUser(r4);
+      v.saveVerifier(v1);
+      v.saveVerifier(v2);
       
       
     }
@@ -159,19 +164,24 @@ import org.junit.jupiter.api.AfterEach;
       u.removeUser(u2);
       u.removeUser(u4);
       
+      v.removeVerifier(v1);
+      v.removeVerifier(v2);
     }
     
     @Test
-    public void testAddArticle() {
-      r.addArticle(r1);
-      assertThat(r.getArticles(r1), hasSize(1));
-      assertThat(r.getArticles(), hasItem(r1)));
+    public void testUpgradeVerifier() {
+      v.upgradeVerifier(v1);
+      assertThat(r.getVerifiers(v1), hasSize(1));
+      assertThat(r.getVerifier(), hasItem(v1)));
+
     }
     
     @Test
-    public void testDeleteArticle() {
-      r.deleteArticle(r1);
-      assertThat(r.getArticles(), hasSize(1));
-      assertThat(r.getArticles(), not(hasItem(r1)));
+    public void testDemoteVerifier() {
+      v.demoteVerifier(v1);
+      assertThat(v.getVerifiers(), hasSize(1));
+      assertThat(v.getArticles(), not(hasItem(v1)));
     }
+    
+    
   }

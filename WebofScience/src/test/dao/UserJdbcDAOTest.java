@@ -159,16 +159,18 @@ import org.junit.jupiter.api.BeforeEach;
     }
     
     @Test
-    public void testAddArticle() {
-      r.addArticle(r1);
-      assertThat(r.getArticles(r1), hasSize(1));
-      assertThat(r.getArticles(), hasItem(r1)));
+    public void testAddAccount() {
+      u.addUser(u1);
+      assertThat(u.getUsers(u1), hasSize(1));
+      assertThat(u.getUsers(), hasItem(u1)));
     }
     
     @Test
-    public void testDeleteArticle() {
-      r.deleteArticle(r1);
-      assertThat(r.getArticles(), hasSize(1));
-      assertThat(r.getArticles(), not(hasItem(r1)));
+    public void testDeleteAccount() {
+      u.deleteArticle(u1);
+      assertThat(r.getUsers(), hasSize(1));
+      assertThat(r.getUsers(), not(hasItem(u1)));
     }
+    
+  
   }
