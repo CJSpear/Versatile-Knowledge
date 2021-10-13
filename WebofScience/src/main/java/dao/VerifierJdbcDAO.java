@@ -7,9 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Date;
 import domain.Role;
+import domain.Verifier;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -74,6 +78,53 @@ public class VerifierJdbcDAO extends UserJdbcDAO implements VerifierDAO {
            }    
            
 
+    }
+    
+     @Override
+    public Collection<Verifier> getVerifiers() {
+        String sql = "select * from user where roleid = (select role_id from role where name='Verifier')";
+
+        try (
+                 Connection con = DbConnection.getConnection(url);  PreparedStatement stmt = con.prepareStatement(sql);) {
+            ResultSet rs = stmt.executeQuery();
+
+            List<Verifier> verifiers = new ArrayList<Verifier>();
+            while (rs.next()) {
+                Integer id = rs.getInt("User_Id");
+                String user_name = rs.getString("Username");
+                String pass_word = rs.getString("Password");
+                String firstname = rs.getString("Fname");
+                String lastname = rs.getString("Lname");
+                String Email = rs.getString("Email");
+                Date d = rs.getDate("DOB");
+                LocalDate dob = d.toLocalDate();
+                String gender = rs.getString("Gender");
+                String department = rs.getString("Department");
+                String institute = rs.getString("Institute");
+                String fos = rs.getString("Field_Of_Research");
+                Integer roleid = rs.getInt("RoleId");
+
+
+                Verifier verifier = new Verifier();
+                verifier.setUserId(id);
+                verifier.setUsername(user_name);
+               verifier.setPassword(pass_word);
+                verifier.setFirstName(firstname);
+                verifier.setLastName(lastname);
+                verifier.setEmail(Email);
+                verifier.setDob(dob.toString());
+                verifier.setGender(gender);
+                verifier.setDeptName(department);
+                verifier.setFieldResearch(fos);
+                verifier.setRoleId(roleid);
+//             
+
+                verifiers.add(verifier);
+            }
+            return verifiers;
+        } catch (SQLException e) {
+            throw new DAOException(e.getMessage(), e);
+        }
     }
 
 }

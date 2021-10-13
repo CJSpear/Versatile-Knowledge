@@ -5,6 +5,7 @@
  */
 package dao;
 
+import domain.Article;
 import domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -229,5 +230,7 @@ public class UserJdbcDAO implements userDAO {
         }
 
     }*/
+
+   
 
 }
