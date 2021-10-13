@@ -97,7 +97,7 @@ module.controller('UserController', function (registerAPI, signinAPI, $sessionSt
 			};
 
 		this.loginMessage = "Please login to continue.";
-		let ctrl = this;
+		//let ctrl = this;
 
 		this.signin = function (username, password) {
 			signinAPI.get({'username': username, 'password': password},

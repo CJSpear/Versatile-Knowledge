@@ -17,25 +17,25 @@ and open the template in the editor.
     </head>
     <body ng-controller="UserController as userCtrl">
         <div ng-include="'topmenu.html'"></div>
-        <div >
-			  <table data-ng-repeat="user in userCtrl.users">
-				  <thead >
-				  <th>Name</th>
-				  <th>Department</th>
-				  <th>Field of Research</th>
-				  </thead>
-				  <tr ng-controller="AdminController as adminCtrl">
-					  <td>{{user.firstName}} {{user.lastName}}</td>
-					  <td>{{user.deptName}}</td>
-					  <td>{{user.fieldResearch}}</td>
-					  <td>
-						  <button ng-click="adminCtrl.updateVerifier(user)">Promote</button>
-					  </td>
-					  <td ng-if="user.roleId != 1">
-						  <button ng-click="adminCtrl.demoteVerifier(user)">Demote</button>
-					  </td>
-				  </tr>
-			  </table>
-		  </div>
+        <div>
+            <table data-ng-repeat="user in userCtrl.users">
+                <thead >
+                <th>Name</th>
+                <th>Department</th>
+                <th>Field of Research</th>
+                </thead>
+                <tr ng-controller="AdminController as adminCtrl">
+                    <td>{{user.firstName}} {{user.lastName}}</td>
+                    <td>{{user.deptName}}</td>
+                    <td>{{user.fieldResearch}}</td>
+                    <td>
+                        <button ng-click="adminCtrl.updateVerifier(user)">Promote</button>
+                    </td>
+                    <td ng-if="user.roleId != 1">
+                        <button ng-click="adminCtrl.demoteVerifier(user)">Demote</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>

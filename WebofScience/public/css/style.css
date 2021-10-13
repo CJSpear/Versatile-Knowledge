@@ -100,8 +100,11 @@ search.html
     text-align: center;
 }
 
-select {
+.seaaarchselect {
     font-family: "Lucida Console", "Courier New", monospace;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
 }
 
 option {
