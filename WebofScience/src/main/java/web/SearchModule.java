@@ -11,10 +11,10 @@ import org.jooby.Status;
 
 public class SearchModule {
 
-    get("/api/search/:type/:var", (req) -> {
-        String id = req.param("id").value();
-        return productDao.searchById(id);
-      });
+//    get("/api/search/:type/:var", (req) -> {
+//        String id = req.param("id").value();
+//        return productDao.searchById(id);
+//      });
     
 }
 

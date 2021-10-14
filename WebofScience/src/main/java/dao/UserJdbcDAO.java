@@ -134,7 +134,7 @@ public class UserJdbcDAO implements userDAO {
 
     @Override
     public Collection<User> getUsers() {
-        String sql = "select * from user where roleid = (select role_id from role where name='Contributor')";
+        String sql = "select * from user where roleid = (select role_id from role where name='Contributor') or roleid=(select role_id from role where name='Verifier'";
 
         try (
                  Connection con = DbConnection.getConnection(url);  PreparedStatement stmt = con.prepareStatement(sql);) {
