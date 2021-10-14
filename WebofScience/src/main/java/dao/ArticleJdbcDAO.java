@@ -441,14 +441,14 @@ public class ArticleJdbcDAO implements ArticleDAO {
     }
 
     public Collection<Article> getUnverifiedArticles() {
-        String sql = "select * from article where verified='false'";
+        String sql = "select * from article a, (select user_id from user u) where a.contributed_by = user_id and verified = false";
         try (
                  Connection con = DbConnection.getConnection(databaseURI);  PreparedStatement ps = con.prepareStatement(sql);) {
             ResultSet rs = ps.executeQuery();
-
+ 
             List<Article> unverifiedList = new ArrayList<>();
             while (rs.next()) {
-
+ 
                 Integer articleId = rs.getInt("Article_ID");
                 String title = rs.getString("Title");
                 String articleAbstract = rs.getString("Abstract");
@@ -458,10 +458,9 @@ public class ArticleJdbcDAO implements ArticleDAO {
                 Boolean verified = rs.getBoolean("Verified");
                 Boolean published = rs.getBoolean("Published");
                 Integer citedCount = rs.getInt("Cited_Count");
-                String contributedBy = rs.getString("Contribued_By");
+                String contributedBy = rs.getString("Contributed_By");
                 String verifiedBy = rs.getString("Verified_By");
                 Integer timesFlagged = rs.getInt("Flags");
-                Date date = rs.getDate("Date");
                 
                 Article art = new Article();
                 art.setArticleId(articleId);
@@ -470,7 +469,6 @@ public class ArticleJdbcDAO implements ArticleDAO {
                 art.setCitedCount(citedCount);
                 art.setContributedBy(contributedBy);
                 art.setData(data);
-                art.setDate(date);
                 art.setKeywords(keywords);
                 art.setPublsihed(published);
                 art.setTimesFlagged(timesFlagged);
