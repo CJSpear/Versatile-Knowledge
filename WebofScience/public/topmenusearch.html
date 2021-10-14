@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<div id="menu" ng-controller="UserController as userCtrl" ng-init="userCtrl.checkSignIn()">
+    <a href="home.html"> 
+        <img src="images/logo.png" id="logo" alt="logo of Versitile Knowledge">
+    </a>
+    <a class="amenu" href="search.html">Search</a>
+    <a class="amenu" href="about.html">About</a>
+    <a class="amenu" href="contactinfo.html">Contact Us</a>
+    <a class="amenu" href="uploadArticle.html" ng-if="userCtrl.signedIn">Upload</a>
+    <a class="amenu" href="verifyArticle.html" ng-if="userCtrl.signedIn && !userCtrl.isCont"> Verify</a>
+    <a class="amenu" href='manageVerifier.html' ng-if="userCtrl.signedIn && userCtrl.isAdmin"> Manage Verifiers </a>
+</div>

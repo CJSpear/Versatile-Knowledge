@@ -157,10 +157,14 @@ manageVerifier.html
 
 #manageverifier th {
     font-weight: normal;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.th {
+    text-align: center;
+    font-weight: normal;
+    width: 33%;
 }
 
 .mvhead th {

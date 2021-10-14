@@ -16,8 +16,8 @@ domain/Admin.java
  domain.Admin
 dao/VerifierDAO.java
  dao.VerifierDAO
-web/Server.java
- web.Server
+dao/ArticleJdbcDAO.java
+ dao.ArticleJdbcDAO
 WebofScience/Main.java
  WebofScience.Main
 web/VerifierModule.java
@@ -40,13 +40,13 @@ web/ArticleModule.java
  web.ArticleModule
 web/AssetModule.java
  web.AssetModule
+dao/DbConnection.java
+ dao.DbConnection
 dao/UserJdbcDAO.java
  dao.UserJdbcDAO
 dao/AdminJdbcDAO.java
  dao.AdminJdbcDAO
+web/Server.java
+ web.Server
 dao/VerifierJdbcDAO.java
  dao.VerifierJdbcDAO
-dao/ArticleJdbcDAO.java
- dao.ArticleJdbcDAO
-dao/DbConnection.java
- dao.DbConnection
