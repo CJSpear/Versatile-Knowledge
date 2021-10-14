@@ -1,12 +1,7 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html ng-app="VK">
     <head>
-        <title>Create Account</title>
+        <title>Upload Article</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="js/angular.js"></script>
@@ -18,41 +13,53 @@ and open the template in the editor.
 
     <body>
         <div ng-include="'topmenu.html'"></div>
-        <hr>
-        <h1> Upload Article </h1>
+        <div class="mainbody">
+            <div class="fillbody">
+                <h1> Upload Article </h1>
+                <hr>
+                <form ng-controller="ArticleController as artCtrl" ng-submit="artCtrl.uploadArticle(article)"  class="login-form">
+                    <fieldset>
+                        <legend align='left'>Article Details</legend>
+                        <label for=“file”>File:</label>
+                        <input type="file" ng-model="article.file" required>
+                        <br>
 
-        <form ng-controller="ArticleController as artCtrl" ng-submit="artCtrl.uploadArticle(article)"  class="login-form">
-            <fieldset>
-                <label for=“file”>File:</label>
-                <input type="file" ng-model="article.file" required>
-                <br>
+                        <label for=“title”>Title:</label>
+                        <input type="text" ng-model="article.title" required>
+                        <br>
 
-                <label for=“title”>Title:</label>
-                <input type="text" ng-model="article.title" required>
-                <br>
-
-                <label for=“keywords”>Keyword:</label>
-                <input type="text" ng-model="article.keywords" required>
-                <br>
+                        <label for=“keywords”>Keyword:</label>
+                        <input type="text" ng-model="article.keywords" required>
+                        <br>
 
 
-                <label for=“author”>Author:</label>
-                <input type="text" ng-model="article.author" required>
-                <br>
+                        <label for=“author”>Author:</label>
+                        <input type="text" ng-model="article.author" required>
+                        <br>
 
-                <label for=“abstract”>Abstract:</label>
-                <textarea ng-model="article.abstract" rows="6" cols="50" required></textarea>
-                <br>
-                
-                <label for=“published” class="radio-inline">Is the article published?:
-                <input type="radio" ng-model="article.published">Yes
-                </label>
-                <label for=“published” class="radio-inline">
-                <input type="radio" ng-model="article.published">No
-                </label>
-                <br>
-            </fieldset>
-            <center><button type="submit" class="raise">Upload article</button></center>
-        </form>
+                        <p id="textareap">
+                            <label for=“abstract” class="labeltop">Abstract:</label>
+                            <textarea ng-model="article.abstract" rows="6"  cols="30" required></textarea>
+                        </p>
+                        <br>
+                        <p id="radiop">
+                            <label for=“published” class="radio-inline">Is the article published?:</label>
+                            <label for=“published” class="radio-inline, radiotext">
+                                <input type="radio" ng-model="article.published" class="radio-inline, radiotext">Yes
+                            </label>
+                            <label for=“published” class="radio-inline, radiotext">
+                                <input type="radio" ng-model="article.published" class="radio-inline, radiotext">No
+                            </label>
+                        </p>
+                        <br>
+                        <br>
+                        <button type="submit" class="raise, btn">Upload article</button>
+                        <br>
+                        <br>
+                    </fieldset>
+
+                </form>
+            </div>
+        </div>
     </body>
 </html>

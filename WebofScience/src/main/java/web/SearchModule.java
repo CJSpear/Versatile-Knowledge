@@ -1,21 +1,47 @@
 package web;
 
-
-import dao.userDAO;
-import domain.User;
+import domain.callPython;
+// import dao.pythonDAO;
 import java.time.LocalDate;
 import org.jooby.Jooby;
 import org.jooby.Result;
 import org.jooby.Status;
 
 
-public class SearchModule {
+public class SearchModule extends Jooby{
 
-//    get("/api/search/:type/:var", (req) -> {
-//        String id = req.param("id").value();
-//        return productDao.searchById(id);
+  public SearchModule(callPython callPython){
+//    System.out.println("Made it to SearchModule");
+
+    get("/api/search/:type/:val", (req) -> { 
+      System.out.println("Made it to SearchModule");
+      String val = req.param("val").value();
+      String type = req.param("type").value();
+      
+//      String[] Array = type.split("");
+      
+      return callPython.getSearch(type, val);
+
+      });
+//    
+//      System.out.println("Made it to SearchModule val");
+//      get("/api/search/:val", (req) -> {
+//       String val = req.param("val").value();
+//       System.out.println(val);
+//        return callPython.getVal(val);
+//
 //      });
-    
+
+
+//    System.out.println("Sent Data");
+
+  }
 }
+
+
+
+
+
+
 
 

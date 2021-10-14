@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html ng-app="VK">
     <head>
-        <title>About </title>
+        <title>About</title>
         <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="js/angular.js"></script>
@@ -10,13 +11,19 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div> 
-            <center><h1> About Versatile Knowledge  </h1></center>
-
-        </div>
-        <div> 
-            <center> Insert info </center>
-
+        <div ng-include="'topmenu.html'"></div>
+        <div class="mainbody">
+            <div class="fillbody">
+                <h1>About Versatile Knowledge</h1>
+                <hr>
+                <p>
+                   VK is a web-based platform that provides access to non-main stream knowledge created by
+both academics and professionals. Not only VK helps users mapping a field of interest but it also
+allows contributing to ongoing discussions/debates within a field by publishing their own
+perspectives. VK publications emphasise social, practical and research implications of original
+contributions.
+                </p>
+            </div>
         </div>
     </body>
 </html>

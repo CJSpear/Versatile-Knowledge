@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html ng-app="searching">
     <head>
-        <title>Search</title>
+        <title>TODO supply a title</title>
         <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="js/angular.js"></script>
@@ -14,39 +14,34 @@ and open the template in the editor.
         <script src="js/ngStorage.js"></script>
         <script src="js/VK.js"></script>
         <script src='js/search.js'></script>
-    </head>
-    <body >
-        <div ng-include="'topmenusearch.html'"></div>
-        <div class="mainbody">
-            <div class="fillbody">
-                <h1>Search</h1>
-                <hr>
-                <div class="search" ng-controller="SearchController as searchCtrl">
-                    <form id = "searchCtrl.searchFunction()" >
-                        <select id='searchBy' name="dropdown" ng-model="SearchType" class="searchselect">
-                            <option value="author">Author</option>
-                            <option value="title">Title</option>
-                            <option value="contributor">Contributor</option>
-                        </select>
-                        <input ng-model="SearchInfo" id="SearchInput" name="SearchInput" type='text' placeholder='Search...' id="SearchInput">
-                        <button id="SButton" type="button" class="searchbutton">Search</button>
-                    </form>
+     </head>
+    <body ng-controller="SearchController as searchCtrl">
+        <div ng-include="'topmenu.html'"></div>
+        <hr>
+        <div align='center' style='margin: 100px;'>
+            <form ng-submit="searchCtrl.search(SearchInfo, SearchType)" >
+                <select name="dropdown" ng-model ="SearchType">
+                <option value = "author">Author</option>
+                <option value = 'title'>Title</option>
+            </select>
+            <input ng-model="SearchInfo" type='text' placeholder='Search...' style='width: 50%; height: 30px;'>
+            <button type="submit" style='height:35px'>Search</button>
+            </form>
 
-                    <button ng-click = "order = 'Title'" class="searchbutton, topmargin">Title</button>
-                    <button ng-click = "order = 'Abstract'" class="searchbutton, topmargin">Author</button>
-                    <button ng-click = "order = 'Keyword'" class="searchbutton, topmargin">Date</button>
+            <button ng-click = "order = 'Title'">Title</button>
+            <button ng-click = "order = 'Abstract'">Author</button>
+            <button ng-click = "order = 'Keyword'">Date</button>
 
 
-                    <p> Search Results for {{SearchInfo}}</p>
-                    <ul>
-                        <li ng-repeat = "message in messages | orderBy: order">
-                            {{message.Title}} - {{message.Abstract}} - {{message.Date}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+            <p> Search Results for {{SearchInfo}}</p>
+            <ul>
+<!--            <li ng-repeat = "message in messages | orderBy: order">-->
+             <li ng-repeat = "message in messages">
+                {{message.Title}} - {{message.Abstract}} - {{message.Date}}
+            </li>
+            </ul>
 
 
+    
     </body>
 </html>

@@ -17,6 +17,7 @@ import dao.userDAO;
 import dao.UserJdbcDAO;
 import dao.VerifierDAO;
 import dao.VerifierJdbcDAO;
+import domain.callPython;
 //import web.auth.BasicHttpAuthenticator
 /**
  *
@@ -29,6 +30,7 @@ public class Server extends Jooby {
     ArticleDAO articleDao = new ArticleJdbcDAO();
     VerifierDAO verifierDao = new VerifierJdbcDAO();
     AdminDAO adminDao = new AdminJdbcDAO();
+    callPython  callPython = new callPython();
     // use embedded database file (SubTrack.mv.db in project root directory)
 //   CustomerDAO customerDao = new CustomerJdbcDAO("jdbc:h2:./SubTrack");
 //    SubscriptionDAO subscriptionDao = new SubscriptionJdbcDAO("jdbc:h2:./SubTrack");
@@ -41,6 +43,7 @@ public class Server extends Jooby {
         use(new VerifierModule(verifierDao));
         use(new AdminModule(adminDao));
         use(new UserModule(userDao));
+        use(new SearchModule(callPython));
         /*List<String> noAuth = Arrays.asList("/api/register");
         use(new BasicHttpAuthenticator(customerDao, noAuth));
         use(new CustomerModule(customerDao));

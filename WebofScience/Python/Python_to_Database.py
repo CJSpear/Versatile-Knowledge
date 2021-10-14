@@ -6,29 +6,35 @@ import pandas as pd
 import os
 import json
 import collections
+import psycopg2
+# from bson import json_util
 
-#typeS = sys.argv[1]
-#searchterm = sys.argv[2]
 
-typeS = "title"
-searchterm = 'test'
-#print("starting")
+#import values from JAVA
+searchterm = sys.argv[1]
+typeS = sys.argv[2]
 
-print (typeS)
+#searchterm = "title"
+#typeS = 'test'
+# print("searchterm is  :" + searchterm);
+# print ("catagory is  :" + typeS);
+
 #searchterm = ("%" + searchterm + "%")
 
 #print(os.environ['CLASSPATH'])
 
 try:
-
+        
         connection  = jaydebeapi.connect(
                 "org.h2.Driver",
-                "jdbc:h2:tcp://localhost/~/info301",
+                "jdbc:h2:~/info301",
                 ["sa", ""],
-                "WebofScience/Python/h2-latest.jar")
+                "/home/caleb/Desktop/dddddd/WebOfScience/WebofScience/Python/h2-latest.jar")
 
         cursor = connection.cursor()
 
+        #conn = psycopg2.connect("dbname=org.h2.Driver user=sa password='' host=~/info301 port=9092")
+        #cursor = connection.cursor()
         val = searchterm
 
         #print("connected")
@@ -53,30 +59,12 @@ try:
         SearchAmount = 0
         SearchType = SearchFunction()
 
-        #Search all in TABLE
-        #def res():
-        #        try:
-        #                result = None
-        #                cursor.execute("SELECT * FROM ARTICLE")
-        #                result = cursor.fetchall()
-        #                return result
-        #        except Error as err:
-        #                print (f'item error: "{err} "')
-
-        #results = res()
-        #from_db = []
-
-        #for result in results:
-        #        result = result
-        #        from_db.append(result)
-
-        #print (from_db)
 
         #Search For Specific Result
         def SearchRes():
                 if SearchType == "Title":
                         result = None        
-                        cursor.execute("SELECT * FROM ARTICLE WHERE TITLE like '%{}%'".format(val))
+                        cursor.execute("SELECT * FROM ARTICLE WHERE TITLE LIKE '%{}%'".format(val))
                         result = cursor.fetchall()
                         return result
                       
@@ -109,33 +97,40 @@ try:
                 
 
         results = SearchRes()
+        #print (results)
         #Convert row to have a list
         rowarray_list = []
+        
         for result in results:
-                t = (result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10], result[11])
+                t = (result[0], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10], result[11])
                 rowarray_list.append(t)
         j = json.dumps(rowarray_list)
+
+
     
         #Create Objects for the list, converting into JSON
         objects_list = []
         for result in results:
                 d = collections.OrderedDict()
                 d["id"] = result[0]
-                d["Title"] = result[1]
-                d["Abstract"] = result[2]
-                d["Keyword"] = result[3]
-                d["Author"] = result[4]
-                d["Verified"] = result[5]
-                d["Published"] = result[6]
-                d["Flags"] = result[7]
-                d["Cited_Count"] = result[8]
-                d["Contributed_By"] = result[9]
-                d["Verified_By"] = result[10]
-                d["Sentiment"] = result[11]
+                #d["file"] = result [1]
+                d["Title"] = result[2]
+                d["Abstract"] = result[3]
+                d["Keyword"] = result[4]
+                d["Author"] = result[5]
+                d["Verified"] = result[6]
+                d["Published"] = result[7]
+                d["Flags"] = result[8]
+                d["Cited_Count"] = result[9]
+                d["Contributed_By"] = result[10]
+                d["Verified_By"] = result[11]
+                d["Sentiment"] = result[12]
                 objects_list.append(d)
-        #Send Straight to JSON FILE
+#       Convert String into JSON
         j = json.dumps(objects_list)
-        with open('/home/caleb/Desktop/University/WebOfScience/WebOfScience/WebofScience/public/json/messages.json', 'w') as f:
+        print (j)
+        #Send Straight to JSON FILE
+        with open('/home/caleb/Desktop/dddddd/WebOfScience/WebofScience/public/js/json/messages.json', 'w') as f:
                 f.write(j)
         
         
@@ -147,7 +142,7 @@ try:
                 #result = result
                 #from_db.append(result)
 
-        print (results)
+        
         #print (SearchAmount)
 
         cursor.close()

@@ -12,9 +12,4 @@
     <a class="amenu" href="uploadArticle.html" ng-if="userCtrl.signedIn">Upload</a>
     <a class="amenu" href="verifyArticle.html" ng-if="userCtrl.signedIn && !userCtrl.isCont"> Verify</a>
     <a class="amenu" href='manageVerifier.html' ng-if="userCtrl.signedIn && userCtrl.isAdmin"> Manage Verifiers </a>
-
-
-    <a class="sign_menu" href="home.html" ng-if="userCtrl.signedIn" ng-click="userCtrl.signOut()"><button type='button' class="sign_menu">Sign Out</button></a>
-    <a class="sign_menu" href="signin.html" ng-if="!userCtrl.signedIn"><button type='button' class="sign_menu">Sign In</button></a>
-    <div class="sign_menu" id='welcome'>{{userCtrl.welcome}}   </div>
 </div>

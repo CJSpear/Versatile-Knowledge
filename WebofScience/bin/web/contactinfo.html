@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html ng-app="VK">
     <head>
-        <title>Contact Information </title>
+        <title>Contact Us</title>
         <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="js/angular.js"></script>
@@ -10,14 +11,23 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div> 
-            <center><h1> Contact information  </h1></center>
-
-        </div>
-        <div> 
-            <center><h4> For any further assistance contact us on: </h4></center>
-            <center> Email: </center>
-            <center> Phone: </center>
+        <div ng-include="'topmenu.html'"></div>
+        <div class="mainbody">
+            <div class="fillbody">
+                <h1>Contact Us</h1>
+                <hr>
+                <p>
+                    Contact Info:  
+                    <br>
+                    Whatsapp: +64 22 319 9593
+                    <br>
+                    Facebook: _______________
+                    <br>
+                    email: __________________
+                    <br>
+                    
+                </p>
+            </div>
         </div>
     </body>
 </html>

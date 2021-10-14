@@ -15,18 +15,17 @@ and open the template in the editor.
         <script src="js/VK.js"></script>
         <script src='js/search.js'></script>
      </head>
-    <body>
+    <body ng-controller="SearchController as searchCtrl">
         <div ng-include="'topmenu.html'"></div>
         <hr>
-        <div align='center' style='margin: 100px;' ng-controller="SearchController as searchCtrl">
-            <form id = "searchCtrl.searchFunction()" >
-                <select id='searchBy' style='height: 35px;' name="dropdown" ng-model="SearchType">
+        <div align='center' style='margin: 100px;'>
+            <form ng-submit="searchCtrl.search(SearchInfo, SearchType)" >
+                <select name="dropdown" ng-model ="SearchType">
                 <option value = "author">Author</option>
                 <option value = 'title'>Title</option>
-                <option>Contributor</option>
             </select>
-            <input ng-model="SearchInfo" id="SearchInput" name="SearchInput" type='text' placeholder='Search...' style='width: 50%; height: 30px;'>
-            <button id="SButton" type="button" style='height:35px'>Search</button>
+            <input ng-model="SearchInfo" type='text' placeholder='Search...' style='width: 50%; height: 30px;'>
+            <button type="submit" style='height:35px'>Search</button>
             </form>
 
             <button ng-click = "order = 'Title'">Title</button>
@@ -36,7 +35,8 @@ and open the template in the editor.
 
             <p> Search Results for {{SearchInfo}}</p>
             <ul>
-            <li ng-repeat = "message in messages | orderBy: order">
+<!--            <li ng-repeat = "message in messages | orderBy: order">-->
+             <li ng-repeat = "message in messages">
                 {{message.Title}} - {{message.Abstract}} - {{message.Date}}
             </li>
             </ul>
