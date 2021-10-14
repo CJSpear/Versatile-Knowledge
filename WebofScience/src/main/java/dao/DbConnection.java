@@ -15,7 +15,7 @@ public class DbConnection {
    private static final String PASSWORD = "sa";
 
    private static final Integer DB_PORT = 9092;
-   private static final String DEFAULT_URI = "jdbc:h2:tcp://localhost/~/info301";
+   private static final String DEFAULT_URI = "jdbc:h2:tcp://localhost:"+9092+"/info301";
 
    private static JdbcConnectionPool pool;
 

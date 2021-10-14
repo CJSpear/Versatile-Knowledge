@@ -230,7 +230,7 @@ module.factory('upgradeVerifierAPI', function ($resource) {
 //end admin factories 
 //
 //admin controller 
-module.controller('AdminController', function ( demoteVerifierAPI, upgradeVerifierAPI, $sessionStorage, $http) {
+module.controller('AdminController', function ( demoteVerifierAPI, upgradeVerifierAPI, $sessionStorage, $http, $window) {
 	let ctrl = this;
 
 //	this.addVerifier = function (verifier) {

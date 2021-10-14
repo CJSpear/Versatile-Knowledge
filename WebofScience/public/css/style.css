@@ -129,6 +129,7 @@ option {
     font-family: "Lucida Console", "Courier New", monospace;
     height: 35px;
     width: 75px;
+    
 }
 /*
 end
@@ -272,9 +273,10 @@ about/contact page
     line-height: 25px;
 }
 
-h2 {
+h2, h3 {
     font-weight: normal;
     margin-left: 20px;
+    color: #1188dd;
 }
 /*
 end
