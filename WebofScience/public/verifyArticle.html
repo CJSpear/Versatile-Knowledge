@@ -10,12 +10,28 @@
         <script src="js/VK.js"></script>
         <link rel="stylesheet" href="css/style.css">
     </head>
-    <body>
+    <body ng-controller="ArticleController as artCtrl">
         <div ng-include="'topmenu.html'"></div>
         <div class="mainbody">
             <div class="fillbody">
                 <h1>Verify Article</h1>
                 <hr>
+                
+                <table>
+                    <thead>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Published</th>
+                    <th>File</th>
+                    </thead>
+                    <tr data-ng-repeat="unverified in artCtrl.unverifieds">
+                        <td ng-click="artCtrl.verify(unverified)">{{unverified.title}}</td>
+                        <td>{{unverified.author}}</td>
+                        <td>{{unverified.published}}</td>
+                        <td ng-click="artCtrl.verify(unverified)">{{unverified.file}}</td>
+                    </tr>
+ 
+                </table>
             </div>
         </div>
     </body>

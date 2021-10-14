@@ -29,4 +29,5 @@ public interface ArticleDAO {
  
     public Article getArticleById(Integer articleId);
     Collection<Article> getArticles();
+    Collection<Article> getUnverifiedArticles();
 }

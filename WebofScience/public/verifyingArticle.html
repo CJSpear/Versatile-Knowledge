@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="VK">
+    <head>
+        <title>Verifying Article</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/angular.js"></script>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/ngStorage.js"></script>
+        <script src="js/VK.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body ng-controller="ArticleController as artCtrl">
+        <div ng-include="'topmenu.html'">
+
+        </div>
+        <div ng-controller="VerifierController as vefCtrl" >
+            <hr>
+            <input ng-model="artCtrl.article.articleId"> 
+            <h3>Title: {{artCtrl.article.title}}</h3>
+            <h3>Abstract: <br>
+                {{artCtrl.article.abstract}}
+            </h3>
+            <embed>{{artCtrl.article.filee}}
+            <div ng-controller='UserController as userCtrl'>
+                <button ng-click='vefCtrl.verify(article)'>Verify</button> <button ng-click='vefCtrl.deleteArticle(article)'>Delete</button>
+            </div>
+        </div>
+    </body>
+</html>

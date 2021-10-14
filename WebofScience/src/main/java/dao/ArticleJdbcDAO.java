@@ -20,29 +20,24 @@ import java.util.List;
  *
  * @author sarahaverill
  */
-public class ArticleJdbcDAO implements ArticleDAO{
-    
+public class ArticleJdbcDAO implements ArticleDAO {
+
     public ArticleJdbcDAO() {
-       }
-   
+    }
+
     private String databaseURI = DbConnection.getDefaultConnectionUri();
 
-   
     public ArticleJdbcDAO(String databaseURI) {
         this.databaseURI = databaseURI;
     }
-   
-    
 
     public void addArticle(Article article) {
-        
-            String sql = "insert into Article (article_Id, title, abstract, file, keyword, author, verified, published, cited_Count, contributed_By, verified_By, flags) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        String sql = "insert into Article (article_Id, title, abstract, file, keyword, author, verified, published, cited_Count, contributed_By, verified_By, flags) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (
-                
-                Connection dbCon = DbConnection.getConnection(databaseURI);
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-        
+                 Connection dbCon = DbConnection.getConnection(databaseURI);  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+
             stmt.setInt(1, article.getArticleId());
             stmt.setString(2, article.getTitle());
             stmt.setString(3, article.getArticleAbstract());
@@ -55,46 +50,38 @@ public class ArticleJdbcDAO implements ArticleDAO{
             stmt.setString(10, article.getContributedBy());
             stmt.setString(11, article.getVerifiedBy());
             stmt.setInt(12, article.getTimesFlagged());
-           
+
             stmt.executeUpdate();
 
-        } catch (SQLException ex) { 
-          
+        } catch (SQLException ex) {
+
             throw new DAOException(ex.getMessage(), ex);
         }
     }
-    
-  
+
     public void deleteArticle(Integer id) {
-    
+
         String sql = "delete from article where articleId = ?";
- 
+
         try (
-            
-         Connection dbCon = DbConnection.getConnection(databaseURI);
-         PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-            
+                 Connection dbCon = DbConnection.getConnection(databaseURI);  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+
             stmt.setInt(1, id);
             stmt.executeUpdate();
- 
+
         } catch (SQLException ex) {
             throw new DAOException(ex.getMessage(), ex);
-        }    
-        
-        
-        
+        }
+
     }
-    
-  
+
     public void updateArticle(Article article) {
-    
-         String sql = "merge into Article (articleId, title, abstract, file, keyword, author, verified, publsihed, citedCount, contributedBy, verifiedBy, flags) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        String sql = "merge into Article (articleId, title, abstract, file, keyword, author, verified, publsihed, citedCount, contributedBy, verifiedBy, flags) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (
-                
-                Connection dbCon = DbConnection.getConnection(databaseURI);
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-        
+                 Connection dbCon = DbConnection.getConnection(databaseURI);  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+
             stmt.setInt(1, article.getArticleId());
             stmt.setString(2, article.getTitle());
             stmt.setString(3, article.getArticleAbstract());
@@ -107,67 +94,57 @@ public class ArticleJdbcDAO implements ArticleDAO{
             stmt.setString(10, article.getContributedBy());
             stmt.setString(11, article.getVerifiedBy());
             stmt.setInt(12, article.getTimesFlagged());
-           
+
             stmt.executeUpdate();
 
-        } catch (SQLException ex) { 
-          
+        } catch (SQLException ex) {
+
             throw new DAOException(ex.getMessage(), ex);
         }
-        
-        
-        
+
     }
-    
 
     public void flagArticle(Article article) {
-        String sql = "merge into Article (timesFlagged) values (?)"; 
-        
-         try (
-                // get connection to database
-                Connection dbCon = DbConnection.getConnection(databaseURI);
-                // create the statement
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-          
-            stmt.setInt(1, article.getTimesFlagged());
-           
-            stmt.executeUpdate(); 
-
-        } catch (SQLException ex) {  
-            throw new DAOException(ex.getMessage(), ex);
-        }  
-        
-    }
-    
- 
-    public void addContributor(User user) {
-        
-       String sql = "insert into Article (userId) values (?)";
+        String sql = "merge into Article (timesFlagged) values (?)";
 
         try (
                 // get connection to database
-                Connection dbCon = DbConnection.getConnection(databaseURI);
-                // create the statement
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
-           
-            stmt.setInt(1, user.getUserId());
-           
-            stmt.executeUpdate(); 
+                 Connection dbCon = DbConnection.getConnection(databaseURI); // create the statement
+                  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
 
-        } catch (SQLException ex) {  
+            stmt.setInt(1, article.getTimesFlagged());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
             throw new DAOException(ex.getMessage(), ex);
-        }    
-        
+        }
+
     }
-    
-    
-    
- 
-    public Collection<Article> filterByAuthor(String auth){
+
+    public void addContributor(User user) {
+
+        String sql = "insert into Article (userId) values (?)";
+
+        try (
+                // get connection to database
+                 Connection dbCon = DbConnection.getConnection(databaseURI); // create the statement
+                  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+
+            stmt.setInt(1, user.getUserId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            throw new DAOException(ex.getMessage(), ex);
+        }
+
+    }
+
+    public Collection<Article> filterByAuthor(String auth) {
         String sql = "Select * from Article where lower(author) like concat(‘%’, ?, ‘%’)";
         try (
-                  Connection dbCon = DbConnection.getConnection(databaseURI);
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+                 Connection dbCon = DbConnection.getConnection(databaseURI);  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
 
             stmt.setString(1, auth.toLowerCase());
             ResultSet rs = stmt.executeQuery();
@@ -190,22 +167,21 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 String verifiedBy = rs.getString("Verified_By");
                 Integer timesFlagged = rs.getInt("Flags");
                 Date date = rs.getDate("Date");
-                
-       
+
                 Article s = new Article(articleId, title, articleAbstract, data, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
-  
+
                 System.out.println(s);
                 articles.add(s);
 
             }
             return articles;
 
-        } catch (SQLException ex) {  
+        } catch (SQLException ex) {
             throw new RuntimeException(ex);
-        }   
-       
+        }
+
     }
-    
+
 //    public Collection<Article> filterByDate(Date d){
 //     String sql = "Select * from Article where lower(date) like concat(‘%’, ?, ‘%’)";
 //     
@@ -375,15 +351,13 @@ public class ArticleJdbcDAO implements ArticleDAO{
 //            throw new RuntimeException(ex);
 //        }      
 //    }
- 
-    public Article getArticleById(Integer artId){
+    public Article getArticleById(Integer artId) {
         String sql = "select * from Article where articleId = ?";
 
         try (
                 // get a connection to the database
-                Connection dbCon = DbConnection.getConnection(databaseURI);
-                // create the statement
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+                 Connection dbCon = DbConnection.getConnection(databaseURI); // create the statement
+                  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
 
             //copy the data from the property domain object into the SQL parameters
             stmt.setInt(1, artId);
@@ -391,7 +365,6 @@ public class ArticleJdbcDAO implements ArticleDAO{
             // execute the query
             ResultSet rs = stmt.executeQuery();
 
-   
             if (rs.next()) {
 
                 // get the data out of the query
@@ -410,12 +383,10 @@ public class ArticleJdbcDAO implements ArticleDAO{
                 Date date = rs.getDate("Date");
 
                 // use the data to create a property object
-              
-                
                 Article s = new Article(articleId, title, articleAbstract, data, keywords, author, verified, published, citedCount, contributedBy, verifiedBy, timesFlagged, date);
 
                 return s;
-                
+
             } else {
                 return null;
             }
@@ -423,16 +394,14 @@ public class ArticleJdbcDAO implements ArticleDAO{
             // don't let the SQLException leak from our DAO encapsulation
             throw new DAOException(ex.getMessage(), ex);
         }
-        
+
     }
-    public Collection<Article> getArticles(){
-         String sql = "select * from article order by Article_ID";
+
+    public Collection<Article> getArticles() {
+        String sql = "select * from article order by Article_ID";
 
         try (
-           
-                Connection dbCon = DbConnection.getConnection(databaseURI);
-               
-                PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+                 Connection dbCon = DbConnection.getConnection(databaseURI);  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
             ResultSet rs = stmt.executeQuery();
 
             // Using a List to preserve the order in which the data was returned from the query.
@@ -470,7 +439,49 @@ public class ArticleJdbcDAO implements ArticleDAO{
             throw new DAOException(ex.getMessage(), ex);
         }
     }
- 
 
-    
+    public Collection<Article> getUnverifiedArticles() {
+        String sql = "select * from article a, (select user_id from user u) where a.contributed_by = user_id and verified = false";
+        try (
+                 Connection con = DbConnection.getConnection(databaseURI);  PreparedStatement ps = con.prepareStatement(sql);) {
+            ResultSet rs = ps.executeQuery();
+ 
+            List<Article> unverifiedList = new ArrayList<>();
+            while (rs.next()) {
+ 
+                Integer articleId = rs.getInt("Article_ID");
+                String title = rs.getString("Title");
+                String articleAbstract = rs.getString("Abstract");
+                byte[] data = rs.getBytes("File");
+                String keywords = rs.getString("Keyword");
+                String author = rs.getString("Author");
+                Boolean verified = rs.getBoolean("Verified");
+                Boolean published = rs.getBoolean("Published");
+                Integer citedCount = rs.getInt("Cited_Count");
+                String contributedBy = rs.getString("Contributed_By");
+                String verifiedBy = rs.getString("Verified_By");
+                Integer timesFlagged = rs.getInt("Flags");
+                
+                Article art = new Article();
+                art.setArticleId(articleId);
+                art.setArticleAbstract(articleAbstract);
+                art.setAuthor(author);
+                art.setCitedCount(citedCount);
+                art.setContributedBy(contributedBy);
+                art.setData(data);
+                art.setKeywords(keywords);
+                art.setPublsihed(published);
+                art.setTimesFlagged(timesFlagged);
+                art.setTitle(title);
+                art.setVerified(verified);
+                art.setVerifiedBy(verifiedBy);
+                
+                unverifiedList.add(art);
+            }
+            return unverifiedList;
+        } catch (SQLException e) {
+            throw new DAOException(e.getMessage(), e);
+        }
+    }
+
 }

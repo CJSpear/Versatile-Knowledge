@@ -30,22 +30,12 @@ public class VerifierJdbcDAO extends UserJdbcDAO implements VerifierDAO {
 	 
     @Override
     public void verifyArticle(Article article) {
-        String sql = " Insert into ARTICLE (ARTICLE_ID, FILE, TITLE, ABSTRACT, KEYWORD, AUTHOR, VERIFIED, PUBLISHED, FLAGS, CITED_COUNT, CONTRIBUTED_BY, VERIFIED_BY ) values (?, ?, ?, ?, ?, ?, TRUE, ?, ?, ?, ?, (Select USER_ID FROM USER where user_id = 'Verifier'))";
-
+String sql = "update article set verified = true where article_id = ?";
         try (
             Connection dbCon = DbConnection.getConnection(url);  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
             stmt.setInt(1, article.getArticleId());
-            stmt.setString(2, article.getTitle());
-            stmt.setString(3, article.getArticleAbstract());
-            stmt.setBytes(4, article.getData());
-            stmt.setString(5, article.getKeywords());
-            stmt.setString(6, article.getAuthor());
-            stmt.setBoolean(7, true);
-            stmt.setBoolean(8, article.getPublsihed());
-            stmt.setInt(9, article.getCitedCount());
-            stmt.setString(10, article.getContributedBy());
-            stmt.setString(11, article.getVerifiedBy());
-            stmt.setInt(12, article.getTimesFlagged());
+            
+            
 
             stmt.executeUpdate();
 
@@ -63,7 +53,7 @@ public class VerifierJdbcDAO extends UserJdbcDAO implements VerifierDAO {
 
     @Override
     public void deleteArticle (Integer id){
-        String sql = "DELETE FROM ARTICLE WHERE ARTICLE_ID = (?) ";
+        String sql = "DELETE FROM ARTICLE WHERE ARTICLE_ID = ? ";
 
         try (
             

@@ -57,6 +57,7 @@ public class ArticleModule extends Jooby {
             rsp.status(Status.CREATED);
         });
    
+        get("/api/unverified", ()->articleDao.getUnverifiedArticles());
    //flag artcile
    
    
