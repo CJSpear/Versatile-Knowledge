@@ -262,3 +262,20 @@ buttons - all pages
 /*
 end
 */
+
+/*
+about/contact page
+*/
+.pabout {
+    margin-left: 20px;
+    width: 80%;
+    line-height: 25px;
+}
+
+h2 {
+    font-weight: normal;
+    margin-left: 20px;
+}
+/*
+end
+*/
