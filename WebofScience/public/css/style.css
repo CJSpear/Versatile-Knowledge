@@ -100,11 +100,12 @@ search.html
     text-align: center;
 }
 
-.seaaarchselect {
+.searchselect {
     font-family: "Lucida Console", "Courier New", monospace;
     padding-left: 10px;
     padding-right: 10px;
     height: 35px;
+    line-height: 35px;
 }
 
 option {
@@ -118,6 +119,13 @@ option {
 }
 
 .searchbutton {
+    font-family: "Lucida Console", "Courier New", monospace;
+    height: 35px;
+    width: 75px;
+}
+
+.topmargin {
+    margin-top: 10px;
     font-family: "Lucida Console", "Courier New", monospace;
     height: 35px;
     width: 75px;
