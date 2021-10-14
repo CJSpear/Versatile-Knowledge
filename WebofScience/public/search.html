@@ -21,25 +21,30 @@ and open the template in the editor.
         <div align='center' style='margin: 100px;'>
             <form ng-submit="searchCtrl.search(SearchInfo, SearchType)" >
                 <select name="dropdown" ng-model ="SearchType">
-                <option value = "author">Author</option>
                 <option value = 'title'>Title</option>
+                <option value = "author">Author</option>
+                <option value = "keyword">Keywords</option>
             </select>
             <input ng-model="SearchInfo" type='text' placeholder='Search...' style='width: 50%; height: 30px;'>
             <button type="submit" style='height:35px'>Search</button>
             </form>
 
             <button ng-click = "order = 'Title'">Title</button>
-            <button ng-click = "order = 'Abstract'">Author</button>
-            <button ng-click = "order = 'Keyword'">Date</button>
+            <button ng-click = "order = 'Author'">Author</button>
+            <button ng-click = "order = 'Keyword'">Keyword</button>
+            
 
 
             <p> Search Results for {{SearchInfo}}</p>
-            <ul>
-<!--            <li ng-repeat = "message in messages | orderBy: order">-->
-             <li ng-repeat = "message in messages">
-                {{message.Title}} - {{message.Abstract}} - {{message.Date}}
-            </li>
-            </ul>
+            
+            <ui ng-repeat = "message in messages | orderBy: order">
+<!--             <li ng-repeat = "message in messages track by $index">-->
+                {{message.Title}} - {{message.Author}} - {{message.Keyword}} -- <p>This Article Currently has a sentiment score of</p>{{message.Sentiment}}
+                <p>Cited By </p>{{message.Cited_Count}} 
+            </ui>
+          
+               
+    
 
 
     

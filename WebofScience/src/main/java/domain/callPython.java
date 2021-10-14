@@ -19,13 +19,20 @@ public class callPython{
 //        return getSearch(type, val);
 //    };
 //    
-    public String getSearch(String type, String val){
+    @SuppressWarnings("empty-statement")
+    public Object getSearch(Object type, Object val){
         
 //      String types = String.join(",", type);
-        String var = String.join("", val);
-//        
-//    System.out.println("VOID");
-        System.out.println("search input is :" + type + " catagory is :" + val);
+        String types = String.valueOf(type);
+        String var = String.valueOf(val);
+        String nothing = " ";
+        System.out.println(var);
+        
+        String BB = " Nothing";
+        
+        
+        
+//        System.out.println("search input is :" + type + " catagory is :" + val);
 //    public void main(String type[]) throws Exception {
 //         System.out.println("Blah");
 //         String Val = val;
@@ -35,8 +42,8 @@ public class callPython{
      try{
          
 //  
- 
-         ProcessBuilder pb = new ProcessBuilder("python3","/home/caleb/Desktop/dddddd/WebOfScience/WebofScience/Python/Python_to_Database.py", type, var);
+//                 System.out.println(var);
+         ProcessBuilder pb = new ProcessBuilder("python3","/home/caleb/Desktop/Bigfile/WebOfScience/WebofScience/Python/Python_to_Database.py", types, var);
          Map<String, String> environment = pb.environment();
          environment.put("CLASSPATH", "h2-latest.jar");
          Process p = pb.start();
@@ -45,30 +52,39 @@ public class callPython{
  
              BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
              String lines= " ";
-             String BB = " ";
              
              while ((lines = in.readLine()) != null) {
                  System.out.println("output " + lines);
-                 BB = lines;
+                 
+                BB = lines;
+                
               } 
 //              Gson g = new Gson(); 
 //              BB = g.toJson(BB);
-             String[] Array = BB.split("");
-             String[] Arr = BB.split(",");
-             System.out.println(BB);
-             return (BB + BB);
- 
- 
+//            obj = BB;
+            Object[] obj = {BB};
+              
+            System.out.print(BB);
+//             String[] Array = BB.split("");
+//             String[] Arr = BB.split("");
+//             System.out.println(BB);
+//             System.out.println(Array);
+//            System.out.println(Arrays.toString(Array));
+
+             return obj;
             }
       catch(Exception e){
          System.out.println(e);
       e.printStackTrace();
       }
+      System.out.println(BB);   
       
-    System.out.println("HERE");
-    System.out.println(type);
+       Object[] send = {BB};
+             System.out.println(send);   
+
+
     // System.in.read();
-    return getSearch(type, val);
+    return send;
     }
 
     

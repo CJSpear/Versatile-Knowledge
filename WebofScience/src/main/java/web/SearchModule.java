@@ -15,8 +15,9 @@ public class SearchModule extends Jooby{
 
     get("/api/search/:type/:val", (req) -> { 
       System.out.println("Made it to SearchModule");
-      String val = req.param("val").value();
-      String type = req.param("type").value();
+      Object val = req.param("val").value();
+      Object type = req.param("type").value();
+      
       
 //      String[] Array = type.split("");
       

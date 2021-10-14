@@ -29,7 +29,7 @@ try:
                 "org.h2.Driver",
                 "jdbc:h2:~/info301",
                 ["sa", ""],
-                "/home/caleb/Desktop/dddddd/WebOfScience/WebofScience/Python/h2-latest.jar")
+                "/home/caleb/Desktop/Bigfile/WebOfScience/WebofScience/Python/h2-latest.jar")
 
         cursor = connection.cursor()
 
@@ -48,8 +48,8 @@ try:
                         search = 'Title'               
                 if typeS == 'author':
                         search = "Author"
-                if typeS == 3:
-                        search = 'Keyword'               
+                if typeS == "keyword":
+                        search = "Keyword"           
                 if typeS == 4:
                         search = "Date"
                 if typeS == 5:
@@ -71,13 +71,13 @@ try:
                         #print (f'item error: "{err} "')
                 if SearchType == "Author":
                         result = None        
-                        cursor.execute("SELECT * FROM USER WHERE FNAME like '%{}%'".format(val))
+                        cursor.execute("SELECT * FROM ARTICLE WHERE AUTHOR like '%{}%'".format(val))
                         result = cursor.fetchall()
                         return result
 
                 if SearchType == "Keyword":
                         result = None        
-                        cursor.execute("SELECT * FROM ARTICLE WHERE TITLE like '%{}%'".format(val))
+                        cursor.execute("SELECT * FROM ARTICLE WHERE KEYWORD like '%{}%'".format(val))
                         result = cursor.fetchall()
                         return result
 
@@ -104,8 +104,8 @@ try:
         for result in results:
                 t = (result[0], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10], result[11])
                 rowarray_list.append(t)
+        #print(t);
         j = json.dumps(rowarray_list)
-
 
     
         #Create Objects for the list, converting into JSON
