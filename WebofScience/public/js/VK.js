@@ -224,38 +224,38 @@ module.factory('demoteVerifierAPI', function ($resource) {
 	return $resource("/api/demoteVerifier/:id", null, {update: {method: 'PUT'}});
 });
 
-module.factory('updateVerifierAPI', function ($resource) {
+module.factory('upgradeVerifierAPI', function ($resource) {
 	return $resource("/api/updateVerifier/:id", null, {update: {method: 'PUT'}});
 });
 //end admin factories 
 //
 //admin controller 
-module.controller('AdminController', function (addVerifierAPI, demoteVerifierAPI, updateVerifierAPI, $sessionStorage, $http) {
+module.controller('AdminController', function ( demoteVerifierAPI, upgradeVerifierAPI, $sessionStorage, $http) {
 	let ctrl = this;
 
-	this.addVerifier = function (verifier) {
-		addVerifierAPI.save(null, verifier,
-			function () {
-
-				$window.location = 'manageVerifier.html';
-			},
-			// error callback
-				function (error) {
-					console.log(error);
-				}
-			);
-			console.log(verifier);
-		};
+//	this.addVerifier = function (verifier) {
+//		addVerifierAPI.save(null, verifier,
+//			function () {
+//
+//				$window.location = 'manageVerifier.html';
+//			},
+//			// error callback
+//				function (error) {
+//					console.log(error);
+//				}
+//			);
+//			console.log(verifier);
+//		};
 
 	this.demoteVerifier = function (user) {
-		demoteVerifier.update({'id': user.userId}, user,function(){
+		demoteVerifierAPI.update({'id': user.userId}, user,function(){
 			$window.location="manageVerifier.html";
 		});
 
 	};
 
-	this.updateVerifier = function (user) {
-		updateVerifierAPI.update({'id': user.userId}, user, function () {
+	this.upgradeVerifier = function (user) {
+		upgradeVerifierAPI.update({'id': user.userId}, user, function () {
 			ctrl.updateMessage = "Account updated";
 
 			$window.location = 'manageVerifier.html';
