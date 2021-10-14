@@ -18,35 +18,32 @@ and open the template in the editor.
     <body ng-controller="SearchController as searchCtrl">
         <div ng-include="'topmenusearch.html'"></div>
         <hr>
-        <div align='center' style='margin: 100px;'>
-            <form ng-submit="searchCtrl.search(SearchInfo, SearchType)" >
-                <select name="dropdown" ng-model ="SearchType">
-                <option value = 'title'>Title</option>
-                <option value = "author">Author</option>
-                <option value = "keyword">Keywords</option>
-            </select>
-            <input ng-model="SearchInfo" type='text' placeholder='Search...' style='width: 50%; height: 30px;'>
-            <button type="submit" style='height:35px'>Search</button>
-            </form>
-
-            <button ng-click = "order = 'Title'">Title</button>
-            <button ng-click = "order = 'Author'">Author</button>
-            <button ng-click = "order = 'Keyword'">Keyword</button>
-            
-
-
-            <p> Search Results for {{SearchInfo}}</p>
-            
-            <ui ng-repeat = "message in messages | orderBy: order">
-<!--             <li ng-repeat = "message in messages track by $index">-->
-                {{message.Title}} - {{message.Author}} - {{message.Keyword}} -- <p>This Article Currently has a sentiment score of</p>{{message.Sentiment}}
-                <p>Cited By </p>{{message.Cited_Count}} 
-            </ui>
-          
-               
-    
-
-
-    
+        <div class="mainbody">
+            <div class="fillbody">
+                <form ng-submit="searchCtrl.search(SearchInfo, SearchType)" class="search">
+                    <select name="dropdown" ng-model ="SearchType" class="searchselect">
+                        <option value = "author">Author</option>
+                        <option value = 'title'>Title</option>
+                    </select>
+                    <input ng-model="SearchInfo" type='text' placeholder='Search...' id="SearchInput">
+                    <button type="submit" class="searchbutton">Search</button>
+                </form>
+                <center>
+                <button ng-click = "order = 'Title'" class="searchbutton, topmargin">Title</button>
+                <button ng-click = "order = 'Abstract'" class="searchbutton, topmargin">Author</button>
+                <button ng-click = "order = 'Keyword'" class="searchbutton, topmargin">Date</button>
+                </center>
+ 
+                <p> Search Results for {{SearchInfo}}</p>
+                <ul>
+                    <!--            <li ng-repeat = "message in messages | orderBy: order">-->
+                    <li ng-repeat = "message in messages">
+                        {{message.Title}} - {{message.Abstract}} - {{message.Date}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+ 
+ 
     </body>
 </html>

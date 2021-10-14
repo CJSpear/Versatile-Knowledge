@@ -1,5 +1,5 @@
-domain/callPython.java
- domain.callPython
+domain/Role.java
+ domain.Role
 dao/userDAO.java
  dao.userDAO
 dao/sqliteDbConnection.java
@@ -10,14 +10,14 @@ dao/AdminDAO.java
  dao.AdminDAO
 dao/DAOException.java
  dao.DAOException
-web/SearchModule.java
- web.SearchModule
+dao/VerifierJdbcDAO.java
+ dao.VerifierJdbcDAO
 domain/Admin.java
  domain.Admin
 dao/VerifierDAO.java
  dao.VerifierDAO
-web/Server.java
- web.Server
+domain/User.java
+ domain.User
 WebofScience/Main.java
  WebofScience.Main
 web/VerifierModule.java
@@ -44,9 +44,9 @@ domain/Article.java
  domain.Article
 dao/AdminJdbcDAO.java
  dao.AdminJdbcDAO
-dao/VerifierJdbcDAO.java
- dao.VerifierJdbcDAO
-domain/User.java
- domain.User
-domain/Role.java
- domain.Role
+domain/callPython.java
+ domain.callPython
+web/Server.java
+ web.Server
+web/SearchModule.java
+ web.SearchModule
