@@ -32,10 +32,8 @@ and open the template in the editor.
                         <td>{{user.deptName}}</td>
                         <td>{{user.fieldResearch}}</td>
                         <td>
-                            <button ng-click="adminCtrl.upgradeVerifier(user)">Promote</button>
-                        </td>
-                        <td ng-if="user.roleId != 1">
-                            <button ng-click="adminCtrl.demoteVerifier(user)">Demote</button>
+                            <button ng-click="adminCtrl.upgradeVerifier(user)" ng-if="user.roleId == 1">Promote</button>
+                            <button ng-click="adminCtrl.demoteVerifier(user)" ng-if="user.roleId != 1">Demote</button>
                         </td>
                     </tr>
                 </table>
