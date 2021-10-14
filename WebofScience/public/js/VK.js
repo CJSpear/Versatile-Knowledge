@@ -70,7 +70,7 @@ module.factory('unverifiedAPI', function ($resource) {
 //verifier factories
 
 module.factory('verifyArticlerAPI', function ($resource) {
-    return $resource("/api/VerifyArticle");
+    return $resource("/api/VerifyArticle/:id", null, {update: {method: 'PUT'}});
 });
 
 module.factory('deleteArticleAPI', function ($resource) {
@@ -176,7 +176,7 @@ module.controller('ArticleController', function (articlesAPI, unverifiedAPI, edi
     }
 
     this.unverifieds = unverifiedAPI.query();
-    
+
     this.uploadArticle = function (article) {
         articlesAPI.save(null, article,
                 function () {
@@ -203,7 +203,7 @@ module.controller('ArticleController', function (articlesAPI, unverifiedAPI, edi
 });
 
 
-module.controller('VeriferController', function (verifyArticleAPI, deleteArticleAPI, $window, $sessionStorage, $http) {
+module.controller('VerifierController', function (verifyArticleAPI, deleteArticleAPI, $window, $sessionStorage, $http) {
     let ctrl = this;
 
     this.verifyArticle = function (article) {
@@ -219,13 +219,20 @@ module.controller('VeriferController', function (verifyArticleAPI, deleteArticle
                         );
                         console.log(article);
                     };
+                    
+                    this.verify = function(article){
+                        verifyArticleAPI.update({'id': article.articleId}, article, function(){
+                            $window.location='verifyArticle.html';
+                        })
+                    }
 
             this.deleteArticle = function (article) {
-                deleteArticleAPI.delete(null, article,
-                        );
-
-            };
-
+                if ($window.confirm("Are you sure you want to delete this article?")) {
+                    deleteArticleAPI.delete({'id': article.articleId}, function () {
+                        $window.location = 'veryfiArticle.html';
+                    });
+                }
+            }
         });
 
 

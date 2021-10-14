@@ -17,7 +17,8 @@ public class VerifierModule extends Jooby{
 
     public VerifierModule(VerifierDAO verifierDAO){ 
         //verify an article
-        post("/api/VerifyArticle", (req, rsp) -> {
+        put("/api/VerifyArticle/:id", (req, rsp) -> {
+            String id = req.param("id").value();
             Article article = req.body().to(Article.class);
             verifierDAO.verifyArticle(article);
             rsp.status(org.jooby.Status.CREATED);

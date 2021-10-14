@@ -25,10 +25,10 @@
                     <th>File</th>
                     </thead>
                     <tr data-ng-repeat="unverified in artCtrl.unverifieds">
-                        <td>{{unverified.title}}</td>
+                        <td ng-click="artCtrl.verify(unverified)">{{unverified.title}}</td>
                         <td>{{unverified.author}}</td>
                         <td>{{unverified.published}}</td>
-                        <td>{{unverified.file}}</td>
+                        <td ng-click="artCtrl.verify(unverified)">{{unverified.file}}</td>
                     </tr>
  
                 </table>

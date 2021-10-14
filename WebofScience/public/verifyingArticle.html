@@ -16,10 +16,20 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body ng-controller="ArticleController as artCtrl">
-        <h3>Title: {{artCtrl.article.articleId}}</h3>
-        <h2>Abstract: <br>
-            {{artCtrl.article.abstract}}
-        </h2>
-        <embed>{{artCtrl.article.filee}}
+        <div ng-include="'topmenu.html'">
+
+        </div>
+        <div ng-controller="VerifierController as vefCtrl" >
+            <hr>
+            <input ng-model="artCtrl.article.articleId"> 
+            <h3>Title: {{artCtrl.article.title}}</h3>
+            <h3>Abstract: <br>
+                {{artCtrl.article.abstract}}
+            </h3>
+            <embed>{{artCtrl.article.filee}}
+            <div ng-controller='UserController as userCtrl'>
+                <button ng-click='vefCtrl.verify(article)'>Verify</button> <button ng-click='vefCtrl.deleteArticle(article)'>Delete</button>
+            </div>
+        </div>
     </body>
 </html>
