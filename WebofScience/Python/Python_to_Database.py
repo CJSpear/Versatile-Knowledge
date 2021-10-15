@@ -27,13 +27,13 @@ try:
         
         connection  = jaydebeapi.connect(
                 "org.h2.Driver",
-                "jdbc:h2:~/info301",
-                ["sa", ""],
-                "/home/caleb/Desktop/Bigfile/WebOfScience/WebofScience/Python/h2-latest.jar")
+                "jdbc:h2:tcp://localhost/info301",
+                ["sa", "sa"],
+                "C:\WebOfScience\WebofScience\Python\h2-latest.jar")
 
         cursor = connection.cursor()
 
-        #conn = psycopg2.connect("dbname=org.h2.Driver user=sa password='' host=~/info301 port=9092")
+        #conn = psycopg2.connect("dbname=org.h2.Driver user=sa password='sa' host=~/info301 port=9092")
         #cursor = connection.cursor()
         val = searchterm
 
@@ -130,7 +130,7 @@ try:
         j = json.dumps(objects_list)
         print (j)
         #Send Straight to JSON FILE
-        with open('/home/caleb/Desktop/dddddd/WebOfScience/WebofScience/public/js/json/messages.json', 'w') as f:
+        with open('C:\WebOfScience\WebofScience\public\js\json\messages.json', 'w') as f:
                 f.write(j)
         
         

@@ -43,13 +43,13 @@ public class callPython{
          
 //  
 //                 System.out.println(var);
-         ProcessBuilder pb = new ProcessBuilder("python3","/home/caleb/Desktop/Bigfile/WebOfScience/WebofScience/Python/Python_to_Database.py", types, var);
+         ProcessBuilder pb = new ProcessBuilder("python","C:\\WebOfScience\\WebofScience\\Python\\Python_to_Database.py", types, var);
          Map<String, String> environment = pb.environment();
          environment.put("CLASSPATH", "h2-latest.jar");
          Process p = pb.start();
  
      
- 
+         
              BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
              String lines= " ";
              
@@ -70,7 +70,7 @@ public class callPython{
 //             System.out.println(BB);
 //             System.out.println(Array);
 //            System.out.println(Arrays.toString(Array));
-
+    
              return obj;
             }
       catch(Exception e){

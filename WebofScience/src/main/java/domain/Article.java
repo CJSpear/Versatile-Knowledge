@@ -8,10 +8,8 @@ package domain;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.net.URLConnection;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
+import java.nio.file.Files;
 import java.util.Date;
 
 /**
@@ -23,7 +21,8 @@ public class Article {
     private Integer articleId;
     private String title;
     private String articleAbstract;
-    private File filee;
+    //private byte[] filee;
+    //private String filee;
     private String keywords;
     private String author;
     private Boolean verified;
@@ -35,19 +34,16 @@ public class Article {
     private Date date;
     private byte[] data;
     //private String mediaType;
+    
 
     public Article() {
     }
 
     public Article(Integer articleId, String title, String articleAbstract, byte[] data, String keywords, String author, Boolean verified, Boolean publsihed, Integer citedCount, String contributedBy, String verifiedBy, Integer timesFlagged, Date date) {
-
-    }
-
-    public Article(Integer articleId, String title, String articleAbstract, byte[] data, String keywords, String author, Boolean verified, Boolean publsihed, Integer citedCount, String contributedBy, String verifiedBy, Date date, Integer timesFlagged) {
         this.articleId = articleId;
         this.title = title;
         this.articleAbstract = articleAbstract;
-        this.data = data;
+//        this.data = data;
         this.keywords = keywords;
         this.author = author;
         this.verified = verified;
@@ -57,8 +53,10 @@ public class Article {
         this.verifiedBy = verifiedBy;
         this.timesFlagged = timesFlagged;
         this.date = date;
-        
-        //this.mediaType = mediaType;
+        //this.filee = filee;
+//        
+//        this.mediaType = mediaType;
+        //loadFile(filee);
     }
 
     public Integer getArticleId() {
@@ -85,11 +83,11 @@ public class Article {
         this.articleAbstract = articleAbstract;
     }
 
-//    public File getFile() {
+//    public String getFile() {
 //        return filee;
 //    }
 //
-//    public void setFile(File filee) {
+//    public void setFile(String filee) {
 //        this.filee = filee;
 //    }
 
@@ -160,7 +158,11 @@ public class Article {
     public Date getDate() {
         return date;
     }
-
+    /*
+    * sets the date variable to the parameter
+    *
+    *@param date is the current date
+    */
     public void setDate(Date date) {
         this.date = date;
     }
@@ -172,7 +174,7 @@ public class Article {
     public void setData(byte[] data) {
         this.data = data;
     }
-//
+
 //    public String getMediaType() {
 //        return mediaType;
 //    }
@@ -184,7 +186,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" + "articleId=" + articleId + ", title=" + title + ", articleAbstract=" + articleAbstract + ", filee=" + filee + ", keywords=" + keywords + ", author=" + author + ", verified=" + verified + ", publsihed=" + publsihed + ", citedCount=" + citedCount + ", contributedBy=" + contributedBy + ", verifiedBy=" + verifiedBy + ", timesFlagged=" + timesFlagged + ", date=" + date + '}';
+        return "Article{" + "articleId=" + articleId + ", title=" + title + ", articleAbstract=" + articleAbstract +/* ", filee=" + filee +*/ ", keywords=" + keywords + ", author=" + author + ", verified=" + verified + ", publsihed=" + publsihed + ", citedCount=" + citedCount + ", contributedBy=" + contributedBy + ", verifiedBy=" + verifiedBy + ", timesFlagged=" + timesFlagged + ", date=" + date +  ", data=" + data + '}';
     }
 
     public Article getArticleId(int parseInt) {
@@ -194,15 +196,17 @@ public class Article {
 //    public void loadFile(String path) {
 //        try {
 //            File file = new File(path);
-//            Long fileLength = file.length();
-//            ByteBuffer buff = ByteBuffer.allocate(fileLength.intValue());
-//            try (
-//                     RandomAccessFile raf = new RandomAccessFile(file, "r");  FileChannel channel = raf.getChannel();) {
-//                channel.read(buff);
-//                buff.flip();
-//                this.mediaType = URLConnection.guessContentTypeFromStream(new ByteArrayInputStream(buff.array()));
-//                this.data = buff.array();
-//            }
+//            this.data  = Files.readAllBytes(file.toPath());
+//                    
+////            Long fileLength = file.length();
+////            ByteBuffer buff = ByteBuffer.allocate(fileLength.intValue());
+////            try (
+////                     RandomAccessFile raf = new RandomAccessFile(file, "r");  FileChannel channel = raf.getChannel();) {
+////                channel.read(buff);
+////                buff.flip();
+//                this.mediaType = URLConnection.guessContentTypeFromStream(new ByteArrayInputStream(this.data));
+//              //  this.data = buff.array();
+//           // }
 //
 //        } catch (IOException ex) {
 //            ex.printStackTrace();

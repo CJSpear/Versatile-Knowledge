@@ -1,5 +1,22 @@
 from serpapi import GoogleSearch
+import os
+import mysql.connector
+from mysql.connector import Error
 
+s = sys.argv[1];
+
+
+
+try:
+
+    connection  = jaydebeapi.connect(
+        "org.h2.Driver",
+        "jdbc:h2:tcp://localhost/~/info301",
+        ["sa", ""],
+        "WebofScience/Python/h2-latest.jar")
+
+
+s = system
 #main function, returns 2 variables
 #first is string list of titles of the first 10 citations
 #second is integer of total citations
@@ -45,5 +62,13 @@ def main(s):
             ten_results.append(i['title'])
             
     return ten_results, int(total)
+    citation = int(total)
     print (ten_results)
 
+ def citations():
+        cursor.execute("update article set CITED_COUNT= '{}' where title = '{}' ".format(citation))
+        return result
+
+
+except:
+        print(sys.exc_info())

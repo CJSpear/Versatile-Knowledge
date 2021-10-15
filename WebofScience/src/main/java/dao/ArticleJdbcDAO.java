@@ -7,6 +7,8 @@ package dao;
 
 import domain.Article;
 import domain.User;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -33,30 +36,70 @@ public class ArticleJdbcDAO implements ArticleDAO {
 
     public void addArticle(Article article) {
 
-        String sql = "insert into Article (article_Id, title, abstract, file, keyword, author, verified, published, cited_Count, contributed_By, verified_By, flags) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+String sql = "insert into Article (file, title, abstract, keyword, author, verified, published, flags, cited_Count, contributed_By, verified_By) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (
-                 Connection dbCon = DbConnection.getConnection(databaseURI);  PreparedStatement stmt = dbCon.prepareStatement(sql);) {
+                 Connection dbCon = DbConnection.getConnection(databaseURI);  PreparedStatement stmt = dbCon.prepareStatement(sql);
+                                
+                ) {
 
-            stmt.setInt(1, article.getArticleId());
+//            stmt.setInt(1, article.getArticleId());
+            stmt.setBytes(1, article.getData());
             stmt.setString(2, article.getTitle());
             stmt.setString(3, article.getArticleAbstract());
-            stmt.setBytes(4, article.getData());
-            stmt.setString(5, article.getKeywords());
-            stmt.setString(6, article.getAuthor());
-            stmt.setBoolean(7, article.getVerified());
-            stmt.setBoolean(8, article.getPublsihed());
-            stmt.setInt(9, article.getCitedCount());
-            stmt.setString(10, article.getContributedBy());
+            stmt.setString(4, article.getKeywords());
+            stmt.setString(5, article.getAuthor());
+            stmt.setBoolean(6, false);
+            stmt.setBoolean(7, false);
+            stmt.setInt(8, 0);
+            stmt.setInt(9, 0);
             stmt.setString(11, article.getVerifiedBy());
-            stmt.setInt(12, article.getTimesFlagged());
+            stmt.setString(10, article.getContributedBy());
 
             stmt.executeUpdate();
+            
+           System.out.println(article.getTitle());
+           String title = article.getTitle();
+           String articleab = article.getArticleAbstract();
+           
+           try{
+                   
+                        ProcessBuilder pb = new ProcessBuilder("python","C:\\WebOfScience\\WebofScience\\Python\\Sentimental_Analysis",title, articleab);
+                        Map<String, String> environment = pb.environment();
+                        environment.put("CLASSPATH", "h2-latest.jar");
+                        Process p = pb.start();        
+                   
+                       
+                   }catch(Exception e){
+                       System.out.println(e);
+                       
+                   }
+           
+           try{
+               ProcessBuilder pb = new ProcessBuilder("python","C:\\WebOfScience\\WebofScience\\Python\\Sentimental_Analysis",title);
+               Map<String, String> environment = pb.environment();
+               environment.put("CLASSPATH", "h2-latest.jar");
+               Process p = pb.start();
+               
+           }catch(Exception e){
+                 System.out.println(e);
+           }
+           
+       
 
-        } catch (SQLException ex) {
+        } catch (SQLException ex) 
+            
+            
+       
+        
+        {
 
             throw new DAOException(ex.getMessage(), ex);
         }
+
+        
+
+        
     }
 
     public void deleteArticle(Integer id) {
