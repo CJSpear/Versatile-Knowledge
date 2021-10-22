@@ -1,0 +1,46 @@
+To allow your Computer to install and execute python scripts you first much install Python3 and Install the relevant modules:
+
+
+
+How to Install Python 3:
+
+	Download: https://www.python.org/downloads/
+	
+	Install Guide:
+		Windows: https://docs.python.org/3/using/windows.html
+		Mac: 	 https://docs.python.org/3/using/mac.html
+		Unix:    https://docs.python.org/3/using/unix.html
+		
+	Please read to install Python3 Correctly to your computer
+	
+	
+	
+	
+How to Install Python Modules:
+
+	https://docs.python.org/3/installing/index.html
+	https://packaging.python.org/tutorials/installing-packages/
+	Please Read to understand on how to install python imports
+	
+	
+	If you do not know how to access the commandline/Terminal, Use these links to help
+	Windows: https://www.businessinsider.com.au/how-to-open-command-prompt?r=US&IR=T
+	Mac: https://macpaw.com/how-to/use-terminal-on-mac
+	ubuntu: https://ubuntu.com/tutorials/command-line-for-beginners#1-overview
+
+Import Functions:
+psycopg2
+collections
+os
+mysql-connector-python
+sys
+json
+TextBlob
+serpapi
+
+
+
+
+
+	
+	

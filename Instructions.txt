@@ -1,0 +1,23 @@
+Windows users: h2-windows.bat
+mac users: h2-1.4.200.jar
+
+1) Double click h2-windows.bat, you should notice an icon appear in your system tray (it looks like a yellow 3D cylinder). If you see this
+icon then the H2 server is running and you will be able to connect to any databases running on this server.
+
+2) Now we need to create a database. Right click the H2 icon in the system tray and select Create a new database.
+
+3) Enter ~./info301 for the Database path.
+
+4) Leave the Username as 'sa'. Enter 'sa' for the Password.
+
+5) In the zip folder you should see a file with the name vk.mv which is the file that will contain your database.
+
+6) Now we need to open the H2 web console so that we can interact with the database. Click the H2 icon in the system tray. You should see the H2 console appear in a web browser. In the JDBC URL field in the web console, enter:
+jdbc:h2:tcp://localhost/~./info301. Enter the password sa and click Connect.
+
+
+
+
+
+
+
